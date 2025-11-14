@@ -69,7 +69,7 @@
     <ClCompile Include="Source\Cheat\Features\GodMode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cheat\Features\NoCooldown.cpp">
+    <ClCompile Include="Source\Cheat\Features\NoCooldownRacerWeapons.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -155,7 +155,7 @@
     <ClInclude Include="Source\Cheat\Features\GodMode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Cheat\Features\NoCooldown.h">
+    <ClInclude Include="Source\Cheat\Features\NoCooldownRacerWeapons.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

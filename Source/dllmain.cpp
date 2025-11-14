@@ -23,6 +23,7 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
     
     ResolverNitrousNFSHPR();
     ResolverGodModeNFSHPR();
+    ResolverNoCooldownRacerWeaponsNFSHPR();
 
     Menu::EndRender();
     return oPresent(pSwapChain, SyncInterval, Flags);
@@ -73,11 +74,13 @@ DWORD WINAPI HackThread(HMODULE hModule)
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
+    DisableThreadLibraryCalls(hModule);
+
     switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:
+
         CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)HackThread, hModule, 0, nullptr));
-        DisableThreadLibraryCalls(hModule);
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:
     case DLL_PROCESS_DETACH:

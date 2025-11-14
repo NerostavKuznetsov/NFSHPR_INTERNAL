@@ -27,9 +27,10 @@
 #include "Cheat/Menu/Font.h"       // ERRO DE MULTIPLAS DEFINIÇÕES E SIMBOLOS!   fix with INLINE in Font.h
 #include "Cheat/SDK/Offsets.h"
 
-// Unlimited Nitrous
+// Cheats
 #include "Cheat/Features/UnlimitedNitrous.h"
 #include "Cheat/Features/GodMode.h"
+#include "Cheat/Features/NoCooldownRacerWeapons.h"
 
 // Declaração 
 extern uintptr_t Client;

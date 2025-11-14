@@ -7,10 +7,9 @@ IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARA
 // -----------------------------------------------------
 bool UnlimitedNitrous = false;
 bool GodMode = false;
+bool NoCooldownRacerWeapons = false;
 bool menuaberto = false;
-// -----------------------------------------------------
-// Fim das variáveis globais
-// -----------------------------------------------------
+
 
 static ID3D11Device*                g_pd3dDevice = NULL;
 static ID3D11DeviceContext*         g_pd3dDeviceContext = NULL;
@@ -25,7 +24,9 @@ static ID3D11RenderTargetView*      mainRenderTargetView = nullptr;
 
 //D3DX11_IMAGE_LOAD_INFO info; ID3DX11ThreadPump* pump{ nullptr };
 
+// -----------------------------------------------------
 // Helpers para RTV
+// -----------------------------------------------------
 static void CreateRenderTarget(IDXGISwapChain* pSwapChain)
 {
 	ID3D11Texture2D* pBackBuffer = nullptr;
@@ -160,6 +161,8 @@ namespace Menu
 
 	void Render()
 	{
+
+
 		// Toggle do menu apenas quando a tecla é pressionada (não segurada)
 		static bool insertPressedLastFrame = false;
 		bool insertPressedNow = (GetAsyncKeyState(VK_INSERT) & 0x8000) != 0;
@@ -173,6 +176,10 @@ namespace Menu
 
 		if (!menuaberto)
 			return;
+
+
+
+
 
 		ImGuiContext& g = *GImGui; 
 		ImGuiStyle* style = &ImGui::GetStyle();
@@ -257,8 +264,7 @@ namespace Menu
 						static float color1[4] = { 255 / 255.f, 0 / 255.f, 0 / 255.f }; // PENDING
 						ImGui::ColorEdit4("Nitrous Fire Color", color1, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar); // PENDING
 
-						static bool Unlockfps = false;
-						ImGui::Checkbox("Unlock FPS", &Unlockfps);
+						ImGui::Checkbox("No Cooldown", &NoCooldownRacerWeapons); // PENDING ADLKASJDLAKSDJALSKDJALSKDJALSDKJASDLKAJSDLKAJSDLAKSDLKAJSDLKAJSDLKAJSDLKJASDLKAJSD
 
 						ImGui::Checkbox("God Mode", &GodMode); // PENDING
 					}
