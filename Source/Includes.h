@@ -1,4 +1,5 @@
 #define IMGUI_DEFINE_MATH_OPERATORS
+#define LEAN_AND
 
 // Windows API
 #include <windows.h>
