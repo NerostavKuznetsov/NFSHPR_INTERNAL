@@ -1,20 +1,24 @@
 #include "../../Includes.h"
 
-extern bool NoCooldownRacerWeapons; /// OFFSETS ERRADOS,  AJUSTAR
-  
+extern bool NoCooldownRacerWeapons;
 
 void ResolverNoCooldownRacerWeaponsNFSHPR()
 {
-	if (Client && NoCooldownRacerWeapons)
-	{
-		uintptr_t Address = *(uintptr_t*)(Client + 0x0141FA88);
-		if (Address == 0) return;
-		Address = *(uintptr_t*)(Address + 0xC0);
-		if (Address == 0) return;
-		Address += 0x1F60;
+    if (Client && NoCooldownRacerWeapons)
+    {
+        uintptr_t Address = *(uintptr_t*)(Client + 0x12791C0);
+        if (Address == 0) return;
 
-		*(float*)Address = 0.0f;
-	}
+        // RACER EMP 
+        *(float*)(Address + 0x3F0) = 1.0f;
 
+        // RACER SPIKE 
+        *(float*)(Address + 0x3E4) = 1.0f;
 
-}	
+        // RACER JAMMER 
+        *(float*)(Address + 0x3F8) = 1.0f;
+
+        // RACER TURBO 
+        *(float*)(Address + 0x3EC) = 1.0f;
+    }
+}

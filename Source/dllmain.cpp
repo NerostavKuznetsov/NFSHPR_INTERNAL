@@ -48,7 +48,7 @@ DWORD WINAPI HackThread(HMODULE hModule)
     FILE* f;
     freopen_s(&f, "CONOUT$", "w", stdout);
 
-    std::cout << R"(DLL INJETADA COM SUCESSO, DIVIRTA-SE!)";
+    std::cout << R"([+] DLL INJETADA, by: Nerostav Kuznetsov)";
 
     bool init_hook = false;
     do

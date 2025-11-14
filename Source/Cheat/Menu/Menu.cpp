@@ -239,9 +239,11 @@ namespace Menu
 
 				if (ImGui::Tab("Gameplay", "C", 0 == page, ImVec2(234, 50))) page = 0;                   
 
-				if (ImGui::Tab("Bounty & IA", "C", 1 == page, ImVec2(234, 50))) page = 1;                     
+				if (ImGui::Tab("Weathers", "C", 1 == page, ImVec2(234, 50))) page = 1;
 
-				//if (ImGui::Tab("IA", "C", 2 == page, ImVec2(234, 50))) page = 2;                         
+				if (ImGui::Tab("Bounty", "C", 2 == page, ImVec2(234, 50))) page = 2;
+
+				if (ImGui::Tab("IA", "C", 3 == page, ImVec2(234, 50))) page = 3;
 
 				ImGui::PopStyleVar();
 			}
@@ -249,27 +251,38 @@ namespace Menu
 
 			ImGui::PushStyleVar(ImGuiStyleVar_Alpha, tab_alpha * style->Alpha);
 			{
-				anim_text = ImLerp(anim_text, page == active_tab ? 20.f : 0.f, 14.f * ImGui::GetIO().DeltaTime);
+				anim_text = ImLerp(anim_text, page == active_tab ? 20.f : 0.f, 14.f * ImGui::GetIO().DeltaTime); // Animação do texto das tabs
 
 				if (active_tab == 0)
 				{
 					ImGui::GetWindowDrawList()->AddText(Inter_S_2, 23.f, ImVec2(p.x + 246 + anim_text, p.y + 18), ImGui::GetColorU32(c::text_active), "[Gameplay]");
-
 					ImGui::SetCursorPos(ImVec2(266, 76)); // ImVec2(x, y) // x = Posição horizontal (largura) → esquerda ↔ direita // y = Posição vertical (altura) → cima ↕ baixo // Aumenta = desce, Diminuir = sobe
-					ImGui::BeginChild("Tab-1", ImVec2(376, 280), false); // Largura, Altura //da janela dentro  do menuzinho onde fica as opcoes eo  cheeckbox
+					ImGui::BeginChild("Tab-1", ImVec2(376, 280), false); // Largura, Altura da janela dentro do menuzinho onde fica as opções
 					{
 						// Unlimited Nitrous
 						ImGui::Checkbox("Unlimited Nitrous", &UnlimitedNitrous);
 
-						static float color1[4] = { 255 / 255.f, 0 / 255.f, 0 / 255.f }; // PENDING
-						ImGui::ColorEdit4("Nitrous Fire Color", color1, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar); // PENDING
+						static float color1[4] = { 255.f / 255.f, 0.f / 255.f, 0.f / 255.f };
+						ImGui::ColorEdit4("Nitrous Fire Color", color1, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
 
-						ImGui::Checkbox("No Cooldown", &NoCooldownRacerWeapons); // PENDING ADLKASJDLAKSDJALSKDJALSKDJALSDKJASDLKAJSDLKAJSDLAKSDLKAJSDLKAJSDLKAJSDLKJASDLKAJSD
+						ImGui::Checkbox("No Cooldown Racer Weapons", &NoCooldownRacerWeapons); 
 
-						ImGui::Checkbox("God Mode", &GodMode); // PENDING
+						ImGui::Checkbox("God Mode", &GodMode); 
 					}
 					ImGui::EndChild();
+
+
+					//ImGui::SetCursorPosPos(ImVec())
+
+
+
+
 				}
+
+
+
+
+
 
 				if (active_tab == 1)
 				{
@@ -289,6 +302,14 @@ namespace Menu
 				}
 
 				
+
+
+
+
+
+
+
+
 
 
 
