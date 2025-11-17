@@ -6,6 +6,7 @@ bool init;
 bool unloading = false;
 
 uintptr_t Client = (uintptr_t)GetModuleHandle(L"NFS11Remastered.exe");
+uintptr_t Authentication = (uintptr_t)GetModuleHandle(L"Activation64.dll");
 
 HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags)
 {
@@ -21,12 +22,22 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
     Menu::StartRender();
     Menu::Render();
     
-    ResolverNitrousNFSHPR();
+	// Cheats Resolvers
+    ResolverUnlimitedNitrousNFSHPR();
     ResolverGodModeNFSHPR();
 
+	// No Cooldown Weapons
     ResolverNoCooldownRacerWeaponsNFSHPR();
 	ResolverNoCooldownPoliceWeaponsNFSHPR();
-    
+
+	// Weathers Resolvers
+	ResolverEarlyMorningNFSHPR();
+    ResolverMorningNFSHPR();
+    ResolverNoonNFSHPR();
+    ResolverAfternoonNFSHPR();
+    ResolverEveningNFSHPR();
+    ResolverNightNFSHPR();
+    ResolverMidnightNFSHPR();
 
     Menu::EndRender();
     return oPresent(pSwapChain, SyncInterval, Flags);
@@ -47,11 +58,11 @@ void Unload(HMODULE hModule)
 
 DWORD WINAPI HackThread(HMODULE hModule)
 {
-	AllocConsole(); // aloca um novo console
+	AllocConsole(); 
     FILE* f;
     freopen_s(&f, "CONOUT$", "w", stdout);
 
-    std::cout << R"([*] DLL INJETADA)";
+    std::cout << R"()";
 
     bool init_hook = false;
     do
@@ -70,8 +81,8 @@ DWORD WINAPI HackThread(HMODULE hModule)
     }
 
 	Unload(hModule); // chama a função de descarregamento
-	fclose(f); // fecha o arquivo do console
-	FreeConsole(); // libera o console
+	fclose(f); 
+	FreeConsole(); 
 	FreeLibraryAndExitThread(hModule, EXIT_SUCCESS); // descarrega o DLL e sai da thread
     return 0;
 }

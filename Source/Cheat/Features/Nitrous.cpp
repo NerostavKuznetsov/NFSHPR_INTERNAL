@@ -2,19 +2,20 @@
 
 extern bool UnlimitedNitrous;
 
-void ResolverNitrousNFSHPR()
+void ResolverUnlimitedNitrousNFSHPR()
 {
-    uintptr_t NitrousBase = Client + 0x1276650;
-    uintptr_t NitrousAddress = *(uintptr_t*)NitrousBase;
+    uintptr_t Address = *(uintptr_t*)(Client + 0x1276650);
+    if (Address == 0) return;
 
-    float* NitrousValue = (float*)(NitrousAddress + 0x5031C);
+    float* Nitrous_Value = (float*)(Address + 0x5031C);
+
     if (UnlimitedNitrous)
     {
-        *NitrousValue = 100.0f;
+        *Nitrous_Value = 100.0f;
     }
 }
 
-void ResolverNitrousFireColorNFSHPR()
+void ResolverNitrousFireColorNFSHPR() // not implemented yet
 {
    
 }
