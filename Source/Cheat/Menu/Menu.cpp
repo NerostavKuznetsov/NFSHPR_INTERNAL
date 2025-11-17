@@ -8,6 +8,7 @@ IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARA
 bool UnlimitedNitrous = false;
 bool GodMode = false;
 bool NoCooldownRacerWeapons = false;
+bool NoCooldownPoliceWeapons = false;
 bool menuaberto = false;
 
 
@@ -215,7 +216,7 @@ namespace Menu
 		ImGui::End();
 
 		CustomStyleColor();
-		ImGui::SetNextWindowSize(ImVec2(1000, 500)); // Tamanho da janela do MENUPRINCIPAL//  largura e altura
+		ImGui::SetNextWindowSize(ImVec2(1100, 500)); // Tamanho da janela do MENUPRINCIPAL//  largura e altura
 		ImGui::Begin("General", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoBringToFrontOnFocus);
 		{
 			auto draw = ImGui::GetWindowDrawList();
@@ -230,7 +231,7 @@ namespace Menu
 			ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(p.x, p.y), ImVec2(p.x + 250, p.y + region.y), ImGui::GetColorU32(c::child_rect), 12.f, ImDrawFlags_RoundCornersLeft);
 
 			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 10, p.y + 32), ImGui::GetColorU32(c::main_color), "Assembly"); // 27 32
-			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 115, p.y + 32), ImGui::GetColorU32(c::text_active), "Cheats"); // 125 32
+			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 115, p.y + 32), ImGui::GetColorU32(c::text_active), ""); // 125 32
 
 			ImGui::SetCursorPos(ImVec2(8, 110)); // estava 112
 			ImGui::BeginGroup();
@@ -257,7 +258,7 @@ namespace Menu
 				{
 					ImGui::GetWindowDrawList()->AddText(Inter_S_2, 23.f, ImVec2(p.x + 246 + anim_text, p.y + 18), ImGui::GetColorU32(c::text_active), "[Gameplay]");
 					ImGui::SetCursorPos(ImVec2(266, 76)); // ImVec2(x, y) // x = Posição horizontal (largura) → esquerda ↔ direita // y = Posição vertical (altura) → cima ↕ baixo // Aumenta = desce, Diminuir = sobe
-					ImGui::BeginChild("Tab-1", ImVec2(376, 280), false); // Largura, Altura da janela dentro do menuzinho onde fica as opções
+					ImGui::BeginChild("Tab-0-0", ImVec2(376, 280), false); // Largura, Altura da janela dentro do menuzinho onde fica as opções
 					{
 						// Unlimited Nitrous
 						ImGui::Checkbox("Unlimited Nitrous", &UnlimitedNitrous);
@@ -272,8 +273,22 @@ namespace Menu
 					ImGui::EndChild();
 
 
-					//ImGui::SetCursorPosPos(ImVec())
+					ImGui::SetCursorPos(ImVec2(658, 76));
+					ImGui::BeginChild("Tab-0-1", ImVec2(376, 281), false);
+					{
+						static bool Testando0 = false;
+						ImGui::Checkbox("Testando 0", &Testando0);
 
+						static int select3 = 0;
+						const char* items3[] = { "Option 1", "Option 2", "Option 3", "Option 4", "Option 5" };
+						ImGui::Combo("Testando 1", &select3, items3, IM_ARRAYSIZE(items3));
+
+						static float color1[4] = { 0.f / 255.f, 255.f / 255.f, 0.f / 255.f };
+						ImGui::ColorEdit4("Testando 2", color1, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
+						static int slider1 = 50;
+						ImGui::SliderInt("Testando 3", &slider1, 0, 100);
+					}
+					ImGui::EndChild();
 
 
 
@@ -284,7 +299,7 @@ namespace Menu
 
 
 
-				if (active_tab == 1)
+				if (active_tab == 1) // outra tabela DO MENU OU SEJA AQUI FICA WEATHERS
 				{
 					ImGui::GetWindowDrawList()->AddText(Inter_S_2, 23.f, ImVec2(p.x + 246 + anim_text, p.y + 18), ImGui::GetColorU32(c::text_active), "[Bounty]");
 

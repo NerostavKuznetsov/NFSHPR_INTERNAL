@@ -1,5 +1,5 @@
 #define IMGUI_DEFINE_MATH_OPERATORS
-#define LEAN_AND
+//#define LEAN_AND
 
 // Windows API
 #include <windows.h>
@@ -25,13 +25,12 @@
 
 // Cheat Menu 
 #include "Cheat/Menu/Menu.h"
-#include "Cheat/Menu/Font.h"       // ERRO DE MULTIPLAS DEFINIÇÕES E SIMBOLOS!   fix with INLINE in Font.h
-#include "Cheat/SDK/Offsets.h"
+#include "Cheat/Menu/Font.h" // ERRO DE MULTIPLAS DEFINIÇÕES E SIMBOLOS!   fix with INLINE in Font.h
 
 // Cheats
-#include "Cheat/Features/UnlimitedNitrous.h"
+#include "Cheat/Features/Nitrous.h"
 #include "Cheat/Features/GodMode.h"
-#include "Cheat/Features/NoCooldownRacerWeapons.h"
+#include "Cheat/Features/NoCooldownWeapons.h"
 
 // Declaração 
 extern uintptr_t Client;

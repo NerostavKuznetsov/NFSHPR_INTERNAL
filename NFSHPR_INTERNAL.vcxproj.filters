@@ -60,16 +60,13 @@
     <ClCompile Include="Source\Cheat\Menu\Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cheat\SDK\Offsets.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Cheat\Features\UnlimitedNitrous.cpp">
+    <ClCompile Include="Source\Cheat\Features\Nitrous.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Cheat\Features\GodMode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cheat\Features\NoCooldownRacerWeapons.cpp">
+    <ClCompile Include="Source\Cheat\Features\NoCooldownWeapons.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -146,16 +143,13 @@
     <ClInclude Include="Source\Includes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Cheat\SDK\Offsets.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Cheat\Features\UnlimitedNitrous.h">
+    <ClInclude Include="Source\Cheat\Features\Nitrous.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Cheat\Features\GodMode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Cheat\Features\NoCooldownRacerWeapons.h">
+    <ClInclude Include="Source\Cheat\Features\NoCooldownWeapons.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

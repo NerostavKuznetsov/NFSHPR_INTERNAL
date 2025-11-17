@@ -13,3 +13,8 @@ void ResolverNitrousNFSHPR()
         *NitrousValue = 100.0f;
     }
 }
+
+void ResolverNitrousFireColorNFSHPR()
+{
+   
+}

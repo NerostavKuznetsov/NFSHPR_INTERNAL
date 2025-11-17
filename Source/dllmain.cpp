@@ -23,7 +23,10 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
     
     ResolverNitrousNFSHPR();
     ResolverGodModeNFSHPR();
+
     ResolverNoCooldownRacerWeaponsNFSHPR();
+	ResolverNoCooldownPoliceWeaponsNFSHPR();
+    
 
     Menu::EndRender();
     return oPresent(pSwapChain, SyncInterval, Flags);
@@ -44,11 +47,11 @@ void Unload(HMODULE hModule)
 
 DWORD WINAPI HackThread(HMODULE hModule)
 {
-    AllocConsole();
+	AllocConsole(); // aloca um novo console
     FILE* f;
     freopen_s(&f, "CONOUT$", "w", stdout);
 
-    std::cout << R"([+] DLL INJETADA, by: Nerostav Kuznetsov)";
+    std::cout << R"([*] DLL INJETADA)";
 
     bool init_hook = false;
     do
@@ -65,22 +68,21 @@ DWORD WINAPI HackThread(HMODULE hModule)
     {
         Sleep(1);
     }
-    Unload(hModule);
-    fclose(f);
-    FreeConsole();
-    FreeLibraryAndExitThread(hModule, EXIT_SUCCESS);
+
+	Unload(hModule); // chama a função de descarregamento
+	fclose(f); // fecha o arquivo do console
+	FreeConsole(); // libera o console
+	FreeLibraryAndExitThread(hModule, EXIT_SUCCESS); // descarrega o DLL e sai da thread
     return 0;
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
     DisableThreadLibraryCalls(hModule);
-
     switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:
-
-        CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)HackThread, hModule, 0, nullptr));
+		CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)HackThread, hModule, 0, nullptr)); // cria a thread principal do hack
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:
     case DLL_PROCESS_DETACH:
