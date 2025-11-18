@@ -1,11 +1,8 @@
 #include "../../Includes.h"
 
-extern bool NoCooldownRacerWeapons;
-extern bool NoCooldownPoliceWeapons;
-
 void NoCooldownRacerWeapons()
 {
-	if (NoCooldownRacerWeapons)
+	if (Config::NoCooldownRacerWeapons)
 	{
 		uintptr_t Address = *(uintptr_t*)(Client + 0x12791C0);
 		if (!Address) return;
@@ -50,7 +47,7 @@ void NoCooldownRacerWeapons()
 
 void NoCooldownPoliceWeapons()
 {
-	if (NoCooldownPoliceWeapons)
+	if (Config::NoCooldownPoliceWeapons)
 	{
 		uintptr_t Address = *(uintptr_t*)(Client + 0x12791C0);
 		if (!Address) return;

@@ -163,6 +163,7 @@
     <ClCompile Include="External\kiero\minhook\src\hook.c" />
     <ClCompile Include="External\kiero\minhook\src\trampoline.c" />
     <ClCompile Include="Source\Cheat\Config\Config.cpp" />
+    <ClCompile Include="Source\Cheat\Controller\Controller.cpp" />
     <ClCompile Include="Source\Cheat\Features\GodMode.cpp" />
     <ClCompile Include="Source\Cheat\Features\NoCooldownWeapons.cpp" />
     <ClCompile Include="Source\Cheat\Features\Nitrous.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="External\kiero\minhook\src\hde\table64.h" />
     <ClInclude Include="External\kiero\minhook\src\trampoline.h" />
     <ClInclude Include="Source\Cheat\Config\Config.h" />
+    <ClInclude Include="Source\Cheat\Controller\Controller.h" />
     <ClInclude Include="Source\Cheat\Features\GodMode.h" />
     <ClInclude Include="Source\Cheat\Features\NoCooldownWeapons.h" />
     <ClInclude Include="Source\Cheat\Features\Nitrous.h" />

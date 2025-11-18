@@ -1,19 +1,19 @@
 #include "../../Includes.h"
 
-extern bool GodMode;
-
-void ResolverGodModeNFSHPR()
+void GodMode()
 {
-	if (Client && GodMode)
+	if (Config::GodMode)
 	{
-		uintptr_t Address = *(uintptr_t*)(Client + 0x0141FA88);
-		if (Address == 0) return;
-		Address = *(uintptr_t*)(Address + 0xC0);
-		if (Address == 0) return;
+		uintptr_t Ptr1 = *(uintptr_t*)(Client + 0x0141FA88);
+		if (!Ptr1) return;
+		uintptr_t Ptr2 = *(uintptr_t*)(Ptr1 + 0xC0);
+		if (!Ptr2) return;
 
-		Address += 0x1F60;
-	
-		*(float*)Address = 0.0f;
+		uintptr_t GodMode_Value = (Ptr2 + 0x1F60);
+
+		*(float*)GodMode_Value = 0.0f;
 	}
 }
 
+// GOD MODE FEITO PARA APENAS O MEU CARRO.
+// OQUE EU USAVA ANTES PEGAVA TODOS OS CARROS QUANDO DAVA GOD MOD NO MEU E NAS IA																									

@@ -1,4 +1,4 @@
 #pragma once
 
-void ResolverNoCooldownRacerWeaponsNFSHPR();
-void ResolverNoCooldownPoliceWeaponsNFSHPR();
+void NoCooldownRacerWeapons();
+void NoCooldownPoliceWeapons();

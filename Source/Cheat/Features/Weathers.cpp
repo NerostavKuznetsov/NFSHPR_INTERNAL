@@ -1,6 +1,6 @@
 #include "../../Includes.h"
 
-void ResolverEarlyMorningNFSHPR()
+void ChangeTime()
 {
 	if (!Config::ChangeTime) return;
 

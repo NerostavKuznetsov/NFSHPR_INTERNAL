@@ -6,7 +6,6 @@ bool init;
 bool unloading = false;
 
 uintptr_t Client = (uintptr_t)GetModuleHandle(L"NFS11Remastered.exe");
-uintptr_t Authentication = (uintptr_t)GetModuleHandle(L"Activation64.dll");
 
 HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags)
 {
@@ -21,28 +20,8 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
 
     Menu::StartRender();
     Menu::Render();
-    
-	// Cheats Resolvers
-    ResolverUnlimitedNitrousNFSHPR();
-    ResolverGodModeNFSHPR();
 
-	// Weapons Resolvers
-    //ResolverRacerWeaponsNFSHPR();
-	//ResolverPoliceWeaponsNFSHPR();
-
-	// No Cooldown Weapons  
-    NoCooldownRacerWeapons();
-	NoCooldownPoliceWeaponsNFSHPR();
-
-	// Weathers Resolvers
-	ResolverEarlyMorningNFSHPR();
-    ResolverMorningNFSHPR();
-    ResolverNoonNFSHPR();
-    ResolverAfternoonNFSHPR();
-    ResolverEveningNFSHPR();
-    ResolverNightNFSHPR();
-    ResolverMidnightNFSHPR();
-
+	Controller::Execute();
     Menu::EndRender();
     return oPresent(pSwapChain, SyncInterval, Flags);
 }

@@ -33,7 +33,11 @@
 #include "Cheat/Features/NoCooldownWeapons.h" // Racer and Police Nocooldown
 #include "Cheat/Features/Weathers.h" // Weathers
 #include "Cheat/Features/Weapons.h" // Racer and Police Weapons Values
+
+
 #include "Cheat/Config/Config.h"
+
+#include "Cheat/Controller/Controller.h"
 
 // Declaração 
 extern uintptr_t Client;

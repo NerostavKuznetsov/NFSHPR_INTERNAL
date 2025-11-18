@@ -1,21 +1,15 @@
 #include "../../Includes.h"
 
-extern bool UnlimitedNitrous;
-
-void ResolverUnlimitedNitrousNFSHPR()
+void UnlimitedNitrous()
 {
-    uintptr_t Address = *(uintptr_t*)(Client + 0x1276650);
-    if (Address == 0) return;
-
-    float* Nitrous_Value = (float*)(Address + 0x5031C);
-
-    if (UnlimitedNitrous)
+	if (Config::UnlimitedNitrous) 
     {
-        *Nitrous_Value = 100.0f;
-    }
+        uintptr_t Ptr1 = *(uintptr_t*)(Client + 0x1276650);
+        if (!Ptr1) return;
+
+        uintptr_t Nitrous_Value = (Ptr1 + 0x5031C);
+
+        *(float*)Nitrous_Value = 100.0f;
+    } 
 }
 
-void ResolverNitrousFireColorNFSHPR() // not implemented yet
-{
-   
-}

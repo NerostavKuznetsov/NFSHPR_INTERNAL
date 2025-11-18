@@ -2,27 +2,8 @@
 
 IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-// -----------------------------------------------------
-// Variáveis globais 
-// -----------------------------------------------------
-bool UnlimitedNitrous = false;
-bool GodMode = false;
-
-// No Cooldown Weapons
-bool NoCooldownRacerWeapons = false;
-bool NoCooldownPoliceWeapons = false;
-
-// Weathers
-bool EarlyMorning = false;
-bool Morning = false;
-bool Noon = false;
-bool Afternoon = false;
-bool Evening = false;
-bool Night = false;
-bool Midnight = false;
-
 // Menu = false = fechado | Menu = true == aberto // menu começa fechado 
-bool menuaberto = true;
+bool menuaberto = false;
 
 static ID3D11Device*                g_pd3dDevice = NULL;
 static ID3D11DeviceContext*         g_pd3dDeviceContext = NULL;
@@ -272,19 +253,19 @@ namespace Menu
 					ImGui::SetCursorPos(ImVec2(266, 76)); // ImVec2(x, y) // x = Posição horizontal (largura) → esquerda ↔ direita // y = Posição vertical (altura) → cima ↕ baixo // Aumenta = desce, Diminuir = sobe
 					ImGui::BeginChild("Tab-0-0", ImVec2(376, 280), false); // Largura, Altura da janela dentro do menuzinho onde fica as opções
 					{
-						ImGui::Checkbox("Unlimited Nitrous", &UnlimitedNitrous);
+						ImGui::Checkbox("Unlimited Nitrous", &Config::UnlimitedNitrous);
 						static float color1[4] = { 255.f / 255.f, 0.f / 255.f, 0.f / 255.f };
 						ImGui::ColorEdit4("Nitrous Fire Color", color1, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar); // not implemented yet
-						ImGui::Checkbox("No Cooldown Racer Weapons", &NoCooldownRacerWeapons); 
-						ImGui::Checkbox("No Cooldown Police Weapons", &NoCooldownPoliceWeapons);
-						ImGui::Checkbox("God Mode", &GodMode); 
+						ImGui::Checkbox("No Cooldown Racer Weapons", &Config::NoCooldownRacerWeapons);
+						ImGui::Checkbox("No Cooldown Police Weapons", &Config::NoCooldownPoliceWeapons);
+						ImGui::Checkbox("God Mode", &Config::GodMode);
 					}
 					ImGui::EndChild();
 
 					ImGui::SetCursorPos(ImVec2(658, 76));
 					ImGui::BeginChild("Tab-0-2", ImVec2(376, 281), false);
 					{
-						static bool Testando0 = false;
+						/*static bool Testando0 = false;
 						ImGui::Checkbox("Testando 0", &Testando0);
 
 						static int select3 = 0;
@@ -294,7 +275,7 @@ namespace Menu
 						static float color1[4] = { 0.f / 255.f, 255.f / 255.f, 0.f / 255.f };
 						ImGui::ColorEdit4("Testando 2", color1, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
 						static int slider1 = 50;
-						ImGui::SliderInt("Testando 3", &slider1, 0, 100);
+						ImGui::SliderInt("Testando 3", &slider1, 0, 100);*/
 					}
 					ImGui::EndChild();
 				}
@@ -306,13 +287,13 @@ namespace Menu
 					ImGui::SetCursorPos(ImVec2(266, 76));
 					ImGui::BeginChild("Tab-2", ImVec2(376, 280), false);
 					{
-						ImGui::Checkbox("Early Morning", &EarlyMorning);
+						/*ImGui::Checkbox("Early Morning", &EarlyMorning);
 						ImGui::Checkbox("Morning", &Morning);
 						ImGui::Checkbox("Noon", &Noon);
 						ImGui::Checkbox("Afternoon", &Afternoon);
 						ImGui::Checkbox("Evening", &Evening);
 						ImGui::Checkbox("Night", &Night);
-						ImGui::Checkbox("Midnight", &Midnight);
+						ImGui::Checkbox("Midnight", &Midnight);*/
 
 
 
