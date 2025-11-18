@@ -30,13 +30,15 @@ namespace c
 
     inline ImVec4 settings_checkbox = ImColor(37, 37, 37, 255);
 
-    inline ImVec4 circle_active = ImColor(121, 106, 231, 255);
 
-    inline ImVec4 circle_inactive = ImColor(121, 106, 231, 127);
+    // Combo Box Colors
+    inline ImVec4 circle_active = ImColor(0, 255, 0, 255); // combo quando estou na selecao
+    inline ImVec4 circle_inactive = ImColor(0, 255, 0, 255); // combo quando saio da selecao
+    //inline ImVec4 circle_selected = ImColor(255, 255, 255, 255); // combo quando selecionado (branco)
+    inline ImVec4 circle_selected = ImColor(0, 0, 0, 255); // combo quando selecionado
+    inline ImVec4 circle_in_selected = ImColor(255, 255, 255, 0); // combo quando está selecionado  
 
-    inline ImVec4 circle_selected = ImColor(255, 255, 255, 255);
 
-    inline ImVec4 circle_in_selected = ImColor(255, 255, 255, 0);
 
     inline ImVec4 background_slider = ImColor(9, 9, 9, 255);
 

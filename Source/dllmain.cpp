@@ -20,7 +20,7 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
 
     Menu::StartRender();
     Menu::Render();
-
+    
 	Controller::Execute();
     Menu::EndRender();
     return oPresent(pSwapChain, SyncInterval, Flags);
@@ -45,7 +45,7 @@ DWORD WINAPI HackThread(HMODULE hModule)
     FILE* f;
     freopen_s(&f, "CONOUT$", "w", stdout);
 
-    std::cout << R"()";
+    std::cout << R"( Made with <3 by Nerostav Kuznetsov)";
 
     bool init_hook = false;
     do
@@ -63,10 +63,10 @@ DWORD WINAPI HackThread(HMODULE hModule)
         Sleep(1);
     }
 
-	Unload(hModule); // chama a função de descarregamento
+	Unload(hModule);
 	fclose(f); 
 	FreeConsole(); 
-	FreeLibraryAndExitThread(hModule, EXIT_SUCCESS); // descarrega o DLL e sai da thread
+	FreeLibraryAndExitThread(hModule, EXIT_SUCCESS); 
     return 0;
 }
 
@@ -76,7 +76,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
     switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:
-		CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)HackThread, hModule, 0, nullptr)); // cria a thread principal do hack
+		CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)HackThread, hModule, 0, nullptr)); 
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:
     case DLL_PROCESS_DETACH:
@@ -84,4 +84,3 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
     }
     return TRUE;
 }
-

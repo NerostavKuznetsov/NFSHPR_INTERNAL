@@ -5,18 +5,18 @@ IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARA
 // Menu = false = fechado | Menu = true == aberto // menu começa fechado 
 bool menuaberto = false;
 
-static ID3D11Device*                g_pd3dDevice = NULL;
-static ID3D11DeviceContext*         g_pd3dDeviceContext = NULL;
-static IDXGISwapChain*              g_pSwapChain = NULL;
-static ID3D11RenderTargetView*      g_mainRenderTargetView = NULL;
+static ID3D11Device*               g_pd3dDevice = NULL;
+static ID3D11DeviceContext*        g_pd3dDeviceContext = NULL;
+static IDXGISwapChain*             g_pSwapChain = NULL;
+static ID3D11RenderTargetView*     g_mainRenderTargetView = NULL;
 
-static HWND                         window = nullptr;
-static WNDPROC                      oWndProc = nullptr;
-static ID3D11Device*                pDevice = nullptr;
-static ID3D11DeviceContext*         pContext = nullptr;
-static ID3D11RenderTargetView*      mainRenderTargetView = nullptr;
+static HWND                        window = nullptr;
+static WNDPROC                     oWndProc = nullptr;
+static ID3D11Device*               pDevice = nullptr;
+static ID3D11DeviceContext*        pContext = nullptr;
+static ID3D11RenderTargetView*     mainRenderTargetView = nullptr;
 
-//D3DX11_IMAGE_LOAD_INFO info; ID3DX11ThreadPump* pump{ nullptr };
+//D3DX11_IMAGE_LOAD_INFO info; ID3DX11ThreadPump* pump{ nullptr }; // Serve para carregar texturas assíncronas
 
 // -----------------------------------------------------
 // Helpers para RTV
@@ -129,6 +129,8 @@ namespace Menu
 
 			Icon = io.Fonts->AddFontFromMemoryTTF((void*)Icon_Pack, sizeof Icon_Pack, 26.f, &cfg, ranges); // Icones para as tabs
 
+			Icon_Arrow = io.Fonts->AddFontFromMemoryTTF(&Arrow, sizeof Arrow, 6.f, NULL, io.Fonts->GetGlyphRangesCyrillic());
+
 			// NÃO use io.Fonts->SetFontAtlasOwnedByContext(false) aqui, a menos que você próprio
 			// tenha criado o ImFontAtlas fora do ImGui e queira mantê-lo vivo após DestroyContext().
 			return true;
@@ -175,7 +177,7 @@ namespace Menu
 
 
 
-		ImGuiContext& g = *GImGui; 
+		ImGuiContext& g = *GImGui;
 		ImGuiStyle* style = &ImGui::GetStyle();
 
 		// Janela do watermark (FPS e MS) 
@@ -196,7 +198,7 @@ namespace Menu
 			char fps_text[16];
 			snprintf(fps_text, sizeof(fps_text), "%.0f", ImGui::GetIO().Framerate);
 			ImGui::GetWindowDrawList()->AddText(Inter_S, 17.f, ImVec2(p.x + 20, p.y + 16), ImGui::GetColorU32(c::text_active), fps_text);
-			ImGui::GetWindowDrawList()->AddText(Inter_S_3, 15.f, ImVec2(p.x + 55, p.y + 17), ImGui::GetColorU32(c::text_in_active), "FPS"); 
+			ImGui::GetWindowDrawList()->AddText(Inter_S_3, 15.f, ImVec2(p.x + 55, p.y + 17), ImGui::GetColorU32(c::text_in_active), "FPS");
 
 			// MS Calculator
 			float ms = 1000.0f / ImGui::GetIO().Framerate;
@@ -231,13 +233,13 @@ namespace Menu
 			{
 				ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 8));
 
-				if (ImGui::Tab("Gameplay", "C", 0 == page, ImVec2(234, 50))) page = 0;                   
+				if (ImGui::Tab("Gameplay", "A", 0 == page, ImVec2(234, 50))) page = 0;
 
-				if (ImGui::Tab("Weathers", "C", 1 == page, ImVec2(234, 50))) page = 1;
+				if (ImGui::Tab("Weathers", "L", 1 == page, ImVec2(234, 50))) page = 1;
 
-				if (ImGui::Tab("Bounty", "C", 2 == page, ImVec2(234, 50))) page = 2;
+				if (ImGui::Tab("Bounty", "V", 2 == page, ImVec2(234, 50))) page = 2;
 
-				if (ImGui::Tab("IA", "C", 3 == page, ImVec2(234, 50))) page = 3;
+				if (ImGui::Tab("IA", "S", 3 == page, ImVec2(234, 50))) page = 3;
 
 				ImGui::PopStyleVar();
 			}
@@ -287,21 +289,24 @@ namespace Menu
 					ImGui::SetCursorPos(ImVec2(266, 76));
 					ImGui::BeginChild("Tab-2", ImVec2(376, 280), false);
 					{
-						/*ImGui::Checkbox("Early Morning", &EarlyMorning);
-						ImGui::Checkbox("Morning", &Morning);
-						ImGui::Checkbox("Noon", &Noon);
-						ImGui::Checkbox("Afternoon", &Afternoon);
-						ImGui::Checkbox("Evening", &Evening);
-						ImGui::Checkbox("Night", &Night);
-						ImGui::Checkbox("Midnight", &Midnight);*/
+						const char* TimesOfDay[] =
+						{
+							"Early Morning",
+							"Morning",
+							"Noon",
+							"Afternoon",
+							"Evening",
+							"Night",
+							"Midnight"
+						};
 
-
-
+						ImGui::Checkbox("Enable Time Override", &Config::ChangeTime);
+						ImGui::Combo("Time of Day", &Config::ChangeTimeType, TimesOfDay, IM_ARRAYSIZE(TimesOfDay));
 					}
 					ImGui::EndChild();
 				}
 
-				
+
 
 
 

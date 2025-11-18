@@ -41,8 +41,3 @@
 
 // Declaração 
 extern uintptr_t Client;
-extern uintptr_t Authentication;
-
-
-
-
