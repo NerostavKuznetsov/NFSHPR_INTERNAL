@@ -2,7 +2,7 @@
 
 namespace Controller
 {
-		void Init();
-		void Shutdown();
+		//void Init();
+		//void Shutdown(); // 
 		void Execute();
 }
