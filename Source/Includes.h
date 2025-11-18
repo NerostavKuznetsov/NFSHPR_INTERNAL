@@ -1,5 +1,5 @@
 #define IMGUI_DEFINE_MATH_OPERATORS
-#define WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN // Excluir APIs pouco usadas dos cabeçalhos do Windows.
 
 // Windows API
 #include <windows.h>
@@ -30,8 +30,10 @@
 // Cheats
 #include "Cheat/Features/Nitrous.h"
 #include "Cheat/Features/GodMode.h"
-#include "Cheat/Features/NoCooldownWeapons.h" // Racer and Police cooldown
+#include "Cheat/Features/NoCooldownWeapons.h" // Racer and Police Nocooldown
 #include "Cheat/Features/Weathers.h" // Weathers
+#include "Cheat/Features/Weapons.h" // Racer and Police Weapons Values
+#include "Cheat/Config/Config.h"
 
 // Declaração 
 extern uintptr_t Client;

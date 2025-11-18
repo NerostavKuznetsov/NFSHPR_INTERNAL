@@ -3,12 +3,12 @@
 extern bool NoCooldownRacerWeapons;
 extern bool NoCooldownPoliceWeapons;
 
-void ResolverNoCooldownRacerWeaponsNFSHPR()
+void NoCooldownRacerWeapons()
 {
-	if (Client && NoCooldownRacerWeapons)
+	if (NoCooldownRacerWeapons)
 	{
 		uintptr_t Address = *(uintptr_t*)(Client + 0x12791C0);
-		if (Address == 0) return;
+		if (!Address) return;
 		
 		// JAMMER
 		int* JAMMER_Value = (int*)(Address + 0x5E4);
@@ -48,12 +48,12 @@ void ResolverNoCooldownRacerWeaponsNFSHPR()
 	}
 }
 
-void ResolverNoCooldownPoliceWeaponsNFSHPR()
+void NoCooldownPoliceWeapons()
 {
-	if (Client && NoCooldownPoliceWeapons)
+	if (NoCooldownPoliceWeapons)
 	{
 		uintptr_t Address = *(uintptr_t*)(Client + 0x12791C0);
-		if (Address == 0) return;
+		if (!Address) return;
 
 		// ROADBLOCK
 		int* ROADBLOCK_Value = (int*)(Address + 0x5E8);

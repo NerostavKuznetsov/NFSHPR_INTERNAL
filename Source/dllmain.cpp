@@ -26,9 +26,13 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
     ResolverUnlimitedNitrousNFSHPR();
     ResolverGodModeNFSHPR();
 
-	// No Cooldown Weapons
-    ResolverNoCooldownRacerWeaponsNFSHPR();
-	ResolverNoCooldownPoliceWeaponsNFSHPR();
+	// Weapons Resolvers
+    //ResolverRacerWeaponsNFSHPR();
+	//ResolverPoliceWeaponsNFSHPR();
+
+	// No Cooldown Weapons  
+    NoCooldownRacerWeapons();
+	NoCooldownPoliceWeaponsNFSHPR();
 
 	// Weathers Resolvers
 	ResolverEarlyMorningNFSHPR();

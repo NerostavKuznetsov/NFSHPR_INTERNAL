@@ -308,6 +308,14 @@ namespace Menu
 					{
 						ImGui::Checkbox("Early Morning", &EarlyMorning);
 						ImGui::Checkbox("Morning", &Morning);
+						ImGui::Checkbox("Noon", &Noon);
+						ImGui::Checkbox("Afternoon", &Afternoon);
+						ImGui::Checkbox("Evening", &Evening);
+						ImGui::Checkbox("Night", &Night);
+						ImGui::Checkbox("Midnight", &Midnight);
+
+
+
 					}
 					ImGui::EndChild();
 				}
