@@ -20,8 +20,8 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
 
     Menu::StartRender();
     Menu::Render();
-    
-	Controller::Execute();
+
+    Controller::Execute();
     Menu::EndRender();
     return oPresent(pSwapChain, SyncInterval, Flags);
 }
@@ -41,11 +41,16 @@ void Unload(HMODULE hModule)
 
 DWORD WINAPI HackThread(HMODULE hModule)
 {
-	AllocConsole(); 
+    AllocConsole();
     FILE* f;
     freopen_s(&f, "CONOUT$", "w", stdout);
 
-    std::cout << R"( Made with <3 by Nerostav Kuznetsov)";
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+
+    
+    std::cout << R"([+] Press INSERT to toggle menu)" "\n";
+    std::cout << R"([+] Made with <3 by Nerostav Kuznetsov)";
 
     bool init_hook = false;
     do
@@ -60,23 +65,24 @@ DWORD WINAPI HackThread(HMODULE hModule)
 
     while (!GetAsyncKeyState(VK_END))
     {
-        Sleep(1);
+        
     }
 
-	Unload(hModule);
-	fclose(f); 
-	FreeConsole(); 
-	FreeLibraryAndExitThread(hModule, EXIT_SUCCESS); 
+    Unload(hModule);
+    fclose(f);
+    FreeConsole();
+    FreeLibraryAndExitThread(hModule, EXIT_SUCCESS);
     return 0;
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
-    DisableThreadLibraryCalls(hModule);
+
     switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:
-		CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)HackThread, hModule, 0, nullptr)); 
+        CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)HackThread, hModule, 0, nullptr));
+        DisableThreadLibraryCalls(hModule);
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:
     case DLL_PROCESS_DETACH:

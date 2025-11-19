@@ -3,7 +3,7 @@
 IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 // Menu = false = fechado | Menu = true == aberto // menu começa fechado 
-bool menuaberto = false;
+bool menuaberto = true;
 
 static ID3D11Device*               g_pd3dDevice = NULL;
 static ID3D11DeviceContext*        g_pd3dDeviceContext = NULL;
@@ -56,7 +56,7 @@ ImFont* Inter_S_2 = nullptr;
 ImFont* Inter_S_3 = nullptr;
 ImFont* Inter_B = nullptr;
 ImFont* Icon = nullptr;
-ImFont* Icon_Arrow;
+ImFont* Icon_Arrow = nullptr;
 
 int sub_page = 0;
 int page = 0;
@@ -78,7 +78,7 @@ void CustomStyleColor()
 	s.WindowPadding = ImVec2(0, 0);
 
 	s.Colors[ImGuiCol_ChildBg] = ImColor(0, 0, 0, 255);
-	s.Colors[ImGuiCol_WindowBg] = ImColor(9, 9, 9, 255); // Fundo do menu quase preto
+	s.Colors[ImGuiCol_WindowBg] = ImColor(10, 10, 10, 255); // Fundo do menu quase preto CINZA Q EU SEMPRE
 }
 
 namespace Menu
@@ -129,10 +129,10 @@ namespace Menu
 
 			Icon = io.Fonts->AddFontFromMemoryTTF((void*)Icon_Pack, sizeof Icon_Pack, 26.f, &cfg, ranges); // Icones para as tabs
 
-			Icon_Arrow = io.Fonts->AddFontFromMemoryTTF(&Arrow, sizeof Arrow, 6.f, NULL, io.Fonts->GetGlyphRangesCyrillic());
+			Icon_Arrow = io.Fonts->AddFontFromMemoryTTF((void*)Arrow, sizeof Arrow, 7.f, &cfg, ranges);
 
-			// NÃO use io.Fonts->SetFontAtlasOwnedByContext(false) aqui, a menos que você próprio
-			// tenha criado o ImFontAtlas fora do ImGui e queira mantê-lo vivo após DestroyContext().
+			//Icon_Arrow = io.Fonts->AddFontFromMemoryTTF(&Arrow, sizeof Arrow, 6.f, NULL, io.Fonts->GetGlyphRangesCyrillic()); // errror crash na hora de unloading
+			// NÃO use io.Fonts->SetFontAtlasOwnedByContext(false) aqui, a menos que você próprio tenha criado o ImFontAtlas fora do ImGui e queira mantê-lo vivo após DestroyContext().
 			return true;
 		}
 		return false;
@@ -157,8 +157,6 @@ namespace Menu
 
 	void Render()
 	{
-
-
 		// Toggle do menu apenas quando a tecla é pressionada (não segurada)
 		static bool insertPressedLastFrame = false;
 		bool insertPressedNow = (GetAsyncKeyState(VK_INSERT) & 0x8000) != 0;
@@ -172,10 +170,6 @@ namespace Menu
 
 		if (!menuaberto)
 			return;
-
-
-
-
 
 		ImGuiContext& g = *GImGui;
 		ImGuiStyle* style = &ImGui::GetStyle();
@@ -211,7 +205,7 @@ namespace Menu
 		ImGui::End();
 
 		CustomStyleColor();
-		ImGui::SetNextWindowSize(ImVec2(1100, 500)); // Tamanho da janela do MENUPRINCIPAL//  largura e altura
+		ImGui::SetNextWindowSize(ImVec2(1055, 490)); 
 		ImGui::Begin("General", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoBringToFrontOnFocus);
 		{
 			auto draw = ImGui::GetWindowDrawList();
@@ -223,9 +217,10 @@ namespace Menu
 			if (tab_alpha < 0.01f && tab_add < 0.01f) active_tab = page;
 
 			ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(p.x, p.y), ImVec2(p.x + 250, p.y + region.y), ImGui::GetColorU32(c::child_rect), 12.f, ImDrawFlags_RoundCornersLeft);
-			ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(p.x, p.y), ImVec2(p.x + 250, p.y + region.y), ImGui::GetColorU32(c::child_rect), 12.f, ImDrawFlags_RoundCornersLeft);
 
-			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 10, p.y + 32), ImGui::GetColorU32(c::main_color), "  Assembly"); // 27 32
+			ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(p.x, p.y), ImVec2(p.x + 250, p.y + region.y), ImGui::GetColorU32(c::child_rect), 12.f, ImDrawFlags_RoundCornersLeft);
+			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 10, p.y + 32), ImGui::GetColorU32(c::main_color), "   Kuznetsov"); // 27 32
+
 			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 115, p.y + 32), ImGui::GetColorU32(c::text_active), ""); // 125 32
 
 			ImGui::SetCursorPos(ImVec2(8, 110)); // estava 112
@@ -241,63 +236,96 @@ namespace Menu
 
 				if (ImGui::Tab("IA", "S", 3 == page, ImVec2(234, 50))) page = 3;
 
+				if (ImGui::Tab("Config", "C", 4 == page, ImVec2(234, 50))) page = 4;
+
 				ImGui::PopStyleVar();
 			}
 			ImGui::EndGroup();
 
 			ImGui::PushStyleVar(ImGuiStyleVar_Alpha, tab_alpha * style->Alpha);
 			{
-				anim_text = ImLerp(anim_text, page == active_tab ? 20.f : 0.f, 14.f * ImGui::GetIO().DeltaTime); // Animação do texto das tabs
+				anim_text = ImLerp(anim_text, page == active_tab ? 20.f : 0.f, 14.f * ImGui::GetIO().DeltaTime); // Animação do texto das tabs EX: [Gameplay]
 
-				if (active_tab == 0)
+				if (active_tab == 0) // ➡️ Gameplay
 				{
 					ImGui::GetWindowDrawList()->AddText(Inter_S_2, 23.f, ImVec2(p.x + 246 + anim_text, p.y + 18), ImGui::GetColorU32(c::text_active), "[Gameplay]");
 					ImGui::SetCursorPos(ImVec2(266, 76)); // ImVec2(x, y) // x = Posição horizontal (largura) → esquerda ↔ direita // y = Posição vertical (altura) → cima ↕ baixo // Aumenta = desce, Diminuir = sobe
-					ImGui::BeginChild("Tab-0-0", ImVec2(376, 280), false); // Largura, Altura da janela dentro do menuzinho onde fica as opções
+					ImGui::BeginChild("Tab-0-0", ImVec2(376, 160), false); // Largura, Altura ; da janela dentro do menuzinho onde fica as opções 160
 					{
 						ImGui::Checkbox("Unlimited Nitrous", &Config::UnlimitedNitrous);
+
 						static float color1[4] = { 255.f / 255.f, 0.f / 255.f, 0.f / 255.f };
-						ImGui::ColorEdit4("Nitrous Fire Color", color1, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar); // not implemented yet
-						ImGui::Checkbox("No Cooldown Racer Weapons", &Config::NoCooldownRacerWeapons);
-						ImGui::Checkbox("No Cooldown Police Weapons", &Config::NoCooldownPoliceWeapons);
+						ImGui::ColorEdit4("Nitrous Fire Color", color1, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar); 
+
 						ImGui::Checkbox("God Mode", &Config::GodMode);
 					}
 					ImGui::EndChild();
 
-					ImGui::SetCursorPos(ImVec2(658, 76));
-					ImGui::BeginChild("Tab-0-2", ImVec2(376, 281), false);
+					float childEndY = ImGui::GetCursorPosY();
+					float spacing = 10.0f;
+
+					ImGui::SetCursorPos(ImVec2(266, childEndY + spacing));
+					ImGui::BeginChild("Tab-0-1", ImVec2(376, 166), false); 
 					{
-						/*static bool Testando0 = false;
-						ImGui::Checkbox("Testando 0", &Testando0);
+						const char* ColorTypes[] =
+						{
+							"Black", "Blue", "Yellow", "Green", "Purple", "Cyan", "DodgerBlue", "Chocolate", "Orchid", "SlateBlue", "SeaGreen"
+						};
 
-						static int select3 = 0;
-						const char* items3[] = { "Option 1", "Option 2", "Option 3", "Option 4", "Option 5" };
-						ImGui::Combo("Testando 1", &select3, items3, IM_ARRAYSIZE(items3));
+						static bool Testando = false;
+						ImGui::Checkbox("Enable Drift Smoke Override", &Testando);
+						ImGui::Combo("Drift Smoke Colors", &Config::ChangeTimeType, ColorTypes, IM_ARRAYSIZE(ColorTypes));
+					}
 
-						static float color1[4] = { 0.f / 255.f, 255.f / 255.f, 0.f / 255.f };
-						ImGui::ColorEdit4("Testando 2", color1, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
-						static int slider1 = 50;
-						ImGui::SliderInt("Testando 3", &slider1, 0, 100);*/
+					ImGui::EndChild();
+
+					ImGui::SetCursorPos(ImVec2(658, 76));
+					ImGui::BeginChild("Tab-0-2", ImVec2(376, 220), false);
+					{
+						static bool Testando1 = false;
+						ImGui::Checkbox("Unlimited Racers Weapons", &Testando1);
+						ImGui::Checkbox("No Cooldown Racer Weapons", &Config::NoCooldownRacerWeapons);
+
+						static bool Testando2 = false;
+						ImGui::Checkbox("Unlimited Police Weapons", &Testando2);
+						ImGui::Checkbox("No Cooldown Police Weapons", &Config::NoCooldownPoliceWeapons);
 					}
 					ImGui::EndChild();
 				}
 
 
-				if (active_tab == 1) // Weathers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				if (active_tab == 1) // ➡️ Weathers
 				{
 					ImGui::GetWindowDrawList()->AddText(Inter_S_2, 23.f, ImVec2(p.x + 246 + anim_text, p.y + 18), ImGui::GetColorU32(c::text_active), "[Weathers]");
 					ImGui::SetCursorPos(ImVec2(266, 76));
-					ImGui::BeginChild("Tab-2", ImVec2(376, 280), false);
+					ImGui::BeginChild("Tab-2", ImVec2(376, 166), false);
 					{
 						const char* TimesOfDay[] =
 						{
-							"Early Morning",
-							"Morning",
-							"Noon",
-							"Afternoon",
-							"Evening",
-							"Night",
-							"Midnight"
+							"Early Morning", "Morning", "Noon", "Afternoon", "Evening", "Night", "Midnight"
 						};
 
 						ImGui::Checkbox("Enable Time Override", &Config::ChangeTime);
@@ -305,33 +333,6 @@ namespace Menu
 					}
 					ImGui::EndChild();
 				}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 			}
 			ImGui::PopStyleVar();
 		}

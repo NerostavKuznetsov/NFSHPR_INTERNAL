@@ -12,15 +12,15 @@ namespace c
     inline ImVec4 child_rect = ImColor(0, 0, 0, 255); // background dos tabs (full preto)gameplay, bounty ...)
 
 
-    inline ImVec4 tab_active = ImColor(9, 9, 9, 255);
+    inline ImVec4 tab_active = ImColor(10, 10, 10, 255); // COR CINZA QUE EU SEMPRE...
 
     inline ImVec4 tab_in_active = ImColor(0, 0, 0, 255);
 
-    inline ImVec4 checkbox_bg_in_active = ImColor(9, 9, 9, 255);
+	inline ImVec4 checkbox_bg_in_active = ImColor(10, 10, 10, 255); // COR CINZA QUE EU SEMPRE...
 
     inline ImVec4 black = ImColor(0, 0, 0, 255); 
    
-    inline ImVec4 input = ImColor(9, 9, 9, 255);
+	inline ImVec4 input = ImColor(9, 9, 9, 255); // COR CINZA QUE EU SEMPRE...
 
     inline ImVec4 key_background_wb = ImColor(0, 0, 0, 255);
 
@@ -40,7 +40,7 @@ namespace c
 
 
 
-    inline ImVec4 background_slider = ImColor(9, 9, 9, 255);
+	inline ImVec4 background_slider = ImColor(10, 10, 10, 255); // CONR CINZA QUE EU SEMPRE...  
 
     inline ImVec4 window = ImColor(9, 9, 9, 255);
 

@@ -1,5 +1,5 @@
 #define IMGUI_DEFINE_MATH_OPERATORS
-#define WIN32_LEAN_AND_MEAN // Excluir APIs pouco usadas dos cabeçalhos do Windows.
+//#define WIN32_LEAN_AND_MEAN // Excluir APIs pouco usadas dos cabeçalhos do Windows.
 
 // Windows API
 #include <windows.h>
@@ -36,7 +36,6 @@
 
 
 #include "Cheat/Config/Config.h"
-
 #include "Cheat/Controller/Controller.h"
 
 // Declaração 
