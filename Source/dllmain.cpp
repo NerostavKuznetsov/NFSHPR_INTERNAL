@@ -45,6 +45,9 @@ DWORD WINAPI HackThread(HMODULE hModule)
     FILE* f;
     freopen_s(&f, "CONOUT$", "w", stdout);
 
+    CONSOLE_CURSOR_INFO Cursor = { 1 };
+    SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &Cursor);
+
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
