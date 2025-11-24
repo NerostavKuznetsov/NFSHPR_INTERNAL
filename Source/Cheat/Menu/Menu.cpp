@@ -3,7 +3,7 @@
 IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 // Menu = false = fechado | Menu = true == aberto // menu começa fechado 
-bool menuaberto = true;
+bool menuaberto = true; // menu 
 
 static ID3D11Device*               g_pd3dDevice = NULL;
 static ID3D11DeviceContext*        g_pd3dDeviceContext = NULL;
@@ -276,15 +276,17 @@ namespace Menu
 						ImGui::Checkbox("Enable Drift Smoke Override", &Testando);
 						ImGui::Combo("Drift Smoke Colors", &Config::ChangeTimeType, ColorTypes, IM_ARRAYSIZE(ColorTypes));
 					}
-
+				
 					ImGui::EndChild();
 
 					ImGui::SetCursorPos(ImVec2(658, 76));
 					ImGui::BeginChild("Tab-0-2", ImVec2(376, 220), false);
 					{
 						static bool Testando1 = false;
-						ImGui::Checkbox("Unlimited Racers Weapons", &Testando1);
+						ImGui::Checkbox("Unlimited Racers Weapons", &Config::UnlimitedRacersWeapons);
 						ImGui::Checkbox("No Cooldown Racer Weapons", &Config::NoCooldownRacerWeapons);
+
+						
 
 						static bool Testando2 = false;
 						ImGui::Checkbox("Unlimited Police Weapons", &Testando2);
