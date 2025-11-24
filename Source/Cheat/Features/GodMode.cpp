@@ -13,7 +13,4 @@ void GodMode()
 
 		*(float*)GodMode_Value = 0.0f;
 	}
-}
-
-// GOD MODE FEITO PARA APENAS O MEU CARRO.
-// OQUE EU USAVA ANTES PEGAVA TODOS OS CARROS QUANDO DAVA GOD MOD NO MEU E NAS IA																									
+}																	

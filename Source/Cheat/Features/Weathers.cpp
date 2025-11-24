@@ -12,25 +12,25 @@ void ChangeTime()
 	switch (Config::ChangeTimeType)
 	{
 	case 0:
-		*Current_Time = 17000.0f; // Early Morning
+		*Current_Time = 17000.0f;   // Early Morning
 		break;
 	case 1:
-		*Current_Time = 20000.0f; // Morning
+		*Current_Time = 20000.0f;   // Morning
 		break;
 	case 2:
-		*Current_Time = 50000.0f; // Noon
+		*Current_Time = 50000.0f;   // Noon
 		break;
 	case 3:
-		*Current_Time = 65000.0f; // Afternoon
+		*Current_Time = 65000.0f;   // Afternoon
 		break;
 	case 4:
-		*Current_Time = 73000.0f; // Evening
+		*Current_Time = 73000.0f;   // Evening
 		break;
 	case 5:
-		*Current_Time = 80000.0f; // Night
+		*Current_Time = 80000.0f;   // Night
 		break;
 	case 6:
-		*Current_Time = 0.0f; // Midnight
+		*Current_Time = 0.0f;       // Midnight
 		break;
 	default:
 		break;

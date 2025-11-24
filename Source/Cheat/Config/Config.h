@@ -2,8 +2,6 @@
 
 namespace Config
 {
-	
-
 	inline bool ChangeTime = false;
 	inline int ChangeTimeType = 0;
 
@@ -12,5 +10,8 @@ namespace Config
 
 	inline bool NoCooldownRacerWeapons = false;
 	inline bool NoCooldownPoliceWeapons = false;
+
+
+
 
 }
