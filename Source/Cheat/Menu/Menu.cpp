@@ -274,7 +274,7 @@ namespace Menu
 
 						static bool Testando = false;
 						ImGui::Checkbox("Enable Drift Smoke Override", &Testando);
-						ImGui::Combo("Drift Smoke Colors", &Config::ChangeTimeType, ColorTypes, IM_ARRAYSIZE(ColorTypes));
+						ImGui::Combo("Drift Smoke Colors", &Config::testandoCor, ColorTypes, IM_ARRAYSIZE(ColorTypes));
 					}
 				
 					ImGui::EndChild();

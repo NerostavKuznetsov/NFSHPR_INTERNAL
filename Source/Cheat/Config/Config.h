@@ -6,7 +6,7 @@ namespace Config
 	inline int ChangeTimeType = 0;
 
 
-
+	inline int testandoCor = 0;
 
 
 	inline int ChangeWeatherType = 0; // new
