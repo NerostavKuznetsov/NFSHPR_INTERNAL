@@ -30,9 +30,9 @@
 // Cheats
 #include "Cheat/Features/Nitrous.h"
 #include "Cheat/Features/GodMode.h"
-#include "Cheat/Features/NoCooldownWeapons.h"   // Racer and Police Nocooldown
-#include "Cheat/Features/Weathers.h"            // Weathers
-#include "Cheat/Features/Weapons.h"             // Racer and Police Weapons Values
+#include "Cheat/Features/NoCooldownWeapons.h"   
+#include "Cheat/Features/Weathers.h"           
+#include "Cheat/Features/Weapons.h"             
 
 
 

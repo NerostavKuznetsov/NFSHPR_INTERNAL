@@ -3,7 +3,7 @@
 typedef HRESULT(__stdcall* Present) (IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags);
 Present oPresent;
 bool init;
-bool unloading = false;
+bool unloading = false;     
 
 uintptr_t Client = (uintptr_t)GetModuleHandle(L"NFS11Remastered.exe");
 
@@ -49,11 +49,11 @@ DWORD WINAPI HackThread(HMODULE hModule)
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &Cursor);
 
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 
-    
-    std::cout << R"([+] Press INSERT to toggle menu)" "\n";
-    std::cout << R"([+] Made with <3 by Nerostav Kuznetsov)";
+    std::cout << "[Need For Speed Hot Pursuit Remastered - Cheat]" "\n\n";
+    std::cout << "[+] Press INSERT to toggle menu" "\n";
+    std::cout << "[+] Made with <3 by Nerostav Kuznetsov";
 
     bool init_hook = false;
     do
@@ -86,6 +86,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
     case DLL_PROCESS_ATTACH:
         CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)HackThread, hModule, 0, nullptr));
         DisableThreadLibraryCalls(hModule);
+        break;
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:
     case DLL_PROCESS_DETACH:
