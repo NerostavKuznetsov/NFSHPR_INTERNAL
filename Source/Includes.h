@@ -8,7 +8,7 @@
 #include <string>
 #include <atomic>
 
-// DIRECTX-SKJUNE2010 
+// DirectX SDK (June 2010)
 #include <d3d11.h>
 #include <dxgi.h>
 #include <D3DX11tex.h>
@@ -25,12 +25,13 @@
 // Cheat 
 #include "Cheat/Menu/Menu.h"
 #include "Cheat/Menu/Font.h"
+#include "Cheat/Config/Config.h"
+#include "Cheat/Controller/Controller.h"
 #include "Cheat/Features/Nitrous.h"
 #include "Cheat/Features/GodMode.h"
 #include "Cheat/Features/NoCooldownWeapons.h"   
 #include "Cheat/Features/Weathers.h"           
 #include "Cheat/Features/Weapons.h"             
-#include "Cheat/Config/Config.h"
-#include "Cheat/Controller/Controller.h"
+
 
 extern uintptr_t Client;
