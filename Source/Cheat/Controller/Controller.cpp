@@ -6,13 +6,9 @@ namespace Controller
 	{
 		UnlimitedNitrous();
 		UnlimitedRacersWeapons();
-
-
-
-		GodMode();
 		NoCooldownPoliceWeapons();
 		NoCooldownRacerWeapons();
 		ChangeTime();
-
+		GodMode();
 	}
 }

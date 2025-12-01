@@ -2,8 +2,6 @@
 
 IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-// Menu = false = fechado | Menu = true == aberto // menu começa fechado 
-bool menuaberto = true; // menu 
 
 static ID3D11Device*               g_pd3dDevice = NULL;
 static ID3D11DeviceContext*        g_pd3dDeviceContext = NULL;
@@ -15,8 +13,6 @@ static WNDPROC                     oWndProc = nullptr;
 static ID3D11Device*               pDevice = nullptr;
 static ID3D11DeviceContext*        pContext = nullptr;
 static ID3D11RenderTargetView*     mainRenderTargetView = nullptr;
-
-//D3DX11_IMAGE_LOAD_INFO info; ID3DX11ThreadPump* pump{ nullptr }; // Serve para carregar texturas assíncronas
 
 // -----------------------------------------------------
 // Helpers para RTV
@@ -157,19 +153,29 @@ namespace Menu
 
 	void Render()
 	{
+
 		// Toggle do menu apenas quando a tecla é pressionada (não segurada)
+		// ✔ toggle anti-repetição
+		// ✔ evita spam quando segura INSERT
 		static bool insertPressedLastFrame = false;
 		bool insertPressedNow = (GetAsyncKeyState(VK_INSERT) & 0x8000) != 0;
 		if (insertPressedNow && !insertPressedLastFrame)
-			menuaberto = !menuaberto;
+			Config::MenuImGui = !Config::MenuImGui;
 		insertPressedLastFrame = insertPressedNow;
 
 		// Mostra ou esconde o cursor conforme o menu
 		ImGuiIO& io = ImGui::GetIO();
-		io.MouseDrawCursor = menuaberto;
+		io.MouseDrawCursor = Config::MenuImGui;
 
-		if (!menuaberto)
+		if (!Config::MenuImGui)
 			return;
+
+
+
+
+
+
+
 
 		ImGuiContext& g = *GImGui;
 		ImGuiStyle* style = &ImGui::GetStyle();

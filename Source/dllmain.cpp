@@ -1,8 +1,13 @@
+// Created by -> https://github.com/NerostavKuznetsov
+// DLL entry point
+
 #include "Includes.h"
 
 typedef HRESULT(__stdcall* Present) (IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags);
 Present oPresent;
+
 bool init;
+bool init_hook = false;
 bool unloading = false;     
 
 uintptr_t Client = (uintptr_t)GetModuleHandle(L"NFS11Remastered.exe");
@@ -49,26 +54,25 @@ DWORD WINAPI HackThread(HMODULE hModule)
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &Cursor);
 
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_BLUE);
 
     std::cout << "[Need For Speed Hot Pursuit Remastered - Cheat]" "\n\n";
     std::cout << "[+] Press INSERT to toggle menu" "\n";
     std::cout << "[+] Made with <3 by Nerostav Kuznetsov";
 
-    bool init_hook = false;
-    do
+    while (!init_hook)
     {
         if (kiero::init(kiero::RenderType::D3D11) == kiero::Status::Success)
         {
             Init();
-            init_hook = true;
             kiero::bind(8, (void**)&oPresent, hkPresent);
+            init_hook = true;
         }
-    } while (!init);
+    }
 
     while (!GetAsyncKeyState(VK_END))
     {
-        
+        Sleep(1);
     }
 
     Unload(hModule);
@@ -84,8 +88,8 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
     switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:
-        CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)HackThread, hModule, 0, nullptr));
         DisableThreadLibraryCalls(hModule);
+        CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)HackThread, hModule, 0, nullptr));
         break;
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:
