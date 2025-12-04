@@ -198,5 +198,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="LICENSE.txt" />
+    <Text Include="Source\Cheat\Rascunho.txt" />
+    <Text Include="TRASH.txt" />
   </ItemGroup>
 </Project>

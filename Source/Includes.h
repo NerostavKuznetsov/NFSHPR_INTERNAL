@@ -1,20 +1,20 @@
-#define IMGUI_DEFINE_MATH_OPERATORS
-#define WIN32_LEAN_AND_MEAN // Excluir APIs pouco usadas dos cabe�alhos do Windows.
+﻿#define IMGUI_DEFINE_MATH_OPERATORS
+#define WIN32_LEAN_AND_MEAN // ➡️ Excluir APIs pouco usadas dos cabeçalhos do Windows.
 
-// Windows API
+// ➡️ Windows API
 #include <windows.h>
 #include <iostream>
 #include <cinttypes>
 #include <string>
 #include <atomic>
 
-// DirectX SDK (June 2010)
+// ➡️ DirectX SDK (June 2010)
 #include <d3d11.h>
 #include <dxgi.h>
 #include <D3DX11tex.h>
 #pragma comment(lib, "D3DX11.lib")
 
-// ImGui
+// ➡️ ImGui
 #include "../External/ImGui/imgui.h"
 #include "../External/ImGui/imgui_impl_dx11.h"
 #include "../External/ImGui/imgui_impl_win32.h"
@@ -22,7 +22,7 @@
 #include "../External/ImGui/imgui_settings.h" 
 #include "../External/kiero/kiero.h"
 
-// Cheat 
+// ➡️ Cheat 
 #include "Cheat/Menu/Menu.h"
 #include "Cheat/Menu/Font.h"
 #include "Cheat/Config/Config.h"
@@ -32,6 +32,5 @@
 #include "Cheat/Features/NoCooldownWeapons.h"   
 #include "Cheat/Features/Weathers.h"           
 #include "Cheat/Features/Weapons.h"             
-
 
 extern uintptr_t Client;

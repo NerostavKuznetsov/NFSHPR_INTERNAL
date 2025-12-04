@@ -1,5 +1,5 @@
-// Created by -> https://github.com/NerostavKuznetsov
-// DLL entry point
+﻿// ➡️ Created by ➡️ https://github.com/NerostavKuznetsov
+// ➡️ DLL entry point
 
 #include "Includes.h"
 
@@ -54,11 +54,20 @@ DWORD WINAPI HackThread(HMODULE hModule)
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &Cursor);
 
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_BLUE);
+    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 
-    std::cout << "[Need For Speed Hot Pursuit Remastered - Cheat]" "\n\n";
-    std::cout << "[+] Press INSERT to toggle menu" "\n";
-    std::cout << "[+] Made with <3 by Nerostav Kuznetsov";
+    setlocale(LC_ALL, "PT_BR.UTF-8");
+    SetConsoleOutputCP(CP_UTF8);
+
+    std::wcout << R"(
+ +--------------------------------------------------------------------------------+
+ |             Need For Speed Hot Pursuit Remastered - Cheat Internal             |
+ +--------------------------------------------------------------------------------+
+ |  [+] Press INSERT to toggle menu                                               |
+ |  [+] Made with <3 by Nerostav Kuznetsov                                        |
+ +--------------------------------------------------------------------------------+
+ |  [!] This program is free software you can redistribute and/or modify it!      |
+ +--------------------------------------------------------------------------------+   )";
 
     while (!init_hook)
     {
