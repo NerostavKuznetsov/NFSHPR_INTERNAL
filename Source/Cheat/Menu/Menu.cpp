@@ -2,7 +2,6 @@
 
 IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-
 static ID3D11Device*               g_pd3dDevice = NULL;
 static ID3D11DeviceContext*        g_pd3dDeviceContext = NULL;
 static IDXGISwapChain*             g_pSwapChain = NULL;
@@ -170,29 +169,27 @@ namespace Menu
 		if (!Config::MenuImGui)
 			return;
 
-
-
-
-
-
-
-
 		ImGuiContext& g = *GImGui;
 		ImGuiStyle* style = &ImGui::GetStyle();
 
-		// Janela do watermark (FPS e MS) 
-		ImGui::SetNextWindowSize(ImVec2(180, 50)); // Largura, Altura da janela do wartermark
+
+
+
+		// -----------------------------------------------------
+		// Janela do Watermark 
+		// -----------------------------------------------------
+		ImGui::SetNextWindowSize(ImVec2(180, 50)); // Largura/Altura da janela do wartermark
 		ImGui::SetNextWindowPos({ 10, 10 }); // Posição do watermark na tela
-		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor(0, 0, 0, 255)); // força para ImVec4
+		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor(0, 0, 0, 255)); 
 		ImGui::Begin("##watermark", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
 		{
 			auto draw = ImGui::GetForegroundDrawList();
 
-			const auto& p = ImGui::GetWindowPos();
-			const ImVec2& region = ImGui::GetContentRegionMax();
+			const auto& p = ImGui::GetWindowPos(); // Pega a posição da janela
+			const ImVec2& region = ImGui::GetContentRegionMax(); // Pega o tamanho da janela
 
-			SYSTEMTIME st;
-			GetLocalTime(&st);
+			SYSTEMTIME st; // Estrutura para armazenar o tempo local
+			GetLocalTime(&st); // Obtém o tempo local
 
 			// FPS Calculator
 			char fps_text[16];
@@ -209,6 +206,13 @@ namespace Menu
 
 		}
 		ImGui::End();
+		// -----------------------------------------------------
+		// Fim do Watermark 
+		// -----------------------------------------------------
+
+
+
+
 
 		CustomStyleColor();
 		ImGui::SetNextWindowSize(ImVec2(1055, 490)); 
