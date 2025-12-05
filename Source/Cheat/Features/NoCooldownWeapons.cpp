@@ -2,7 +2,7 @@
 
 void NoCooldownRacerWeapons()
 {
-	if (Config::NoCooldownRacerWeapons)
+	if (Config::NoCooldownRacersWeapons)
 	{
 		uintptr_t Address = *(uintptr_t*)(Client + 0x12791C0);
 		if (!Address) return;

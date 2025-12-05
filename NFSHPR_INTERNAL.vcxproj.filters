@@ -84,6 +84,15 @@
     <ClCompile Include="Source\Cheat\Features\DriftSmokeColor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Cheat\Menu\Tabs\Tab_0.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Cheat\Menu\Tabs\Tab_1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Cheat\Menu\Tabs\Tab_2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="External\ImGui\custom_colors.h">
@@ -180,6 +189,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Cheat\Features\DriftSmokeColor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Cheat\Menu\Tabs\Tab_Config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

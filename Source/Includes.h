@@ -31,6 +31,21 @@
 #include "Cheat/Features/GodMode.h"
 #include "Cheat/Features/NoCooldownWeapons.h"   
 #include "Cheat/Features/Weathers.h"           
-#include "Cheat/Features/Weapons.h"             
+#include "Cheat/Features/Weapons.h"  
+
+// ➡️ Tabs
+#include "Cheat/Menu/Tabs/Tab_Config.h"
+
+
+
+
+
+// ➡️ Global variables
+// 
+// 
+//
+extern float anim_text;
 
 extern uintptr_t Client;
+
+extern ImFont* Inter_S_2;

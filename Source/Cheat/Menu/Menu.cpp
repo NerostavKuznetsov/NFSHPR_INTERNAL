@@ -57,8 +57,11 @@ int sub_page = 0;
 int page = 0;
 int togle = 0;
 
-static float tab_alpha = 0.f; /* */ static float tab_add; /* */ static int active_tab = 0;
-static float anim_text = 0.f;
+//static float tab_alpha = 0.f; /* */ static float tab_add; /* */ static int active_tab = 0;
+// float anim_text = 0.f;
+
+ float tab_alpha = 0.f; /* */ static float tab_add; /* */ static int active_tab = 0;
+ float anim_text = 0.f;
 
 void CustomStyleColor()
 {
@@ -75,6 +78,42 @@ void CustomStyleColor()
 	s.Colors[ImGuiCol_ChildBg] = ImColor(0, 0, 0, 255);
 	s.Colors[ImGuiCol_WindowBg] = ImColor(10, 10, 10, 255); // Fundo do menu quase preto CINZA Q EU SEMPRE
 }
+
+
+
+
+
+
+// ------------------------------------------------------------------
+// Função auxiliar para renderizar as tabs
+// ------------------------------------------------------------------
+void RenderTabs()  
+{
+	anim_text = ImLerp(anim_text, page == active_tab ? 20.f : 0.f, 14.f * ImGui::GetIO().DeltaTime);
+
+	switch (active_tab)
+	{
+	case 0: Tabs::Gameplay(); break;
+	case 1: Tabs::Weathers(); break;
+
+
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 namespace Menu
 {
@@ -116,7 +155,12 @@ namespace Menu
 
 			Inter_S_1 = io.Fonts->AddFontFromMemoryTTF((void*)Inter_SemmiBold, sizeof Inter_SemmiBold, 18.f, &cfg, ranges); // Fonte dos títulos das tabs
 
-			Inter_S_2 = io.Fonts->AddFontFromMemoryTTF((void*)Inter_SemmiBold, sizeof Inter_SemmiBold, 23.f, &cfg, ranges); // Fonte dos botões
+
+
+			Inter_S_2 = io.Fonts->AddFontFromMemoryTTF((void*)Inter_SemmiBold, sizeof Inter_SemmiBold, 23.f, &cfg, ranges); // Fonte dos botões .??????????????????????????????????????
+
+
+
 
 			Inter_S_3 = io.Fonts->AddFontFromMemoryTTF((void*)Inter_SemmiBold, sizeof Inter_SemmiBold, 15.f, &cfg, ranges); // Fonte do watermark
 
@@ -183,10 +227,20 @@ namespace Menu
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor(0, 0, 0, 255)); 
 		ImGui::Begin("##watermark", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
 		{
-			auto draw = ImGui::GetForegroundDrawList();
 
+
+
+
+
+			auto draw = ImGui::GetForegroundDrawList();
+	
 			const auto& p = ImGui::GetWindowPos(); // Pega a posição da janela
+	
 			const ImVec2& region = ImGui::GetContentRegionMax(); // Pega o tamanho da janela
+
+
+
+
 
 			SYSTEMTIME st; // Estrutura para armazenar o tempo local
 			GetLocalTime(&st); // Obtém o tempo local
@@ -209,6 +263,9 @@ namespace Menu
 		// -----------------------------------------------------
 		// Fim do Watermark 
 		// -----------------------------------------------------
+
+
+
 
 
 
@@ -252,110 +309,20 @@ namespace Menu
 			}
 			ImGui::EndGroup();
 
+
+
+
+
 			ImGui::PushStyleVar(ImGuiStyleVar_Alpha, tab_alpha * style->Alpha);
 			{
 				anim_text = ImLerp(anim_text, page == active_tab ? 20.f : 0.f, 14.f * ImGui::GetIO().DeltaTime); // Animação do texto das tabs EX: [Gameplay]
 
-				if (active_tab == 0) // ➡️ Gameplay
-				{
-					ImGui::GetWindowDrawList()->AddText(Inter_S_2, 23.f, ImVec2(p.x + 246 + anim_text, p.y + 18), ImGui::GetColorU32(c::text_active), "[Gameplay]");
-					ImGui::SetCursorPos(ImVec2(266, 76)); // ImVec2(x, y) // x = Posição horizontal (largura) → esquerda ↔ direita // y = Posição vertical (altura) → cima ↕ baixo // Aumenta = desce, Diminuir = sobe
-					ImGui::BeginChild("Tab-0-0", ImVec2(376, 160), false); // Largura, Altura ; da janela dentro do menuzinho onde fica as opções 160
-					{
-						ImGui::Checkbox("Unlimited Nitrous", &Config::UnlimitedNitrous);
-
-						static float color1[4] = { 255.f / 255.f, 0.f / 255.f, 0.f / 255.f };
-						ImGui::ColorEdit4("Nitrous Fire Color", color1, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar); 
-
-						ImGui::Checkbox("God Mode", &Config::GodMode);
-					}
-					ImGui::EndChild();
-
-					float childEndY = ImGui::GetCursorPosY();
-					float spacing = 10.0f;
-
-					ImGui::SetCursorPos(ImVec2(266, childEndY + spacing));
-					ImGui::BeginChild("Tab-0-1", ImVec2(376, 166), false); 
-					{
-						const char* ColorTypes[] =
-						{
-							"Black", "Blue", "Yellow", "Green", "Purple", "Cyan", "DodgerBlue", "Chocolate", "Orchid", "SlateBlue", "SeaGreen"
-						};
-
-						static bool Testando = false;
-						ImGui::Checkbox("Enable Drift Smoke Override", &Testando);
-						ImGui::Combo("Drift Smoke Colors", &Config::testandoCor, ColorTypes, IM_ARRAYSIZE(ColorTypes));
-					}
-				
-					ImGui::EndChild();
-
-					ImGui::SetCursorPos(ImVec2(658, 76));
-					ImGui::BeginChild("Tab-0-2", ImVec2(376, 220), false);
-					{
-						static bool Testando1 = false;
-						ImGui::Checkbox("Unlimited Racers Weapons", &Config::UnlimitedRacersWeapons);
-						ImGui::Checkbox("No Cooldown Racer Weapons", &Config::NoCooldownRacerWeapons);
-
-						
-
-						static bool Testando2 = false;
-						ImGui::Checkbox("Unlimited Police Weapons", &Testando2);
-						ImGui::Checkbox("No Cooldown Police Weapons", &Config::NoCooldownPoliceWeapons);
-					}
-					ImGui::EndChild();
-				}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				if (active_tab == 1) // ➡️ Weathers
-				{
-					ImGui::GetWindowDrawList()->AddText(Inter_S_2, 23.f, ImVec2(p.x + 246 + anim_text, p.y + 18), ImGui::GetColorU32(c::text_active), "[Weathers]");
-					ImGui::SetCursorPos(ImVec2(266, 76));
-					ImGui::BeginChild("Tab-2", ImVec2(376, 166), false);
-					{
-						const char* TimesOfDay[] =
-						{
-							"Early Morning", "Morning", "Noon", "Afternoon", "Evening", "Night", "Midnight"
-						};
-
-						ImGui::Checkbox("Enable Time Override", &Config::ChangeTime);
-						ImGui::Combo("Time of Day", &Config::ChangeTimeType, TimesOfDay, IM_ARRAYSIZE(TimesOfDay));
-					}
-					ImGui::EndChild();
-				}
+				RenderTabs();
 			}
 			ImGui::PopStyleVar();
 		}
 		ImGui::End();
 	}
-
-
-
-
-
-
 
 
 

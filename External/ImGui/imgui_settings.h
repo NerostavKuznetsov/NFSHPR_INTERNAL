@@ -1,7 +1,7 @@
 #pragma once
 #include "imgui.h"
 
-namespace color_nerostav
+namespace c
 {
    
     inline ImVec4 main_color = ImColor(170, 34, 255, 255);     // novo roxo

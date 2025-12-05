@@ -22,6 +22,6 @@ namespace Config
 	inline bool UnlimitedRacersWeapons = false;
 	inline bool UnlimitedPoliceWeapons = false; // not implemented yet 
 
-	inline bool NoCooldownRacerWeapons = false;
+	inline bool NoCooldownRacersWeapons = false;
 	inline bool NoCooldownPoliceWeapons = false;
 }
