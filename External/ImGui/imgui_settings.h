@@ -1,15 +1,20 @@
 #pragma once
 #include "imgui.h"
 
-namespace c
+namespace color_nerostav
 {
-    //inline ImVec4 main_color = ImColor(121, 106, 231, 255); // roxo anterior
-    inline ImVec4 main_color = ImColor(0, 255, 0, 255); // verde
+   
+    inline ImVec4 main_color = ImColor(170, 34, 255, 255);     // novo roxo
+
 
     inline ImVec4 text_active = ImColor(255, 255, 255, 255); // Cor de texto branca
     inline ImVec4 text_in_active = ImColor(255, 255, 255, 127); // meio cinza perto do branco
+
+
     //inline ImVec4 text_in_active = ImColor(0, 255, 0, 225);
     inline ImVec4 child_rect = ImColor(0, 0, 0, 255); // background dos tabs (full preto)gameplay, bounty ...)
+
+
 
 
     inline ImVec4 tab_active = ImColor(10, 10, 10, 255); // COR CINZA QUE EU SEMPRE...

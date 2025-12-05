@@ -56,9 +56,6 @@ DWORD WINAPI HackThread(HMODULE hModule)
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 
-    setlocale(LC_ALL, "PT_BR.UTF-8");
-    SetConsoleOutputCP(CP_UTF8);
-
     std::wcout << R"(
  +--------------------------------------------------------------------------------+
  |             Need For Speed Hot Pursuit Remastered - Cheat Internal             |
@@ -66,7 +63,7 @@ DWORD WINAPI HackThread(HMODULE hModule)
  |  [+] Press INSERT to toggle menu                                               |
  |  [+] Made with <3 by Nerostav Kuznetsov                                        |
  +--------------------------------------------------------------------------------+
- |  [!] This program is free software you can redistribute and/or modify it!      |
+ |  [!] This program is free software you can redistribute or modify it!          |
  +--------------------------------------------------------------------------------+   )";
 
     while (!init_hook)
