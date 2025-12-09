@@ -36,16 +36,7 @@
 // ➡️ Tabs
 #include "Cheat/Menu/Tabs/Tab_Config.h"
 
-
-
-
-
 // ➡️ Global variables
-// 
-// 
-//
 extern float anim_text;
-
 extern uintptr_t Client;
-
 extern ImFont* Inter_S_2;

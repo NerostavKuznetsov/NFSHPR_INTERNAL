@@ -13,9 +13,6 @@ static ID3D11Device*               pDevice = nullptr;
 static ID3D11DeviceContext*        pContext = nullptr;
 static ID3D11RenderTargetView*     mainRenderTargetView = nullptr;
 
-// -----------------------------------------------------
-// Helpers para RTV
-// -----------------------------------------------------
 static void CreateRenderTarget(IDXGISwapChain* pSwapChain)
 {
 	ID3D11Texture2D* pBackBuffer = nullptr;
@@ -23,7 +20,6 @@ static void CreateRenderTarget(IDXGISwapChain* pSwapChain)
 	{
 		HRESULT hr = pDevice->CreateRenderTargetView(pBackBuffer, nullptr, &mainRenderTargetView);
 		pBackBuffer->Release();
-		// (Opcional) tratar hr != S_OK
 	}
 }
 
@@ -57,11 +53,6 @@ int sub_page = 0;
 int page = 0;
 int togle = 0;
 
-//static float tab_alpha = 0.f; /* */ static float tab_add; /* */ static int active_tab = 0;
-// float anim_text = 0.f;
-
- float tab_alpha = 0.f; /* */ static float tab_add; /* */ static int active_tab = 0;
- float anim_text = 0.f;
 
 void CustomStyleColor()
 {
@@ -87,6 +78,10 @@ void CustomStyleColor()
 // ------------------------------------------------------------------
 // Função auxiliar para renderizar as tabs
 // ------------------------------------------------------------------
+
+float tab_alpha = 0.f; /* */ static float tab_add; /* */ static int active_tab = 0;
+float anim_text = 0.f;
+
 void RenderTabs()  
 {
 	anim_text = ImLerp(anim_text, page == active_tab ? 20.f : 0.f, 14.f * ImGui::GetIO().DeltaTime);
