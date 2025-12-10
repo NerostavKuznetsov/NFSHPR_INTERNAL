@@ -7,33 +7,41 @@ namespace c
     inline ImVec4 main_color = ImColor(170, 34, 255, 255);     // novo roxo
 
 
+    // ------------------------------------------------------------------
+	// Texto Colors  
+    // ------------------------------------------------------------------
     inline ImVec4 text_active = ImColor(255, 255, 255, 255); // Cor de texto branca
     inline ImVec4 text_in_active = ImColor(255, 255, 255, 127); // meio cinza perto do branco
 
 
-    //inline ImVec4 text_in_active = ImColor(0, 255, 0, 225);
+	// ------------------------------------------------------------------
+    // 
+	// --------------------------------------------------
+    
+
     inline ImVec4 child_rect = ImColor(0, 0, 0, 255); // background dos tabs (full preto)gameplay, bounty ...)
+    //inline ImVec4 child_rect = ImColor(255, 0, 0, 255); // background dos tabs (full preto)gameplay, bounty ...)
 
 
 
 
     inline ImVec4 tab_active = ImColor(10, 10, 10, 255); // COR CINZA QUE EU SEMPRE...
 
-    inline ImVec4 tab_in_active = ImColor(0, 0, 0, 255);
+    inline ImVec4 tab_in_active = ImColor(0, 0, 0, 255); // 
 
 	inline ImVec4 checkbox_bg_in_active = ImColor(10, 10, 10, 255); // COR CINZA QUE EU SEMPRE...
 
-    inline ImVec4 black = ImColor(0, 0, 0, 255); 
+	inline ImVec4 black = ImColor(0, 0, 0, 255); // preto puro
    
 	inline ImVec4 input = ImColor(10, 10, 10, 255); // COR CINZA QUE EU SEMPRE... //// mudei essa
 
-    inline ImVec4 key_background_wb = ImColor(0, 0, 0, 255);
+	inline ImVec4 key_background_wb = ImColor(0, 0, 0, 255); // background da keybind (preto)
 
-    inline ImVec4 select_tab_active = ImColor(129, 99, 255, 255);
+	inline ImVec4 select_tab_active = ImColor(129, 99, 255, 255); // roxo
 
-    inline ImVec4 select_tab_inactive = ImColor(129, 99, 255, 0);
+	inline ImVec4 select_tab_inactive = ImColor(129, 99, 255, 0); // transparente
 
-    inline ImVec4 settings_checkbox = ImColor(37, 37, 37, 255);
+	inline ImVec4 settings_checkbox = ImColor(37, 37, 37, 255); // background do checkbox nas settings (cinza escuro)
 
 
 
@@ -76,7 +84,9 @@ namespace c
 
 
 
-    inline ImVec4 window = ImColor(9, 9, 9, 255);
+    //inline ImVec4 window = ImColor(9, 9, 9, 255); // background da janela (preto quase total)
+    inline ImVec4 window = ImColor(10, 10, 10, 255); 
+    //inline ImVec4 window = ImColor(255, 255, 255, 255); 
 
     namespace elements 
     {

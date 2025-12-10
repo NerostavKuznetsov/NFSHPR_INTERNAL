@@ -1,4 +1,35 @@
-﻿#include "../../Includes.h"
+﻿// ➡️ ImGui
+#include "../../../External/ImGui/imgui.h"
+#include "../../../External/ImGui/imgui_impl_dx11.h"
+#include "../../../External/ImGui/imgui_impl_win32.h"
+#include "../../../External/ImGui/imgui_internal.h"
+#include "../../../External/ImGui/imgui_settings.h"
+
+// ➡️ Kiero Hook
+#include "../../../External/kiero/kiero.h"
+
+// ➡️ Tabs
+#include "../Menu/Tabs/Tab_Config.h"
+
+// ➡️ Config
+#include "../Config/Config.h"
+
+// ➡️ DirectX 10 SDK (June 2010)
+#include <d3d11.h>
+
+// ➡️ Menu
+#include "Menu.h"
+
+// ➡️ Fontes do menu 
+#include "Font.h"
+
+
+
+
+
+
+
+
 
 IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 

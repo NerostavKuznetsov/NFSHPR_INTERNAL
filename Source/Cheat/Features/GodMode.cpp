@@ -1,4 +1,5 @@
-#include "../../Includes.h"
+#include "../Config/Config.h"
+#include "../Menu/Menu.h"
 
 void GodMode()
 {

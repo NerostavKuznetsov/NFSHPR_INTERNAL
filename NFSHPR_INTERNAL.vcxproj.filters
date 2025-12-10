@@ -161,9 +161,6 @@
     <ClInclude Include="Source\Cheat\Menu\Menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Includes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Cheat\Features\Nitrous.h">
       <Filter>Header Files</Filter>
     </ClInclude>

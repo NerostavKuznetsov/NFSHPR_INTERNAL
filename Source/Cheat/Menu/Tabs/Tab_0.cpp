@@ -1,4 +1,8 @@
-#include "../../../Includes.h"
+#include "../../../../External/ImGui/imgui_settings.h"
+#include "../../Config/Config.h"
+#include "../Tabs/Tab_Config.h"
+#include "../Menu.h"
+
 
 void Tabs::Gameplay()
 {
