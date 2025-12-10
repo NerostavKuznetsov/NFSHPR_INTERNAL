@@ -46,8 +46,8 @@ void Tabs::Gameplay()
 		// ------------------------------------------------------------------
 		// Child 0-2
 		// ------------------------------------------------------------------
-		ImGui::SetCursorPos(ImVec2(658, 76)); // POSIÇÃO DO CHILD Á DIREITA
-		ImGui::BeginChild("Child-0-1", ImVec2(376, 220), false); // ANTES 376, 220
+		ImGui::SetCursorPos(ImVec2(658, 76)); 
+		ImGui::BeginChild("Child-0-1", ImVec2(376, 220), false); 
 		{
 			static bool Testando1 = false;
 			ImGui::Checkbox("Unlimited Racers Weapons", &Config::UnlimitedRacersWeapons);
