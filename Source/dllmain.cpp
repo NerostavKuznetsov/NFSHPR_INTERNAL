@@ -1,4 +1,6 @@
-﻿// ➡️ Created by ➡️ https://github.com/NerostavKuznetsov
+﻿// ➡️ Created by https://github.com/NerostavKuznetsov
+// ➡️ DirectX 11 Hook (kiero). Better version: https://github.com/rdbo/ImGui-DirectX-11-Kiero-Hook
+// ➡️ Dear ImGui: Bloat-free Graphical User interface for C++ with minimal dependencies: https://github.com/ocornut/imgui
 // ➡️ DLL entry point
 
 #include "Includes.h"

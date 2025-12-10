@@ -70,17 +70,11 @@ void CustomStyleColor()
 	s.Colors[ImGuiCol_WindowBg] = ImColor(10, 10, 10, 255); // Fundo do menu quase preto CINZA Q EU SEMPRE
 }
 
-
-
-
-
-
 // ------------------------------------------------------------------
 // Função auxiliar para renderizar as tabs
 // ------------------------------------------------------------------
-
 float tab_alpha = 0.f; /* */ static float tab_add; /* */ static int active_tab = 0;
-float anim_text = 0.f;
+float anim_text = 0.f; /* */
 
 void RenderTabs()  
 {
@@ -281,7 +275,7 @@ namespace Menu
 			ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(p.x, p.y), ImVec2(p.x + 250, p.y + region.y), ImGui::GetColorU32(c::child_rect), 12.f, ImDrawFlags_RoundCornersLeft);
 
 			ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(p.x, p.y), ImVec2(p.x + 250, p.y + region.y), ImGui::GetColorU32(c::child_rect), 12.f, ImDrawFlags_RoundCornersLeft);
-			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 10, p.y + 32), ImGui::GetColorU32(c::main_color), "   Kuznetsov"); // 27 32
+			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 10, p.y + 32), ImGui::GetColorU32(c::main_color), "    Nerostav"); // 27 32
 
 			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 115, p.y + 32), ImGui::GetColorU32(c::text_active), ""); // 125 32
 

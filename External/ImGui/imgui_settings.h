@@ -25,7 +25,7 @@ namespace c
 
     inline ImVec4 black = ImColor(0, 0, 0, 255); 
    
-	inline ImVec4 input = ImColor(9, 9, 9, 255); // COR CINZA QUE EU SEMPRE...
+	inline ImVec4 input = ImColor(10, 10, 10, 255); // COR CINZA QUE EU SEMPRE... //// mudei essa
 
     inline ImVec4 key_background_wb = ImColor(0, 0, 0, 255);
 
@@ -36,16 +36,45 @@ namespace c
     inline ImVec4 settings_checkbox = ImColor(37, 37, 37, 255);
 
 
+
+
+
+
+    // ------------------------------------------------------------------
     // Combo Box Colors
-    inline ImVec4 circle_active = ImColor(0, 255, 0, 255); // combo quando estou na selecao
-    inline ImVec4 circle_inactive = ImColor(0, 255, 0, 255); // combo quando saio da selecao
-    //inline ImVec4 circle_selected = ImColor(255, 255, 255, 255); // combo quando selecionado (branco)
-    inline ImVec4 circle_selected = ImColor(0, 0, 0, 255); // combo quando selecionado
-    inline ImVec4 circle_in_selected = ImColor(255, 255, 255, 0); // combo quando está selecionado  
+    // ------------------------------------------------------------------
+    //inline ImVec4 circle_active = ImColor(0, 255, 0, 255); // combo quando estou na selecao  == verde
+    //inline ImVec4 circle_inactive = ImColor(0, 255, 0, 255); // combo quando saio da selecao ==  verde
+
+    inline ImVec4 circle_active = ImColor(170, 34, 255, 255);  // roxo 
+    inline ImVec4 circle_inactive = ImColor(170, 34, 255, 255); // roxo 
+
+
+    inline ImVec4 circle_selected = ImColor(0, 0, 0, 255); // combo quando selecionado, bolinha (cor) no meio do circulo // cor preta 
+    inline ImVec4 circle_in_selected = ImColor(255, 255, 255, 0); // combo quando está selecionado 
+
+
+    //inline ImVec4 circle_in_selected = ImColor(255, 255, 255, 255); // combo quando está selecionado 
+    //inline ImVec4 circle_in_selected = ImColor(170, 34, 255, 255); // combo quando está selecionado 
+
+
+   
+    
+
+
+
+
+
+
+
+
+
 
 
 
 	inline ImVec4 background_slider = ImColor(10, 10, 10, 255); // CONR CINZA QUE EU SEMPRE...  
+
+
 
     inline ImVec4 window = ImColor(9, 9, 9, 255);
 

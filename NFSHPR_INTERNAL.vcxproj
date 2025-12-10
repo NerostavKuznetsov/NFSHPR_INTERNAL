@@ -224,7 +224,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="LICENSE.txt" />
-    <Text Include="TRASH.txt" />
+    <Text Include="S.txt" />
     <Text Include="Source\Cheat\Rascunho.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

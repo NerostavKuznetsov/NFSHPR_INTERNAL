@@ -4,10 +4,15 @@ void Tabs::Gameplay()
 {
 	void Gameplay();
 	{
-		// Aqui vai tudo que estava dentro de -> if (active_tab == 0) { ... }
-		ImGui::GetWindowDrawList()->AddText(Inter_S_2, 23.f, ImVec2(266 + anim_text, 18), ImGui::GetColorU32(c::text_active), "[Gameplay]");
-		ImGui::SetCursorPos(ImVec2(266, 76));
-		ImGui::BeginChild("Tab-0-0", ImVec2(376, 160), false);
+		// ----------------------------------------------------------------------------------
+        // Child 0-0 / (266, 76) = Posição do child / (376, 166) = Lagura & Altura do child
+        // ----------------------------------------------------------------------------------
+		const auto& p = ImGui::GetWindowPos();
+		ImGui::GetWindowDrawList()->AddText(Inter_S_2, 23.f, ImVec2(p.x + 246 + anim_text, p.y + 18), ImGui::GetColorU32(c::text_active), "[Gameplay]");
+
+
+		ImGui::SetCursorPos(ImVec2(266, 76)); 
+		ImGui::BeginChild("Child-0-0", ImVec2(376, 166), false); 
 		{
 			ImGui::Checkbox("Unlimited Nitrous", &Config::UnlimitedNitrous);
 
@@ -18,11 +23,14 @@ void Tabs::Gameplay()
 		}
 		ImGui::EndChild();
 
+		// ------------------------------------------------------------------
+		// Child 0-1 
+		// ------------------------------------------------------------------
 		float childEndY = ImGui::GetCursorPosY();
 		float spacing = 10.0f;
 
-		ImGui::SetCursorPos(ImVec2(266, childEndY + spacing));
-		ImGui::BeginChild("Tab-0-1", ImVec2(376, 166), false);
+		ImGui::SetCursorPos(ImVec2(266, childEndY + spacing)); 
+			ImGui::BeginChild("Tab-0-1", ImVec2(376, 166), false);
 		{
 			const char* ColorTypes[] =
 			{
@@ -30,13 +38,16 @@ void Tabs::Gameplay()
 			};
 
 			static bool Testando = false;
-			ImGui::Checkbox("Enable Drift Smoke Override", &Testando);
-			ImGui::Combo("Drift Smoke Colors", &Config::testandoCor, ColorTypes, IM_ARRAYSIZE(ColorTypes));
+			ImGui::Checkbox("Enable Drift Smoke", &Testando);
+			ImGui::Combo("Smoke Colors", &Config::testandoCor, ColorTypes, IM_ARRAYSIZE(ColorTypes));
 		}
 		ImGui::EndChild();
 
-		ImGui::SetCursorPos(ImVec2(658, 76));
-		ImGui::BeginChild("Tab-0-2", ImVec2(376, 220), false);
+		// ------------------------------------------------------------------
+		// Child 0-2
+		// ------------------------------------------------------------------
+		ImGui::SetCursorPos(ImVec2(658, 76)); // POSIÇÃO DO CHILD Á DIREITA
+		ImGui::BeginChild("Child-0-1", ImVec2(376, 220), false); // ANTES 376, 220
 		{
 			static bool Testando1 = false;
 			ImGui::Checkbox("Unlimited Racers Weapons", &Config::UnlimitedRacersWeapons);

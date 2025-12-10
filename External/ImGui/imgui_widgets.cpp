@@ -2170,7 +2170,7 @@ bool ImGui::Combo(const char* label, int* current_item, bool (*items_getter)(voi
     return value_changed;
 }
 
-// Combo box helper allowing to pass an array of strings.
+// Combo box helper allowing to pass an array of strings. // Função auxiliar de caixa de combinação que permite passar uma matriz de strings.
 bool ImGui::Combo(const char* label, int* current_item, const char* const items[], int items_count, int height_in_items)
 {
     const bool value_changed = Combo(label, current_item, Items_ArrayGetter, (void*)items, items_count, height_in_items);
