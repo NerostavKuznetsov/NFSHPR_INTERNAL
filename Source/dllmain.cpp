@@ -3,32 +3,14 @@
 // ➡️ DirectX 11 Hook (kiero). Better version: https://github.com/rdbo/ImGui-DirectX-11-Kiero-Hook
 // ➡️ Dear ImGui: Bloat-free Graphical User interface for C++ with minimal dependencies: https://github.com/ocornut/imgui
 // ➡️ DLL entry point
-
-// ➡️ DirectX SDK (June 2010)
-//#include <d3d11.h>
-//#include <dxgi.h>
-//#include <D3DX11tex.h>
-//#pragma comment(lib, "D3DX11.lib")
-
-// ➡️ Windows API
-#include <windows.h>
-#include <iostream>
-#include <cinttypes>
-//#include <string>
-
-
-#include "../External/kiero/kiero.h"
-
-#include "Cheat/Menu/Menu.h"
-#include "Cheat/Controller/Controller.h"
 // =================================================================================================================================
 
+#include <windows.h>
+#include <iostream>
+#include "Cheat/Controller/Controller.h"
+#include "Cheat/Menu/Menu.h"
 
-
-
-
-
-
+#include "../External/kiero/kiero.h"
 
 
 

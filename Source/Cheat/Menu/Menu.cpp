@@ -23,14 +23,6 @@
 // ➡️ Fontes do menu 
 #include "Font.h"
 
-
-
-
-
-
-
-
-
 IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 static ID3D11Device*               g_pd3dDevice = NULL;
@@ -102,7 +94,7 @@ void CustomStyleColor()
 }
 
 // ------------------------------------------------------------------
-// Função auxiliar para renderizar as tabs
+// Função auxiliar para renderizar as tabs	
 // ------------------------------------------------------------------
 float tab_alpha = 0.f; /* */ static float tab_add; /* */ static int active_tab = 0;
 float anim_text = 0.f; /* */

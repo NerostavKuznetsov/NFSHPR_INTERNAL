@@ -9,12 +9,14 @@ void Tabs::Gameplay()
 	void Gameplay();
 	{
 		// ----------------------------------------------------------------------------------
-        // Child 0-0 / (266, 76) = Posição do child / (376, 166) = Lagura & Altura do child
+		// Gameplay Text
         // ----------------------------------------------------------------------------------
 		const auto& p = ImGui::GetWindowPos();
 		ImGui::GetWindowDrawList()->AddText(Inter_S_2, 23.f, ImVec2(p.x + 246 + anim_text, p.y + 18), ImGui::GetColorU32(c::text_active), "[Gameplay]");
 
-
+		// ----------------------------------------------------------------------------------
+		// Child 0-0 / (266, 76) = Posição do child / (376, 166) = Lagura & Altura do child
+		// ----------------------------------------------------------------------------------
 		ImGui::SetCursorPos(ImVec2(266, 76)); 
 		ImGui::BeginChild("Child-0-0", ImVec2(376, 166), false); 
 		{
