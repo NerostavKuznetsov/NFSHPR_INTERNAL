@@ -17,6 +17,7 @@ namespace Controller
 		NoCooldownRacerWeapons();
 
 		Time();
+		SliderTime();
 		MainWeatherID();
 
 

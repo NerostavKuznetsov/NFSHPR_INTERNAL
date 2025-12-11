@@ -12,8 +12,6 @@
 
 #include "../External/kiero/kiero.h"
 
-
-
 typedef HRESULT(__stdcall* Present) (IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags);
 Present oPresent;
 

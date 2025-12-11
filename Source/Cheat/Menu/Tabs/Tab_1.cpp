@@ -13,10 +13,20 @@ void Tabs::Weathers()
 		ImGui::GetWindowDrawList()->AddText(Inter_S_2, 23.f, ImVec2(p.x + 246 + anim_text, p.y + 18), ImGui::GetColorU32(c::text_active), "[Weathers]");
 
 		// ----------------------------------------------------------------------------------
+		// Note Text / (valores maiores descem, valores maiores vao para direita)
+		// ----------------------------------------------------------------------------------
+		ImVec2 childStart = ImGui::GetCursorPos(); // salva posição normal onde o child deveria começar
+		ImGui::SetCursorPos(ImVec2(520, 20));
+  		ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(180, 180, 255, 255));
+		ImGui::TextWrapped("Note: Weather effects may vary depending on time of day and location.");
+		ImGui::PopStyleColor();
+		ImGui::SetCursorPos(childStart); // volta o cursor para a posição original para iniciar os childs alinhados
+
+		// ----------------------------------------------------------------------------------
 		// Child-0-0 / (266, 76) = Posição do child / (376, 166) = Lagura & Altura do child
 		// ----------------------------------------------------------------------------------
 		ImGui::SetCursorPos(ImVec2(266, 76)); // Posição do primeiro child
-		ImGui::BeginChild("Child-0-0", ImVec2(376, 166), false); // Início do primeiro child
+		ImGui::BeginChild("Child-0-0", ImVec2(376, 400), false); // Início do primeiro child
 		{
 			const char* TimesOfDay[] =
 			{
@@ -31,6 +41,9 @@ void Tabs::Weathers()
 
 			ImGui::Checkbox("Enable Time", &Config::Time);
 			ImGui::Combo("Time", &Config::ChangeTime, TimesOfDay, IM_ARRAYSIZE(TimesOfDay));
+
+			ImGui::Checkbox("Enable Slider Time", &Config::UseTimeSlider);
+			ImGui::SliderFloat("Slider Time", &Config::SliderTime, 0.0f, 86000.0f, "%.5f");
 		}
 		ImGui::EndChild(); 
 
@@ -44,16 +57,16 @@ void Tabs::Weathers()
 			{
 				"Sunny",
 				"Sunny After Rain",
-				"Sunny + Rain/Snow (Non-Wet Roads)",
-				"Sunny + Rain/Snow (Wet Roads)",
+				"Sunny + Rain/Snow [Non-Wet Roads]",
+				"Sunny + Rain/Snow [Wet Roads]",
 				"Cloudy",
-				"Cloudy (Wet Roads)",
-				"Cloudy + Rain/Snow (Non-Wet Roads)",
-				"Cloudy + Rain/Snow (Wet Roads)",
+				"Cloudy [Wet Roads]",
+				"Cloudy + Rain/Snow [Non-Wet Roads]",
+				"Cloudy + Rain/Snow [Wet Roads]",
 				"Thunderstorm",
-				"Thunderstorm (Wet Roads)",
-				"Thunderstorm + Rain (Non-Wet Roads)",
-				"Thunderstorm + Rain (Wet Roads)"
+				"Thunderstorm [Wet Roads]",
+				"Thunderstorm + Rain [Non-Wet Roads]",
+				"Thunderstorm + Rain [Wet Roads]"
 			};
 
 			ImGui::Checkbox("Enable MainWeatherID", &Config::MainWeatherID);
