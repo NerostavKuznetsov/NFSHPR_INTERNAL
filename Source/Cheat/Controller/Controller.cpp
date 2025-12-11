@@ -1,5 +1,4 @@
 #include "../Controller/Controller.h"
-
 #include "../Features/NoCooldownWeapons.h"
 #include "../Features/Nitrous.h"
 #include "../Features/Weapons.h"
@@ -12,9 +11,15 @@ namespace Controller
 	{
 		UnlimitedNitrous();
 		UnlimitedRacersWeapons();
+		//UnlimitedPoliceWeapons();
+
 		NoCooldownPoliceWeapons();
 		NoCooldownRacerWeapons();
-		ChangeTime();
+
+		Time();
+		MainWeatherID();
+
+
 		GodMode();
 	}
 }

@@ -1,3 +1,4 @@
 #pragma once
 
-void ChangeTime();	
+void Time();	
+void MainWeatherID();

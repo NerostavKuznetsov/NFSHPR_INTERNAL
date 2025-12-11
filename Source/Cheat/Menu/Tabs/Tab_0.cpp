@@ -9,13 +9,13 @@ void Tabs::Gameplay()
 	void Gameplay();
 	{
 		// ----------------------------------------------------------------------------------
-		// Gameplay Text
+		// Gameplay Animated Text
         // ----------------------------------------------------------------------------------
 		const auto& p = ImGui::GetWindowPos();
 		ImGui::GetWindowDrawList()->AddText(Inter_S_2, 23.f, ImVec2(p.x + 246 + anim_text, p.y + 18), ImGui::GetColorU32(c::text_active), "[Gameplay]");
 
 		// ----------------------------------------------------------------------------------
-		// Child 0-0 / (266, 76) = Posição do child / (376, 166) = Lagura & Altura do child
+		// Child-0-0 / (266, 76) = Posição do child / (376, 166) = Lagura & Altura do child
 		// ----------------------------------------------------------------------------------
 		ImGui::SetCursorPos(ImVec2(266, 76)); 
 		ImGui::BeginChild("Child-0-0", ImVec2(376, 166), false); 
@@ -30,7 +30,7 @@ void Tabs::Gameplay()
 		ImGui::EndChild();
 
 		// ------------------------------------------------------------------
-		// Child 0-1 
+		// Child-0-1 
 		// ------------------------------------------------------------------
 		float childEndY = ImGui::GetCursorPosY();
 		float spacing = 10.0f;
@@ -64,5 +64,16 @@ void Tabs::Gameplay()
 			ImGui::Checkbox("No Cooldown Police Weapons", &Config::NoCooldownPoliceWeapons);
 		}
 		ImGui::EndChild();
+
+
+
+
+
+
+
+
+
+
+
 	}
 }

@@ -1,16 +1,16 @@
 #include "../Config/Config.h"
 #include "../Menu/Menu.h"
 
-void ChangeTime()
+void Time()
 {
-	if (!Config::ChangeTime) return;
+	if (!Config::Time) return;
 
 	uintptr_t Address = *(uintptr_t*)(Client + 0x1298C10);
-	if (Address == 0) return;
+	if (!Address) return;
 
 	float* Current_Time = (float*)(Address + 0x129A80);
 
-	switch (Config::ChangeTimeType)
+	switch (Config::ChangeTime)
 	{
 	case 0:
 		*Current_Time = 17000.0f; // Early Morning   
@@ -40,32 +40,50 @@ void ChangeTime()
 
 void MainWeatherID()
 {
-	int* Current_Weather = (int*)(Client + 0x129A80);
+	if (!Config::MainWeatherID) return;
 
-	// NOT IMPLEMENTED YET
-	switch (Config::ChangeWeatherType)
+	uintptr_t Address = *(uintptr_t*)(Client + 0x1298C10);
+	if (!Address) return;
+
+	int* Current_Weather = (int*)(Address + 0x129A94);
+
+	switch (Config::ChangeMainWeatherID)
 	{
 	case 0:
-		*Current_Weather = 0; // Sunny 
+		*Current_Weather = 0; // Sunny // Sol
 		break;
 	case 1:
-		*Current_Weather = 1; // Sunny After Rain
+		*Current_Weather = 1; // Sunny After Rain // Sol após a chuva
 		break;
 	case 2:
-		*Current_Weather = 2; // Sunny + Rain/Snow (Non-Wet Roads)
+		*Current_Weather = 2; // Sunny + Rain/Snow (Non-Wet Roads) // Sol + Chuva/Neve (Estradas não molhadas)
 		break;
 	case 3:
-		*Current_Weather = 3; // Sunny + Rain/Snow (Wet Roads)
+		*Current_Weather = 3; // Sunny + Rain/Snow (Wet Roads) // Sol + Chuva/Neve (Estradas Molhadas)
 		break;
 	case 4:
-		*Current_Weather = 8; // Cloudy
+		*Current_Weather = 8; // Cloudy // Nublado
 		break;
 	case 5:
-		*Current_Weather = 5;
+		*Current_Weather = 9; // Cloudy (Wet Roads) // Nublado (Estradas Molhadas)
 		break;
 	case 6:
-		*Current_Weather = 6;
+		*Current_Weather = 10; // Cloudy + Rain/Snow (Non-Wet Roads) // Nublado + Chuva/Neve (Estradas não molhadas)
 		break;
+	case 7:
+		*Current_Weather = 11; // Cloudy + Rain/Snow (Wet Roads) // Nublado + Chuva/Neve (Estradas Molhadas)
+		break;
+	case 8:
+		*Current_Weather = 12; // Thunderstorm // Tempestade
+		break;
+	case 9:
+		*Current_Weather = 13; // Thunderstorm (Wet Roads) // Tempestade (Estradas Molhadas)
+		break;
+	case 10:
+		*Current_Weather = 14; // Thunderstorm + Rain (Non-Wet Roads) // Tempestade + Chuva (Estradas não molhadas)
+		break;
+	case 11:
+		*Current_Weather = 15; // Thunderstorm + Rain (Wet Roads) // Tempestade + Chuva (Estradas Molhadas)
 	default:
 		break;
 	}

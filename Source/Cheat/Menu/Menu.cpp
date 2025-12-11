@@ -107,6 +107,7 @@ void RenderTabs()
 	{
 	case 0: Tabs::Gameplay(); break;
 	case 1: Tabs::Weathers(); break;
+	//case 2: Tabs::Visuals(); break;
 
 
 
@@ -213,7 +214,8 @@ namespace Menu
 		// ✔ toggle anti-repetição
 		// ✔ evita spam quando segura INSERT
 		static bool insertPressedLastFrame = false;
-		bool insertPressedNow = (GetAsyncKeyState(VK_INSERT) & 0x8000) != 0;
+		//bool insertPressedNow = (GetAsyncKeyState(VK_INSERT) & 0x8000) != 0;
+		bool insertPressedNow = (GetAsyncKeyState(VK_TAB) & 0x8000) != 0;
 		if (insertPressedNow && !insertPressedLastFrame)
 			Config::MenuImGui = !Config::MenuImGui;
 		insertPressedLastFrame = insertPressedNow;

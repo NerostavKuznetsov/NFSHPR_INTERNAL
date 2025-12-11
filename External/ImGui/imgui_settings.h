@@ -12,10 +12,8 @@ namespace c
     // ------------------------------------------------------------------
     inline ImVec4 text_active = ImColor(255, 255, 255, 255); // Cor de texto branca
     inline ImVec4 text_in_active = ImColor(255, 255, 255, 127); // meio cinza perto do branco
-
-
 	// ------------------------------------------------------------------
-    // 
+    // Fim Texto Colors
 	// --------------------------------------------------
     
 
@@ -67,19 +65,6 @@ namespace c
 
 
    
-    
-
-
-
-
-
-
-
-
-
-
-
-
 	inline ImVec4 background_slider = ImColor(10, 10, 10, 255); // CONR CINZA QUE EU SEMPRE...  
 
 

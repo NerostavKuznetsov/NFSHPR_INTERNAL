@@ -13,7 +13,6 @@ extern ImFont* Icon_Arrow;
 extern uintptr_t Client;
 extern float anim_text;
 
-
 namespace Menu
 {
 	bool Init(IDXGISwapChain* pSwapChain);
