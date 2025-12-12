@@ -3,17 +3,10 @@
 #include "../Tabs/Tab_Config.h"
 #include "../Menu.h"
 
-
 void Tabs::Gameplay()
 {
 	void Gameplay();
 	{
-		// ----------------------------------------------------------------------------------
-		// Gameplay Animated Text
-        // ----------------------------------------------------------------------------------
-		const auto& p = ImGui::GetWindowPos();
-		ImGui::GetWindowDrawList()->AddText(Inter_S_2, 23.f, ImVec2(p.x + 246 + anim_text, p.y + 18), ImGui::GetColorU32(c::text_active), "[Gameplay]");
-
 		// ----------------------------------------------------------------------------------
 		// Child-0-0 / (266, 76) = Posição do child / (376, 166) = Lagura & Altura do child
 		// ----------------------------------------------------------------------------------

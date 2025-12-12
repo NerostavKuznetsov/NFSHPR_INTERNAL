@@ -5,7 +5,7 @@ namespace Config
 	inline bool MenuImGui = true; // Menu ImGui On/Off quando injetar a DLL
 
 	inline bool Time = false;           // Time
-	inline int ChangeTime = 0;          // Time
+	inline int ValueTime = 0;          // Time
 
 	inline bool UseTimeSlider = false;  // Use Time Sliderd
 	inline float SliderTime = 0.0f;     // Time

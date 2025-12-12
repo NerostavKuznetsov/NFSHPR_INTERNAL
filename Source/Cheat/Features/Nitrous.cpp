@@ -14,3 +14,11 @@ void UnlimitedNitrous()
     } 
 }
 
+void SliderNitrous()
+{
+    
+
+
+
+    
+}

@@ -72,11 +72,6 @@ ImFont* Inter_B = nullptr;
 ImFont* Icon = nullptr;
 ImFont* Icon_Arrow = nullptr;
 
-int sub_page = 0;
-int page = 0;
-int togle = 0;
-
-
 void CustomStyleColor()
 {
 	ImGuiStyle& s = ImGui::GetStyle();
@@ -99,15 +94,32 @@ void CustomStyleColor()
 float tab_alpha = 0.f; /* */ static float tab_add; /* */ static int active_tab = 0;
 float anim_text = 0.f; /* */
 
+int sub_page = 0;
+int page = 0;
+int togle = 0;
+
 void RenderTabs()  
 {
 	anim_text = ImLerp(anim_text, page == active_tab ? 20.f : 0.f, 14.f * ImGui::GetIO().DeltaTime);
+
+	const auto& p = ImGui::GetWindowPos();
+	const char* TabNames[] =
+	{
+		"[Gameplay]",
+		"[Weathers]",
+		"[Vehicles Functions]",
+		"[Not implemented yet]",
+		"[Not implemented yet_2]"
+	};
+
+	ImGui::GetWindowDrawList()->AddText(Inter_S_2, 23.f, ImVec2(p.x + 246 + anim_text, p.y + 18),
+	ImGui::GetColorU32(c::text_active), TabNames[active_tab]);
 
 	switch (active_tab)
 	{
 	case 0: Tabs::Gameplay(); break;
 	case 1: Tabs::Weathers(); break;
-	//case 2: Tabs::Visuals(); break;
+
 
 
 

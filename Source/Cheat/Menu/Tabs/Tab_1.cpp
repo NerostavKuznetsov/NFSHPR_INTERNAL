@@ -7,12 +7,6 @@ void Tabs::Weathers()
 {
 	{
 		// ----------------------------------------------------------------------------------
-		// Weathers Animated Text
-		// ----------------------------------------------------------------------------------
-		const auto& p = ImGui::GetWindowPos();
-		ImGui::GetWindowDrawList()->AddText(Inter_S_2, 23.f, ImVec2(p.x + 246 + anim_text, p.y + 18), ImGui::GetColorU32(c::text_active), "[Weathers]");
-
-		// ----------------------------------------------------------------------------------
 		// Note Text / (valores maiores descem, valores maiores vao para direita)
 		// ----------------------------------------------------------------------------------
 		ImVec2 childStart = ImGui::GetCursorPos(); // salva posição normal onde o child deveria começar
@@ -39,8 +33,8 @@ void Tabs::Weathers()
 				"Midnight"
 			};
 
-			ImGui::Checkbox("Enable Time", &Config::Time);
-			ImGui::Combo("Time", &Config::ChangeTime, TimesOfDay, IM_ARRAYSIZE(TimesOfDay));
+			ImGui::Checkbox("Enable Time of day", &Config::Time);
+			ImGui::Combo("Time of day", &Config::ValueTime, TimesOfDay, IM_ARRAYSIZE(TimesOfDay));
 
 			ImGui::Checkbox("Enable Slider Time", &Config::UseTimeSlider);
 			ImGui::SliderFloat("Slider Time", &Config::SliderTime, 0.0f, 86000.0f, "%.5f");
@@ -69,8 +63,8 @@ void Tabs::Weathers()
 				"Thunderstorm + Rain [Wet Roads]"
 			};
 
-			ImGui::Checkbox("Enable MainWeatherID", &Config::MainWeatherID);
-			ImGui::Combo("MainWeatherID", &Config::ChangeMainWeatherID, MainWeathersID, IM_ARRAYSIZE(MainWeathersID));
+			ImGui::Checkbox("Enable Weather Phenomena", &Config::MainWeatherID);
+			ImGui::Combo("Weather Phenomena", &Config::ChangeMainWeatherID, MainWeathersID, IM_ARRAYSIZE(MainWeathersID));
 		}
 		ImGui::EndChild();
 	}
