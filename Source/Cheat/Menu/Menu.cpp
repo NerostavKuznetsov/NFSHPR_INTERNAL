@@ -25,10 +25,20 @@
 
 IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-static ID3D11Device*               g_pd3dDevice = NULL;
-static ID3D11DeviceContext*        g_pd3dDeviceContext = NULL;
-static IDXGISwapChain*             g_pSwapChain = NULL;
-static ID3D11RenderTargetView*     g_mainRenderTargetView = NULL;
+ID3D11ShaderResourceView* bg = nullptr;
+ImFont* Inter_S = nullptr;
+ImFont* Inter_S_1 = nullptr;
+ImFont* Inter_S_2 = nullptr;
+ImFont* Inter_S_3 = nullptr;
+ImFont* Inter_B = nullptr;
+ImFont* Icon = nullptr;
+ImFont* Icon_Arrow = nullptr;
+
+static int active_tab = 0;
+float tab_alpha = 0.f;
+float anim_text = 0.f;
+int pending_page = 0;
+int togle = 0;
 
 static HWND                        window = nullptr;
 static WNDPROC                     oWndProc = nullptr;
@@ -63,44 +73,28 @@ LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 	return CallWindowProc(oWndProc, hWnd, uMsg, wParam, lParam);
 }
 
-ID3D11ShaderResourceView* bg = nullptr;
-ImFont* Inter_S = nullptr;
-ImFont* Inter_S_1 = nullptr;
-ImFont* Inter_S_2 = nullptr;
-ImFont* Inter_S_3 = nullptr;
-ImFont* Inter_B = nullptr;
-ImFont* Icon = nullptr;
-ImFont* Icon_Arrow = nullptr;
-
 void CustomStyleColor()
 {
 	ImGuiStyle& s = ImGui::GetStyle();
 	ImGuiContext& g = *GImGui;
 
-	s.Colors[ImGuiCol_Border] = ImColor(0, 0, 0, 0);
-	s.Colors[ImGuiCol_PopupBg] = ImColor(7, 8, 18, 127);
+	s.Colors[ImGuiCol_Border] = ImColor(0, 0, 0, 0); // Sem bordas
+	s.Colors[ImGuiCol_PopupBg] = ImColor(7, 8, 18, 127); // Fundo dos popups (menus drop-down)
 
-	s.ChildRounding = 12.f;
-	s.WindowRounding = 12.f;
-	s.WindowPadding = ImVec2(0, 0);
+	s.ChildRounding = 12.f; // Arredondamento das janelas filhas
+	s.WindowRounding = 12.f; // Arredondamento das janelas
+	s.WindowPadding = ImVec2(0, 0); // Espaçamento interno da janela
 
 	s.Colors[ImGuiCol_ChildBg] = ImColor(0, 0, 0, 255);
-	s.Colors[ImGuiCol_WindowBg] = ImColor(10, 10, 10, 255); // Fundo do menu quase preto CINZA Q EU SEMPRE
+	s.Colors[ImGuiCol_WindowBg] = ImColor(10, 10, 10, 255); // Fundo do menu quase preto CINZA Q EU SEMPRE  cinza escuro
 }
 
 // ------------------------------------------------------------------
 // Função auxiliar para renderizar as tabs	
-// ------------------------------------------------------------------
-float tab_alpha = 0.f; /* */ static float tab_add; /* */ static int active_tab = 0;
-float anim_text = 0.f; /* */
-
-int sub_page = 0;
-int page = 0;
-int togle = 0;
-
+// ------------------------------------------------------------------																
 void RenderTabs()  
 {
-	anim_text = ImLerp(anim_text, page == active_tab ? 20.f : 0.f, 14.f * ImGui::GetIO().DeltaTime);
+	anim_text = ImLerp(anim_text, pending_page == active_tab ? 20.f : 0.f, 14.f * ImGui::GetIO().DeltaTime);
 
 	const auto& p = ImGui::GetWindowPos();
 	const char* TabNames[] =
@@ -119,31 +113,17 @@ void RenderTabs()
 	{
 	case 0: Tabs::Gameplay(); break;
 	case 1: Tabs::Weathers(); break;
-
-
-
-
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// ------------------------------------------------------------------
+// Menu Namespace	
+// ------------------------------------------------------------------
 namespace Menu
 {
 	bool Init(IDXGISwapChain* pSwapChain)
 	{
+
 		if (!pSwapChain) return false;
 
 		if (SUCCEEDED(pSwapChain->GetDevice(__uuidof(ID3D11Device), (void**)&pDevice)) && pDevice)
@@ -161,7 +141,8 @@ namespace Menu
 			// MINHA ImGui COMEÇA AQUI ->>>>>>>>
 			IMGUI_CHECKVERSION();
 			ImGui::CreateContext();
-			ImGui::StyleColorsDark();
+
+			CustomStyleColor();
 
 			ImGuiIO& io = ImGui::GetIO();
 			io.ConfigFlags |= ImGuiConfigFlags_NoMouseCursorChange;
@@ -169,34 +150,21 @@ namespace Menu
 			ImGui_ImplWin32_Init(window);
 			ImGui_ImplDX11_Init(pDevice, pContext);
 
-			// >>> Config para NÃO deixar o ImGui free-ar seus buffers embutidos
+			// Config para NÃO deixar o ImGui free-ar seus buffers embutidos
 			ImFontConfig cfg;
-			cfg.FontDataOwnedByAtlas = false; // >>> essencial p/ AddFontFromMemoryTTF com dados estáticos
+			cfg.FontDataOwnedByAtlas = false; // Essencial p/ AddFontFromMemoryTTF com dados estáticos
 
-			// >>> Se quiser ranges específicos, mantenha; senão pode usar nullptr
-			const ImWchar* ranges = io.Fonts->GetGlyphRangesCyrillic();
+			// Se quiser ranges específicos, mantenha abaixo, senão pode usar nullptr..
+			//const ImWchar* ranges = io.Fonts->GetGlyphRangesCyrillic();
+			const ImWchar* ranges = nullptr;
 
 			Inter_S = io.Fonts->AddFontFromMemoryTTF((void*)Inter_SemmiBold, sizeof Inter_SemmiBold, 17.f, &cfg, ranges); // Fonte dos textos normais
-
 			Inter_S_1 = io.Fonts->AddFontFromMemoryTTF((void*)Inter_SemmiBold, sizeof Inter_SemmiBold, 18.f, &cfg, ranges); // Fonte dos títulos das tabs
-
-
-
 			Inter_S_2 = io.Fonts->AddFontFromMemoryTTF((void*)Inter_SemmiBold, sizeof Inter_SemmiBold, 23.f, &cfg, ranges); // Fonte dos botões .??????????????????????????????????????
-
-
-
-
 			Inter_S_3 = io.Fonts->AddFontFromMemoryTTF((void*)Inter_SemmiBold, sizeof Inter_SemmiBold, 15.f, &cfg, ranges); // Fonte do watermark
-
 			Inter_B = io.Fonts->AddFontFromMemoryTTF((void*)Inter_Bold, sizeof Inter_Bold, 34.f, &cfg, ranges); // Fonte da logo do cheat
-
 			Icon = io.Fonts->AddFontFromMemoryTTF((void*)Icon_Pack, sizeof Icon_Pack, 26.f, &cfg, ranges); // Icones para as tabs
-
 			Icon_Arrow = io.Fonts->AddFontFromMemoryTTF((void*)Arrow, sizeof Arrow, 7.f, &cfg, ranges);
-
-			//Icon_Arrow = io.Fonts->AddFontFromMemoryTTF(&Arrow, sizeof Arrow, 6.f, NULL, io.Fonts->GetGlyphRangesCyrillic()); // errror crash na hora de unloading
-			// NÃO use io.Fonts->SetFontAtlasOwnedByContext(false) aqui, a menos que você próprio tenha criado o ImFontAtlas fora do ImGui e queira mantê-lo vivo após DestroyContext().
 			return true;
 		}
 		return false;
@@ -221,55 +189,23 @@ namespace Menu
 
 	void Render()
 	{
-
-		// Toggle do menu apenas quando a tecla é pressionada (não segurada)
-		// ✔ toggle anti-repetição
-		// ✔ evita spam quando segura INSERT
-		static bool insertPressedLastFrame = false;
-		//bool insertPressedNow = (GetAsyncKeyState(VK_INSERT) & 0x8000) != 0;
-		bool insertPressedNow = (GetAsyncKeyState(VK_TAB) & 0x8000) != 0;
-		if (insertPressedNow && !insertPressedLastFrame)
+		if (ImGui::IsKeyPressed(ImGuiKey_Tab, false))
+		{
 			Config::MenuImGui = !Config::MenuImGui;
-		insertPressedLastFrame = insertPressedNow;
-
-		// Mostra ou esconde o cursor conforme o menu
-		ImGuiIO& io = ImGui::GetIO();
-		io.MouseDrawCursor = Config::MenuImGui;
-
-		if (!Config::MenuImGui)
-			return;
-
-		ImGuiContext& g = *GImGui;
-		ImGuiStyle* style = &ImGui::GetStyle();
-
-
-
+		}
 
 		// -----------------------------------------------------
 		// Janela do Watermark 
 		// -----------------------------------------------------
 		ImGui::SetNextWindowSize(ImVec2(180, 50)); // Largura/Altura da janela do wartermark
 		ImGui::SetNextWindowPos({ 10, 10 }); // Posição do watermark na tela
-		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor(0, 0, 0, 255)); 
+		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor(0, 0, 0, 255)); // Cor do fundo da janela do watermark
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 12.f);
 		ImGui::Begin("##watermark", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar);
 		{
-
-
-
-
-
 			auto draw = ImGui::GetForegroundDrawList();
-	
 			const auto& p = ImGui::GetWindowPos(); // Pega a posição da janela
-	
 			const ImVec2& region = ImGui::GetContentRegionMax(); // Pega o tamanho da janela
-
-
-
-
-
-			SYSTEMTIME st; // Estrutura para armazenar o tempo local
-			GetLocalTime(&st); // Obtém o tempo local
 
 			// FPS Calculator
 			char fps_text[16];
@@ -282,13 +218,78 @@ namespace Menu
 			char ms_text[16];
 			snprintf(ms_text, sizeof(ms_text), "%.2f", ms);
 			ImGui::GetWindowDrawList()->AddText(Inter_S, 17.f, ImVec2(p.x + 100, p.y + 16), ImGui::GetColorU32(c::text_active), ms_text);
-			ImGui::GetWindowDrawList()->AddText(Inter_S_3, 15.f, ImVec2(p.x + 135, p.y + 17), ImGui::GetColorU32(c::text_in_active), "MS"); // x vai para direita e y esquerda
+			ImGui::GetWindowDrawList()->AddText(Inter_S_3, 15.f, ImVec2(p.x + 140, p.y + 17), ImGui::GetColorU32(c::text_in_active), "MS");
 
 		}
 		ImGui::End();
+		ImGui::PopStyleVar();
+
 		// -----------------------------------------------------
-		// Fim do Watermark 
+		// Corpo do Menu
 		// -----------------------------------------------------
+		if (!Config::MenuImGui)
+			return;
+
+
+		//ImGuiIO& io = ImGui::GetIO();
+		//io.MouseDrawCursor = Config::MenuImGui;
+		//// Desenha cursor customizado estilizado
+		//if (Config::MenuImGui)
+		//{
+		//	ImGuiIO& io = ImGui::GetIO();
+		//	io.MouseDrawCursor = false; // impede o ImGui de desenhar o cursor padrão
+
+		//	auto draw = ImGui::GetForegroundDrawList();
+		//	ImVec2 pos = io.MousePos;
+
+		//	// Círculo principal
+		//	draw->AddCircleFilled(pos, 6.f, ImColor(170, 34, 255, 255));
+
+		//	// Borda suave ao redor
+		//	draw->AddCircle(pos, 8.f, ImColor(255, 255, 255, 100), 32, 2.f);
+
+		//	// Rastro pequeno atrás do cursor (usando linha)
+		//	static ImVec2 lastPos = pos;
+		//	draw->AddLine(lastPos, pos, ImColor(170, 34, 255, 80), 2.f);
+		//	lastPos = ImLerp(lastPos, pos, 0.5f); // suaviza o rastro
+		//}
+		//// Desenha cursor customizado
+		//if (Config::MenuImGui)
+		//{
+		//	ImGuiIO& io = ImGui::GetIO();
+		//	io.MouseDrawCursor = false; // impede o ImGui de desenhar o cursor padrão
+
+		//	auto draw = ImGui::GetForegroundDrawList();
+		//	draw->AddCircleFilled(io.MousePos, 6.f, ImColor(170, 34, 255, 255)); // cursor customizado
+		//}
+
+
+		//ImGuiContext& g = *GImGui;
+		ImGuiStyle* style = &ImGui::GetStyle();
+
+
+
+		
+
+		ImGuiIO& io = ImGui::GetIO();
+		io.MouseDrawCursor = false; // esconde o cursor do sistema
+		ImDrawList* draw = ImGui::GetForegroundDrawList();
+		ImVec2 pos = io.MousePos;
+
+		// Configurações da bolinha
+		float radius = 6.f;           // tamanho reduzido da bolinha
+		float border = 2.0f;          // espessura do contorno roxo
+
+		// Cor interna preta
+		ImU32 colInner = IM_COL32(0, 0, 0, 255);
+		// Cor do contorno roxo
+		ImU32 colBorder = IM_COL32(170, 34, 255, 255);
+
+		// Desenha bolinha interna
+		draw->AddCircleFilled(pos, radius, colInner, 32);
+
+		// Desenha contorno roxo
+		draw->AddCircle(pos, radius, colBorder, 32, border);
 
 
 
@@ -297,65 +298,54 @@ namespace Menu
 
 
 
-		CustomStyleColor();
+
+
+
+		ImGui::PushStyleColor(ImGuiCol_WindowBg, ImColor(10, 10, 10, 255).Value);
 		ImGui::SetNextWindowSize(ImVec2(1055, 490)); 
 		ImGui::Begin("General", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoBringToFrontOnFocus);
 		{
 			auto draw = ImGui::GetWindowDrawList();
-
 			const auto& p = ImGui::GetWindowPos();
 			const ImVec2& region = ImGui::GetContentRegionMax();
 
-			tab_alpha = ImLerp(tab_alpha, (page == active_tab) ? 1.f : 0.f, 18.f * ImGui::GetIO().DeltaTime);
-			if (tab_alpha < 0.01f && tab_add < 0.01f) active_tab = page;
+			tab_alpha = ImLerp(tab_alpha, (pending_page == active_tab) ? 1.f : 0.f, 18.f * ImGui::GetIO().DeltaTime);
+			if (tab_alpha < 0.01f)
+				active_tab = pending_page;
 
-			ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(p.x, p.y), ImVec2(p.x + 250, p.y + region.y), ImGui::GetColorU32(c::child_rect), 12.f, ImDrawFlags_RoundCornersLeft);
-
-			ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(p.x, p.y), ImVec2(p.x + 250, p.y + region.y), ImGui::GetColorU32(c::child_rect), 12.f, ImDrawFlags_RoundCornersLeft);
+			// Desenha o retângulo arredondado atrás da log
+			ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(p.x, p.y), ImVec2(p.x + 250, p.y + region.y), ImGui::GetColorU32(c::child_rect), 12.f, ImDrawFlags_RoundCornersLeft); // 
 			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 10, p.y + 32), ImGui::GetColorU32(c::main_color), "    Nerostav"); // 27 32
-
 			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 115, p.y + 32), ImGui::GetColorU32(c::text_active), ""); // 125 32
+
+			ImGui::PushStyleVar(ImGuiStyleVar_Alpha, tab_alpha * style->Alpha);
+			{
+				RenderTabs();
+			}
+			ImGui::PopStyleVar();
 
 			ImGui::SetCursorPos(ImVec2(8, 110)); // estava 112
 			ImGui::BeginGroup();
 			{
 				ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 8));
 
-				if (ImGui::Tab("Gameplay", "A", 0 == page, ImVec2(234, 50))) page = 0;
+				if (ImGui::Tab("Gameplay", "A",    0 == pending_page, ImVec2(234, 50))) pending_page = 0;
 
-				if (ImGui::Tab("Weathers", "L", 1 == page, ImVec2(234, 50))) page = 1;
+				if (ImGui::Tab("Weathers", "L",    1 == pending_page, ImVec2(234, 50))) pending_page = 1;
 
-				if (ImGui::Tab("Bounty", "V", 2 == page, ImVec2(234, 50))) page = 2;
+				if (ImGui::Tab("Bounty56", "V",    2 == pending_page, ImVec2(234, 50))) pending_page = 2;
 
-				if (ImGui::Tab("IA", "S", 3 == page, ImVec2(234, 50))) page = 3;
+				if (ImGui::Tab("Testando", "S",    3 == pending_page, ImVec2(234, 50))) pending_page = 3;
 
-				if (ImGui::Tab("Config", "C", 4 == page, ImVec2(234, 50))) page = 4;
+				if (ImGui::Tab("Config66", "C",    4 == pending_page, ImVec2(234, 50))) pending_page = 4;
 
 				ImGui::PopStyleVar();
 			}
 			ImGui::EndGroup();
-
-
-
-
-
-			ImGui::PushStyleVar(ImGuiStyleVar_Alpha, tab_alpha * style->Alpha);
-			{
-				anim_text = ImLerp(anim_text, page == active_tab ? 20.f : 0.f, 14.f * ImGui::GetIO().DeltaTime); // Animação do texto das tabs EX: [Gameplay]
-
-				RenderTabs();
-			}
-			ImGui::PopStyleVar();
 		}
 		ImGui::End();
+		ImGui::PopStyleColor();
 	}
-
-
-
-
-
-
-
 
 	void EndRender()
 	{
@@ -377,3 +367,5 @@ namespace Menu
 		ImGui::DestroyContext();
 	}
 }
+
+

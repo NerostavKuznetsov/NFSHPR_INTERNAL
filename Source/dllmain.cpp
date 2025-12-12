@@ -69,7 +69,7 @@ DWORD WINAPI HackThread(HMODULE hModule)
  +--------------------------------------------------------------------------------+
  |             Need For Speed Hot Pursuit Remastered - Cheat Internal             |
  +--------------------------------------------------------------------------------+
- |  [+] Press INSERT to toggle menu                                               |
+ |  [+] Press TAB to toggle menu                                                  |
  |  [+] Made with <3 by Nerostav Kuznetsov                                        |
  +--------------------------------------------------------------------------------+
  |  [!] This program is free software you can redistribute or modify it!          |

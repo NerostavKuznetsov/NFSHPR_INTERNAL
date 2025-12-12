@@ -29,7 +29,7 @@ namespace c
 
 	inline ImVec4 checkbox_bg_in_active = ImColor(10, 10, 10, 255); // COR CINZA QUE EU SEMPRE...
 
-	inline ImVec4 black = ImColor(0, 0, 0, 255); // preto puro
+	inline ImVec4 black = ImColor(0, 0, 0, 255);  //
    
 	inline ImVec4 input = ImColor(10, 10, 10, 255); // COR CINZA QUE EU SEMPRE... //// mudei essa
 

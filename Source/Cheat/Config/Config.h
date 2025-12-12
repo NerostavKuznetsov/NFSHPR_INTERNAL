@@ -2,7 +2,7 @@
 
 namespace Config
 {
-	inline bool MenuImGui = true; // Menu ImGui On/Off quando injetar a DLL
+	inline bool MenuImGui = false; // Menu ImGui On/Off quando injetar a DLL
 
 	inline bool Time = false;           // Time
 	inline int ValueTime = 0;          // Time
