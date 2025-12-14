@@ -2,16 +2,40 @@
 
 namespace Config
 {
-	inline bool MenuImGui = false; // Menu ImGui On/Off quando injetar a DLL
+	// ------------------------------------------------------------------
+	// Menu Configurations
+	// ------------------------------------------------------------------
+	inline bool MenuImGui = false; 
 
-	inline bool Time = false;           // Time
-	inline int ValueTime = 0;          // Time
+	// ------------------------------------------------------------------
+	// Weathers Configurations
+	// ------------------------------------------------------------------
+	inline bool Time = false;           
+	inline int TimeValue = 0;      
 
-	inline bool UseTimeSlider = false;  // Use Time Sliderd
-	inline float SliderTime = 0.0f;     // Time
+	inline bool TimeSlider = false;  
+	inline float TimeSliderValue = 0.0f;     
+
+	// ------------------------------------------------------------------
+	// Nitrous Configurations 
+	// ------------------------------------------------------------------
+	inline bool UnlimitedNitrous = false;
+
+	inline bool NitrousSlider = false;
+	inline float NitrousSliderValue = 0.0f;
 
 
 
+
+
+
+
+
+
+
+
+	/////////////  AJUSTAR //////////////	
+	
 
 
 	inline bool MainWeatherID = false; // MainWeatherID
@@ -20,18 +44,15 @@ namespace Config
 	//inline bool AlternativeWeatherID = false; // AlternativeWeatherID      not implemented yet
 	//inline int ChangeAlternativeWeatherID = 0; // AlternativeWeatherID     not implemented yet
 
-
-
-
 	inline int testandoCor = 0;
-
-
-
-
 
 	inline bool GodMode = false;
 
-	inline bool UnlimitedNitrous = false;
+	
+
+
+
+
 	inline bool UnlimitedRacersWeapons = false;
 	inline bool UnlimitedPoliceWeapons = false; // not implemented yet 
 

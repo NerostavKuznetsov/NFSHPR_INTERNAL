@@ -10,19 +10,17 @@ namespace Controller
 	void Execute()
 	{
 		UnlimitedNitrous();
+		NitrousSlider();
+
+
+
 		UnlimitedRacersWeapons();
 		//UnlimitedPoliceWeapons();
-
 		NoCooldownPoliceWeapons();
 		NoCooldownRacerWeapons();
-
 		Time();
-
 		SliderTime();
-
 		MainWeatherID();
-
-
 		GodMode();
 	}
 }

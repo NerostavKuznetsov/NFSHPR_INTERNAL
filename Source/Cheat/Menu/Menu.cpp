@@ -112,7 +112,8 @@ void RenderTabs()
 	switch (active_tab)
 	{
 	case 0: Tabs::Gameplay(); break;
-	case 1: Tabs::Weathers(); break;
+	case 1: Tabs::Weathers(); break;	
+	case 2: Tabs::VehicleOptions(); break;
 	}
 }
 
@@ -230,47 +231,9 @@ namespace Menu
 		if (!Config::MenuImGui)
 			return;
 
-
-		//ImGuiIO& io = ImGui::GetIO();
-		//io.MouseDrawCursor = Config::MenuImGui;
-		//// Desenha cursor customizado estilizado
-		//if (Config::MenuImGui)
-		//{
-		//	ImGuiIO& io = ImGui::GetIO();
-		//	io.MouseDrawCursor = false; // impede o ImGui de desenhar o cursor padrão
-
-		//	auto draw = ImGui::GetForegroundDrawList();
-		//	ImVec2 pos = io.MousePos;
-
-		//	// Círculo principal
-		//	draw->AddCircleFilled(pos, 6.f, ImColor(170, 34, 255, 255));
-
-		//	// Borda suave ao redor
-		//	draw->AddCircle(pos, 8.f, ImColor(255, 255, 255, 100), 32, 2.f);
-
-		//	// Rastro pequeno atrás do cursor (usando linha)
-		//	static ImVec2 lastPos = pos;
-		//	draw->AddLine(lastPos, pos, ImColor(170, 34, 255, 80), 2.f);
-		//	lastPos = ImLerp(lastPos, pos, 0.5f); // suaviza o rastro
-		//}
-		//// Desenha cursor customizado
-		//if (Config::MenuImGui)
-		//{
-		//	ImGuiIO& io = ImGui::GetIO();
-		//	io.MouseDrawCursor = false; // impede o ImGui de desenhar o cursor padrão
-
-		//	auto draw = ImGui::GetForegroundDrawList();
-		//	draw->AddCircleFilled(io.MousePos, 6.f, ImColor(170, 34, 255, 255)); // cursor customizado
-		//}
-
-
-		//ImGuiContext& g = *GImGui;
-		ImGuiStyle* style = &ImGui::GetStyle();
-
-
-
-		
-
+		// -----------------------------------------------------
+		// Cursor Customizado
+		// -----------------------------------------------------
 		ImGuiIO& io = ImGui::GetIO();
 		io.MouseDrawCursor = false; // esconde o cursor do sistema
 		ImDrawList* draw = ImGui::GetForegroundDrawList();
@@ -291,16 +254,6 @@ namespace Menu
 		// Desenha contorno roxo
 		draw->AddCircle(pos, radius, colBorder, 32, border);
 
-
-
-
-
-
-
-
-
-
-
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, ImColor(10, 10, 10, 255).Value);
 		ImGui::SetNextWindowSize(ImVec2(1055, 490)); 
 		ImGui::Begin("General", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoBringToFrontOnFocus);
@@ -318,6 +271,7 @@ namespace Menu
 			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 10, p.y + 32), ImGui::GetColorU32(c::main_color), "    Nerostav"); // 27 32
 			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 115, p.y + 32), ImGui::GetColorU32(c::text_active), ""); // 125 32
 
+			ImGuiStyle* style = &ImGui::GetStyle();
 			ImGui::PushStyleVar(ImGuiStyleVar_Alpha, tab_alpha * style->Alpha);
 			{
 				RenderTabs();
@@ -329,15 +283,15 @@ namespace Menu
 			{
 				ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 8));
 
-				if (ImGui::Tab("Gameplay", "A",    0 == pending_page, ImVec2(234, 50))) pending_page = 0;
+				if (ImGui::Tab("Gameplay", "A",           0 == pending_page, ImVec2(234, 50))) pending_page = 0;
 
-				if (ImGui::Tab("Weathers", "L",    1 == pending_page, ImVec2(234, 50))) pending_page = 1;
+				if (ImGui::Tab("Weathers", "L",           1 == pending_page, ImVec2(234, 50))) pending_page = 1;
 
-				if (ImGui::Tab("Bounty56", "V",    2 == pending_page, ImVec2(234, 50))) pending_page = 2;
+				if (ImGui::Tab("Vehicle Options", "V",    2 == pending_page, ImVec2(234, 50))) pending_page = 2;
 
-				if (ImGui::Tab("Testando", "S",    3 == pending_page, ImVec2(234, 50))) pending_page = 3;
+				if (ImGui::Tab("Testando", "S",           3 == pending_page, ImVec2(234, 50))) pending_page = 3;
 
-				if (ImGui::Tab("Config66", "C",    4 == pending_page, ImVec2(234, 50))) pending_page = 4;
+				if (ImGui::Tab("Testando", "C",           4 == pending_page, ImVec2(234, 50))) pending_page = 4;
 
 				ImGui::PopStyleVar();
 			}

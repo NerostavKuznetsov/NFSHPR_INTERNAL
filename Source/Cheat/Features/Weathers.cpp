@@ -10,7 +10,7 @@ void Time()
 
 	float* Current_Time = (float*)(Address + 0x129A80);
 
-	switch (Config::ValueTime)
+	switch (Config::TimeValue)
 	{
 	case 0: *Current_Time = 17000.0f; break; // Early Morning
 	case 1: *Current_Time = 20000.0f; break; // Morning
@@ -25,14 +25,14 @@ void Time()
 
 void SliderTime()
 {
-	if (!Config::UseTimeSlider) return; 
+	if (!Config::TimeSlider) return; 
 
 	uintptr_t Address = *(uintptr_t*)(Client + 0x1298C10);
 	if (!Address) return;
 
-	float* Current_SliderTime = (float*)(Address + 0x129A80);
+	float* Current_TimeSlider = (float*)(Address + 0x129A80);
 
-	*Current_SliderTime = Config::SliderTime; 
+	*Current_TimeSlider = Config::TimeSliderValue; 
 }
 
 void MainWeatherID()
@@ -42,22 +42,22 @@ void MainWeatherID()
 	uintptr_t Address = *(uintptr_t*)(Client + 0x1298C10);
 	if (!Address) return;
 
-	int* Current_Weather = (int*)(Address + 0x129A94);
+	int* Current_MainWeatherID = (int*)(Address + 0x129A94);
 
 	switch (Config::ChangeMainWeatherID)
 	{
-	case 0: *Current_Weather = 0; break;   // Sunny // Sol
-	case 1: *Current_Weather = 1; break;   // Sunny After Rain // Ensolarado após a chuva
-	case 2: *Current_Weather = 2; break;   // Sunny + Rain/Snow (Non-Wet Roads) // Ensolarado + Chuva/Neve (Estradas secas)
-	case 3: *Current_Weather = 3; break;   // Sunny + Rain/Snow (Wet Roads) // Ensolarado + Chuva/Neve (Estradas Molhadas)
-	case 4: *Current_Weather = 8; break;   // Cloudy // Nublado
-	case 5: *Current_Weather = 9; break;   // Cloudy (Wet Roads) // Nublado (Estradas Molhadas)
-	case 6: *Current_Weather = 10; break;  // Cloudy + Rain/Snow (Non-Wet Roads) // Nublado + Chuva/Neve (Estradas secas)
-	case 7: *Current_Weather = 11; break;  // Cloudy + Rain/Snow (Wet Roads) // Nublado + Chuva/Neve (Estradas Molhadas)
-	case 8: *Current_Weather = 12; break;  // Thunderstorm // Tempestade
-	case 9: *Current_Weather = 13; break;  // Thunderstorm (Wet Roads) // Tempestade (Estradas Molhadas)
-	case 10: *Current_Weather = 14; break; // Thunderstorm + Rain (Non-Wet Roads) // Tempestade + Chuva (Estradas secas)
-	case 11: *Current_Weather = 15; break; // Thunderstorm + Rain (Wet Roads) // Tempestade + Chuva (Estradas Molhadas)
+	case 0: *Current_MainWeatherID = 0; break;   // Sunny // Sol
+	case 1: *Current_MainWeatherID = 1; break;   // Sunny After Rain // Ensolarado após a chuva
+	case 2: *Current_MainWeatherID = 2; break;   // Sunny + Rain/Snow (Non-Wet Roads) // Ensolarado + Chuva/Neve (Estradas secas)
+	case 3: *Current_MainWeatherID = 3; break;   // Sunny + Rain/Snow (Wet Roads) // Ensolarado + Chuva/Neve (Estradas Molhadas)
+	case 4: *Current_MainWeatherID = 8; break;   // Cloudy // Nublado
+	case 5: *Current_MainWeatherID = 9; break;   // Cloudy (Wet Roads) // Nublado (Estradas Molhadas)
+	case 6: *Current_MainWeatherID = 10; break;  // Cloudy + Rain/Snow (Non-Wet Roads) // Nublado + Chuva/Neve (Estradas secas)
+	case 7: *Current_MainWeatherID = 11; break;  // Cloudy + Rain/Snow (Wet Roads) // Nublado + Chuva/Neve (Estradas Molhadas)
+	case 8: *Current_MainWeatherID = 12; break;  // Thunderstorm // Tempestade
+	case 9: *Current_MainWeatherID = 13; break;  // Thunderstorm (Wet Roads) // Tempestade (Estradas Molhadas)
+	case 10: *Current_MainWeatherID = 14; break; // Thunderstorm + Rain (Non-Wet Roads) // Tempestade + Chuva (Estradas secas)
+	case 11: *Current_MainWeatherID = 15; break; // Thunderstorm + Rain (Wet Roads) // Tempestade + Chuva (Estradas Molhadas)
 	default: break;
 	}
 }

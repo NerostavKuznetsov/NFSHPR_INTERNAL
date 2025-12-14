@@ -34,10 +34,10 @@ void Tabs::Weathers()
 			};
 
 			ImGui::Checkbox("Enable Time of day", &Config::Time);
-			ImGui::Combo("Time of day", &Config::ValueTime, TimesOfDay, IM_ARRAYSIZE(TimesOfDay));
+			ImGui::Combo("Time of day", &Config::TimeValue, TimesOfDay, IM_ARRAYSIZE(TimesOfDay));
 
-			ImGui::Checkbox("Enable Slider Time", &Config::UseTimeSlider);
-			ImGui::SliderFloat("Slider Time", &Config::SliderTime, 0.0f, 86000.0f, "%.5f");
+			ImGui::Checkbox("Enable Time Slider", &Config::TimeSlider);
+			ImGui::SliderFloat("Time Slider", &Config::TimeSliderValue, 0.0f, 86000.0f, "%.5f");
 		}
 		ImGui::EndChild(); 
 
