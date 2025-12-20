@@ -1,3 +1,4 @@
+﻿#include "../../../External/ImGui/imgui.h"
 #include "../Config/Config.h"
 #include "../Menu/Menu.h"
 
@@ -16,14 +17,34 @@ void UnlimitedNitrous()
 
 void NitrousSlider()
 {
-    if (Config::NitrousSlider)
+    if (!Config::NitrousSlider)
+        return;
+
+    uintptr_t Ptr1 = *(uintptr_t*)(Client + 0x1276650);
+    if (!Ptr1) return;
+
+    uintptr_t addr = Ptr1 + 0x5031C;
+
+    float gameValue = *(float*)addr;
+
+    if (!Config::NitrousUserEditing)
     {
-		uintptr_t Ptr1 = *(uintptr_t*)(Client + 0x1276650);
-		if (!Ptr1) return;
+        Config::NitrousSliderValue = gameValue;
+    }
+    else
+    {
+        *(float*)addr = Config::NitrousSliderValue;
 
-		uintptr_t Current_NitrousSlider = (Ptr1 + 0x5031C);
-
-		*(float*)Current_NitrousSlider = Config::NitrousSliderValue;
-
+        Config::NitrousEditTimer -= ImGui::GetIO().DeltaTime;
+        if (Config::NitrousEditTimer <= 0.0f)
+        {
+            Config::NitrousUserEditing = false;
+        }
     }
 }
+
+
+
+
+
+

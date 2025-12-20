@@ -13,14 +13,16 @@ namespace Controller
 		NitrousSlider();
 
 
-
 		UnlimitedRacersWeapons();
-		//UnlimitedPoliceWeapons();
+		UnlimitedPoliceWeapons();
+
 		NoCooldownPoliceWeapons();
 		NoCooldownRacerWeapons();
+
 		Time();
 		SliderTime();
 		MainWeatherID();
+
 		GodMode();
 	}
 }

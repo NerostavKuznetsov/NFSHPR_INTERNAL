@@ -254,6 +254,12 @@ namespace Menu
 		// Desenha contorno roxo
 		draw->AddCircle(pos, radius, colBorder, 32, border);
 
+
+
+
+
+
+
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, ImColor(10, 10, 10, 255).Value);
 		ImGui::SetNextWindowSize(ImVec2(1055, 490)); 
 		ImGui::Begin("General", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoBringToFrontOnFocus);

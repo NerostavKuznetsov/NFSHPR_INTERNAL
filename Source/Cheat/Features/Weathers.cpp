@@ -46,7 +46,7 @@ void MainWeatherID()
 
 	switch (Config::ChangeMainWeatherID)
 	{
-	case 0: *Current_MainWeatherID = 0; break;   // Sunny // Sol
+	case 0: *Current_MainWeatherID = 0; break;   // Sunny // Ensolarado
 	case 1: *Current_MainWeatherID = 1; break;   // Sunny After Rain // Ensolarado após a chuva
 	case 2: *Current_MainWeatherID = 2; break;   // Sunny + Rain/Snow (Non-Wet Roads) // Ensolarado + Chuva/Neve (Estradas secas)
 	case 3: *Current_MainWeatherID = 3; break;   // Sunny + Rain/Snow (Wet Roads) // Ensolarado + Chuva/Neve (Estradas Molhadas)
@@ -61,3 +61,9 @@ void MainWeatherID()
 	default: break;
 	}
 }
+
+void AlternativeWeatherID()
+{
+	// not implemented yet
+}
+

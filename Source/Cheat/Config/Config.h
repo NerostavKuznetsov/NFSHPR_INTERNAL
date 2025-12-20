@@ -21,23 +21,26 @@ namespace Config
 	// ------------------------------------------------------------------
 	inline bool UnlimitedNitrous = false;
 
+	inline bool NitrousUserEditing = false;
+	inline float NitrousEditTimer = 0.0f;
+
 	inline bool NitrousSlider = false;
 	inline float NitrousSliderValue = 0.0f;
 
+	// ------------------------------------------------------------------
+	// Weapons Configurations
+	// ------------------------------------------------------------------
+	inline bool UnlimitedRacersWeapons = false;
+	inline bool UnlimitedPoliceWeapons = false;
 
-
-
-
-
-
+	inline bool NoCooldownRacersWeapons = false;
+	inline bool NoCooldownPoliceWeapons = false;
 
 
 
 
 	/////////////  AJUSTAR //////////////	
 	
-
-
 	inline bool MainWeatherID = false; // MainWeatherID
 	inline int ChangeMainWeatherID = 0; // MainWeatherID
 
@@ -49,13 +52,4 @@ namespace Config
 	inline bool GodMode = false;
 
 	
-
-
-
-
-	inline bool UnlimitedRacersWeapons = false;
-	inline bool UnlimitedPoliceWeapons = false; // not implemented yet 
-
-	inline bool NoCooldownRacersWeapons = false;
-	inline bool NoCooldownPoliceWeapons = false;
 }
