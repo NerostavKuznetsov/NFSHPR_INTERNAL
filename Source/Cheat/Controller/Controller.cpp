@@ -7,21 +7,28 @@
 
 namespace Controller
 {
-	void Execute()
+	void Execute()   // Ajustar bagunça
 	{
 		UnlimitedNitrous();
 		NitrousSlider();
 
 
+
+
 		UnlimitedRacersWeapons();
 		UnlimitedPoliceWeapons();
+
+
 
 		NoCooldownPoliceWeapons();
 		NoCooldownRacerWeapons();
 
+
+
 		Time();
 		SliderTime();
 		MainWeatherID();
+		AlternativeWeatherID();
 
 		GodMode();
 	}

@@ -14,7 +14,13 @@ namespace Config
 	inline int TimeValue = 0;      
 
 	inline bool TimeSlider = false;  
-	inline float TimeSliderValue = 0.0f;     
+	inline float TimeSliderValue = 0.0f;    
+
+	inline bool MainWeatherID = false; 
+	inline int MainWeatherIDValue = 0; 
+
+	inline bool AlternativeWeatherID = false; 
+	inline int AlternativeWeatherIDValue = 0; 
 
 	// ------------------------------------------------------------------
 	// Nitrous Configurations 
@@ -39,13 +45,27 @@ namespace Config
 
 
 
-	/////////////  AJUSTAR //////////////	
-	
-	inline bool MainWeatherID = false; // MainWeatherID
-	inline int ChangeMainWeatherID = 0; // MainWeatherID
 
-	//inline bool AlternativeWeatherID = false; // AlternativeWeatherID      not implemented yet
-	//inline int ChangeAlternativeWeatherID = 0; // AlternativeWeatherID     not implemented yet
+
+
+
+
+
+
+	/////////////  AJUSTAR  //////////////
+
+	/////////////  AJUSTAR  //////////////
+
+	/////////////  AJUSTAR  //////////////
+
+	/////////////  AJUSTAR  //////////////
+
+	/////////////  AJUSTAR  //////////////
+
+	/////////////  AJUSTAR  //////////////
+	/////////////  AJUSTAR  //////////////	
+	
+
 
 	inline int testandoCor = 0;
 

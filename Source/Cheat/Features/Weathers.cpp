@@ -44,7 +44,7 @@ void MainWeatherID()
 
 	int* Current_MainWeatherID = (int*)(Address + 0x129A94);
 
-	switch (Config::ChangeMainWeatherID)
+	switch (Config::MainWeatherIDValue)
 	{
 	case 0: *Current_MainWeatherID = 0; break;   // Sunny // Ensolarado
 	case 1: *Current_MainWeatherID = 1; break;   // Sunny After Rain // Ensolarado após a chuva
@@ -64,6 +64,25 @@ void MainWeatherID()
 
 void AlternativeWeatherID()
 {
-	// not implemented yet
+	if (!Config::AlternativeWeatherID) return;
+
+	uintptr_t Address = *(uintptr_t*)(Client + 0x1298C10);
+	if (!Address) return;
+
+	int* Current_AlternativeWeatherID = (int*)(Address + 0x12929C);
+
+	switch (Config::AlternativeWeatherIDValue)
+	{
+	case 0: *Current_AlternativeWeatherID = 11; break; // Fog Weather
+	case 1: *Current_AlternativeWeatherID = 2; break; // Fog 1
+	case 2: *Current_AlternativeWeatherID = 3; break; // Fog 2xxx
+	case 3: *Current_AlternativeWeatherID = 4; break; // Fog 3xxxx
+	case 4: *Current_AlternativeWeatherID = 5; break; // Fog 4xxx
+	case 5: *Current_AlternativeWeatherID = 6; break; // Fog 5xxx
+	case 6: *Current_AlternativeWeatherID = 7; break; // Fog 6xxx
+
+ 
+	default: break;
+	}
 }
 
