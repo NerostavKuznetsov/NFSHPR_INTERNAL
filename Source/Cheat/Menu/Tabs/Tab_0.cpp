@@ -1,7 +1,7 @@
-﻿//#include "../../../Cheat/Features/Nitrous.h"
-#include "../../Config/Config.h"
+﻿#include "../../Config/Config.h"
 #include "../Tabs/Tab_Config.h"
 #include "../Menu.h"
+#include <thread>
 
 void Tabs::Gameplay()
 {
@@ -11,24 +11,54 @@ void Tabs::Gameplay()
 	ImGui::SetCursorPos(ImVec2(266, 76));
 	ImGui::BeginChild("Child-0-0", ImVec2(376, 320), false);
 	{
-		ImGui::Checkbox("Unlimited Nitrous", &Config::UnlimitedNitrous);
-
-		ImGui::Checkbox("Enable Nitrous Slider", &Config::NitrousSlider);
-		if (Config::NitrousSlider)
+		if (ImGui::Checkbox("Unlimited Nitrous", &Config::UnlimitedNitrous))
 		{
-			if (ImGui::SliderFloat("Nitrous Slider", &Config::NitrousSliderValue, 0.0f, 100.0f, "%.1f"))
+			if (Config::UnlimitedNitrous)
 			{
-				// usuário mexeu → ganha autoridade
-				Config::NitrousUserEditing = true;
-				Config::NitrousEditTimer = 0.25f;
+				std::thread([]()
+					{
+						Beep(1300, 60); // LIGAR → agudo, curto
+					}).detach();
+			}
+			else
+			{
+				std::thread([]()
+					{
+						Beep(700, 90); // DESLIGAR → grave, mais longo
+					}).detach();
 			}
 		}
-
 
 		static float color1[4] = { 255.f / 255.f, 0.f / 255.f, 0.f / 255.f };
 		ImGui::ColorEdit4("Nitrous Fire Color", color1, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
 
-		ImGui::Checkbox("God Mode", &Config::GodMode);
+		if (ImGui::Checkbox("Enable Nitrous Slider", &Config::NitrousSlider))
+		{
+			if (Config::NitrousSlider)
+			{
+				std::thread([]()
+					{
+						Beep(1300, 60); // LIGOU slider → beep curto/agudo
+					}).detach();
+			}
+			else
+			{
+				std::thread([]()
+					{
+						Beep(700, 90); // DESLIGOU slider → beep mais grave
+					}).detach();
+			}
+		}
+
+		ImGui::BeginDisabled(!Config::NitrousSlider);
+		{
+			if (ImGui::SliderFloat("Nitrous Slider", &Config::NitrousSliderValue, 0.0f, 100.0f,  "%.1f"))
+			{
+				Config::NitrousUserEditing = true;
+				Config::NitrousEditTimer = 0.25f;
+			}
+		}
+		ImGui::EndDisabled();
 	}
 	ImGui::EndChild();
 
@@ -36,13 +66,15 @@ void Tabs::Gameplay()
 	// Child-0-1 
 	// ------------------------------------------------------------------
 	ImGui::SetCursorPos(ImVec2(658, 76));
-	ImGui::BeginChild("Child-0-1", ImVec2(376, 220), false);
+	ImGui::BeginChild("Child-0-1", ImVec2(376, 299), false);
 	{
 		ImGui::Checkbox("Unlimited Racers Weapons", &Config::UnlimitedRacersWeapons);
 		ImGui::Checkbox("No Cooldown Racer Weapons", &Config::NoCooldownRacersWeapons);
 
 		ImGui::Checkbox("Unlimited Police Weapons", &Config::UnlimitedPoliceWeapons);
 		ImGui::Checkbox("No Cooldown Police Weapons", &Config::NoCooldownPoliceWeapons);
+
+		ImGui::Checkbox("God Mode", &Config::GodMode);
 	}
 	ImGui::EndChild();
 }

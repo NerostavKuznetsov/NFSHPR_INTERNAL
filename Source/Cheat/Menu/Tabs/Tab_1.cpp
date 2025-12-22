@@ -93,7 +93,7 @@ void Tabs::Weathers()
 				"Fog 6"
 			};
 			ImGui::Checkbox("Enable Fog Weather", &Config::AlternativeWeatherID);
-			ImGui::Combo("Fog Configuration", &Config::AlternativeWeatherIDValue, AlternativeWeathersID, IM_ARRAYSIZE(AlternativeWeathersID));
+			ImGui::Combo("Fog - Sunny - Tropica - Sunny and Cloudy(Fog can be used))", &Config::AlternativeWeatherIDValue, AlternativeWeathersID, IM_ARRAYSIZE(AlternativeWeathersID));
 		}
 		ImGui::EndChild();
 	}

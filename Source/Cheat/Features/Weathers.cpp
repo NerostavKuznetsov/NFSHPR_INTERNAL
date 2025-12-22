@@ -73,15 +73,23 @@ void AlternativeWeatherID()
 
 	switch (Config::AlternativeWeatherIDValue)
 	{
-	case 0: *Current_AlternativeWeatherID = 11; break; // Fog Weather
-	case 1: *Current_AlternativeWeatherID = 2; break; // Fog 1
-	case 2: *Current_AlternativeWeatherID = 3; break; // Fog 2xxx
-	case 3: *Current_AlternativeWeatherID = 4; break; // Fog 3xxxx
-	case 4: *Current_AlternativeWeatherID = 5; break; // Fog 4xxx
-	case 5: *Current_AlternativeWeatherID = 6; break; // Fog 5xxx
-	case 6: *Current_AlternativeWeatherID = 7; break; // Fog 6xxx
+	case 0: *Current_AlternativeWeatherID = 11; break; // Fog Weather // Nevoeiro
+	case 1: *Current_AlternativeWeatherID = 2; break;  // Fog 1 //	Nevoeiro 1
+	case 2: *Current_AlternativeWeatherID = 3; break;  // Fog 2 // Nevoeiro 2
+	case 3: *Current_AlternativeWeatherID = 5; break;  // Fog 3 // Nevoeiro 3
+	case 4: *Current_AlternativeWeatherID = 14; break; // Fog 4 // Nevoeiro 4
+	case 5: *Current_AlternativeWeatherID = 17; break; // Fog 5 // Nevoeiro 5
+	case 6: *Current_AlternativeWeatherID = 27; break; // Fog 6 // Nevoeiro 6
 
- 
+    // Sunny (Sunny weather is recommended)  
+	case 7: *Current_AlternativeWeatherID = 4; break;  // Autumn // Outono
+	case 8: *Current_AlternativeWeatherID = 6; break;  // Sunny 1 // Ensolarado 1
+	case 9: *Current_AlternativeWeatherID = 26; break; // Sunny 2 // Ensolarado 2
+
+
+
+
+
 	default: break;
 	}
 }

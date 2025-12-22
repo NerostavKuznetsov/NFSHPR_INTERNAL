@@ -8,6 +8,25 @@ namespace Config
 	inline bool MenuImGui = false; 
 
 	// ------------------------------------------------------------------
+	// Gameplay Configurations 
+	// ------------------------------------------------------------------
+	inline bool UnlimitedNitrous = false;
+
+	inline bool NitrousUserEditing = false;
+	inline float NitrousEditTimer = 0.0f;
+
+	inline bool NitrousSlider = true;
+	inline float NitrousSliderValue = 0.0f;
+
+	inline bool GodMode = false;
+
+	inline bool UnlimitedRacersWeapons = false;
+	inline bool UnlimitedPoliceWeapons = false;
+
+	inline bool NoCooldownRacersWeapons = false;
+	inline bool NoCooldownPoliceWeapons = false;
+
+	// ------------------------------------------------------------------
 	// Weathers Configurations
 	// ------------------------------------------------------------------
 	inline bool Time = false;           
@@ -22,54 +41,9 @@ namespace Config
 	inline bool AlternativeWeatherID = false; 
 	inline int AlternativeWeatherIDValue = 0; 
 
-	// ------------------------------------------------------------------
-	// Nitrous Configurations 
-	// ------------------------------------------------------------------
-	inline bool UnlimitedNitrous = false;
-
-	inline bool NitrousUserEditing = false;
-	inline float NitrousEditTimer = 0.0f;
-
-	inline bool NitrousSlider = false;
-	inline float NitrousSliderValue = 0.0f;
-
-	// ------------------------------------------------------------------
-	// Weapons Configurations
-	// ------------------------------------------------------------------
-	inline bool UnlimitedRacersWeapons = false;
-	inline bool UnlimitedPoliceWeapons = false;
-
-	inline bool NoCooldownRacersWeapons = false;
-	inline bool NoCooldownPoliceWeapons = false;
-
-
-
-
-
-
-
-
-
-
-
-	/////////////  AJUSTAR  //////////////
-
-	/////////////  AJUSTAR  //////////////
-
-	/////////////  AJUSTAR  //////////////
-
-	/////////////  AJUSTAR  //////////////
-
-	/////////////  AJUSTAR  //////////////
-
-	/////////////  AJUSTAR  //////////////
-	/////////////  AJUSTAR  //////////////	
 	
 
-
+	//TESANDO
 	inline int testandoCor = 0;
 
-	inline bool GodMode = false;
-
-	
 }
