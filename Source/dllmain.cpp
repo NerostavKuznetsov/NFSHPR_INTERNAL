@@ -63,7 +63,7 @@ DWORD WINAPI HackThread(HMODULE hModule)
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &Cursor);
 
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+    //SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE);
 
     std::wcout << R"(
  +--------------------------------------------------------------------------------+
@@ -73,7 +73,9 @@ DWORD WINAPI HackThread(HMODULE hModule)
  |  [+] Made with <3 by Nerostav Kuznetsov                                        |
  +--------------------------------------------------------------------------------+
  |  [!] This program is free software you can redistribute or modify it!          |
- +--------------------------------------------------------------------------------+   )";
+ +--------------------------------------------------------------------------------+  
+
+ )";
 
     while (!init_hook)
     {

@@ -12,24 +12,25 @@ namespace Controller
 		UnlimitedNitrous();
 		NitrousSlider();
 
-
-
-
 		UnlimitedRacersWeapons();
 		UnlimitedPoliceWeapons();
-
-
 
 		NoCooldownPoliceWeapons();
 		NoCooldownRacerWeapons();
 
-
+		Time();
+		SliderTime();
+		MainWeatherID();
 
 		Time();
 		SliderTime();
 		MainWeatherID();
 		AlternativeWeatherID();
 
+		// Vegetations: escreve direto no endereço
+		szVegetations();
+
 		GodMode();
+
 	}
 }

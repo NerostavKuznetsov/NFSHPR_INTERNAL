@@ -261,7 +261,7 @@ namespace Menu
 
 
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, ImColor(10, 10, 10, 255).Value);
-		ImGui::SetNextWindowSize(ImVec2(1055, 777)); // Largura/Altura da janela do menu 
+		ImGui::SetNextWindowSize(ImVec2(1055, 450)); // Largura/Altura da janela do menu 
 		ImGui::Begin("General", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoBringToFrontOnFocus);
 		{
 			auto draw = ImGui::GetWindowDrawList();
