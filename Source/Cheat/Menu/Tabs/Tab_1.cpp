@@ -59,9 +59,9 @@ void Tabs::Weathers()
 	ImGui::EndChild();
 
 	// ----------------------------------------------------------------------------------
-	// Child-0-2 Right Side
+	// Child-0-2 Right Side  
 	// ----------------------------------------------------------------------------------
-	ImGui::SetCursorPos(ImVec2(658, 76));
+	ImGui::SetCursorPos(ImVec2(658, 255));
 	ImGui::BeginChild("Child-0-2", ImVec2(376, 166), false);
 	{
 		const char* MainWeathersID[] =
@@ -85,15 +85,15 @@ void Tabs::Weathers()
 	}
 	ImGui::EndChild();
 
+
 	// ----------------------------------------------------------------------------------
-	// Child-0-4 Right Side
-	// ----------------------------------------------------------------------------------
-	ImGui::SetCursorPos(ImVec2(658, 255));
-	ImGui::BeginChild("Child-0-4", ImVec2(376, 166), false);
+    // Child-0-3 Right Side 
+    // ----------------------------------------------------------------------------------
+	ImGui::SetCursorPos(ImVec2(658, 76));
+	ImGui::BeginChild("Child-0-3", ImVec2(376, 166), false);
 	{
 		const char* AlternativeWeathersID[] =
 		{
-			// Fog
 			"Fog Weather",
 			"Fog 1",
 			"Fog 2",

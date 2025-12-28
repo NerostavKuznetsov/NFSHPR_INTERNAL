@@ -1,5 +1,5 @@
 ﻿// =================================================================================================================================
-// ➡️ Created by https://github.com/NerostavKuznetsov
+// ➡️ Cheat created by https://github.com/NerostavKuznetsov/NFSHPR_INTERNAL
 // ➡️ DirectX 11 Hook (kiero). Better version: https://github.com/rdbo/ImGui-DirectX-11-Kiero-Hook
 // ➡️ Dear ImGui: Bloat-free Graphical User interface for C++ with minimal dependencies: https://github.com/ocornut/imgui
 // ➡️ DLL entry point
@@ -63,7 +63,8 @@ DWORD WINAPI HackThread(HMODULE hModule)
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &Cursor);
 
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    //SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE);
+    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+
 
     std::wcout << R"(
  +--------------------------------------------------------------------------------+

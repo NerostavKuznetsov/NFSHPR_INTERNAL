@@ -90,6 +90,9 @@
     <ClCompile Include="Source\Cheat\Menu\Tabs\Tab_2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Cheat\Features\Vegetation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="External\ImGui\custom_colors.h">
@@ -183,6 +186,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Cheat\Menu\Tabs\Tab_Config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Cheat\Features\Vegetation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -39,7 +39,6 @@ namespace Config
 	inline bool MainWeatherID = false; 
 	inline int MainWeatherIDValue = 0; 
 
-	inline int LastAppliedAlternativeWeather = -1;
 	inline bool AlternativeWeatherID = false; 
 	inline int AlternativeWeatherIDValue = 0; 
 
@@ -52,7 +51,7 @@ namespace Config
 	/// /////////////////////////////////////////// testando 
 	/// </summary>
 	inline bool szVegetationsEnabled = false;
-	inline float szVegetations = 0.007874015719f; // valor inicial
+	inline float szVegetations = 0.007874015719f; // valor inicial padrao	do jogo
 	
 	inline int testandoCor = 0;
 }

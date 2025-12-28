@@ -4,6 +4,7 @@
 #include "../Features/Weapons.h"
 #include "../Features/Weathers.h"	
 #include "../Features/GodMode.h"
+#include "../Features/Vegetation.h"
 
 namespace Controller
 {
@@ -26,10 +27,7 @@ namespace Controller
 		SliderTime();
 		MainWeatherID();
 		AlternativeWeatherID();
-
-		// Vegetations: escreve direto no endereço
 		szVegetations();
-
 		GodMode();
 
 	}
