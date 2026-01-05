@@ -2,14 +2,14 @@
 
 namespace Config
 {
-	// ------------------------------------------------------------------
+	// --------------------------------------------------------
 	// Menu Configurations
-	// ------------------------------------------------------------------
+	// --------------------------------------------------------
 	inline bool MenuImGui = false; 
 
-	// ------------------------------------------------------------------
+	// --------------------------------------------------------
 	// Gameplay Configurations 
-	// ------------------------------------------------------------------
+	// --------------------------------------------------------
 	inline bool UnlimitedNitrous = false;
 
 	inline bool NitrousUserEditing = false;
@@ -25,9 +25,9 @@ namespace Config
 	inline bool NoCooldownRacersWeapons = false;
 	inline bool NoCooldownPoliceWeapons = false;
 
-	// ------------------------------------------------------------------
+	// --------------------------------------------------------
 	// Weathers Configurations
-	// ------------------------------------------------------------------
+	// --------------------------------------------------------
 	inline bool Time = false;           
 	inline int TimeValue = 0;      
 
@@ -42,16 +42,15 @@ namespace Config
 	inline bool AlternativeWeatherID = false; 
 	inline int AlternativeWeatherIDValue = 0; 
 
+	// --------------------------------------------------------
+	// Vegetations Configurations
+	// --------------------------------------------------------
+	inline bool szVegetationsCheckBox = false;
+	inline float szVegetations = 0.007874015719f; 
 
-
-
-
-
-	/// <summary>
-	/// /////////////////////////////////////////// testando 
-	/// </summary>
-	inline bool szVegetationsEnabled = false;
-	inline float szVegetations = 0.007874015719f; // valor inicial padrao	do jogo
-	
-	inline int testandoCor = 0;
+	// --------------------------------------------------------
+	// Cloud Acceleration Configurations
+	// --------------------------------------------------------
+	inline bool CloudAccelerationCheckBox = false;
+	inline float CloudAcceleration = 0.200000003f;
 }

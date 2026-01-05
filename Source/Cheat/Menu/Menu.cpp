@@ -101,9 +101,9 @@ void RenderTabs()
 	{
 		"[Gameplay]",
 		"[Weathers]",
-		"[Vehicles Functions]",
+		"[Extra Options]",
 		"[Not implemented yet]",
-		"[Not implemented yet_2]"
+		"[Not implemented yet]"
 	};
 
 	ImGui::GetWindowDrawList()->AddText(Inter_S_2, 23.f, ImVec2(p.x + 246 + anim_text, p.y + 18),
@@ -161,7 +161,7 @@ namespace Menu
 
 			Inter_S = io.Fonts->AddFontFromMemoryTTF((void*)Inter_SemmiBold, sizeof Inter_SemmiBold, 17.f, &cfg, ranges); // Fonte dos textos normais
 			Inter_S_1 = io.Fonts->AddFontFromMemoryTTF((void*)Inter_SemmiBold, sizeof Inter_SemmiBold, 18.f, &cfg, ranges); // Fonte dos títulos das tabs
-			Inter_S_2 = io.Fonts->AddFontFromMemoryTTF((void*)Inter_SemmiBold, sizeof Inter_SemmiBold, 23.f, &cfg, ranges); // Fonte dos botões .??????????????????????????????????????
+			Inter_S_2 = io.Fonts->AddFontFromMemoryTTF((void*)Inter_SemmiBold, sizeof Inter_SemmiBold, 23.f, &cfg, ranges); // Fonte dos botões .???????????
 			Inter_S_3 = io.Fonts->AddFontFromMemoryTTF((void*)Inter_SemmiBold, sizeof Inter_SemmiBold, 15.f, &cfg, ranges); // Fonte do watermark
 			Inter_B = io.Fonts->AddFontFromMemoryTTF((void*)Inter_Bold, sizeof Inter_Bold, 34.f, &cfg, ranges); // Fonte da logo do cheat
 			Icon = io.Fonts->AddFontFromMemoryTTF((void*)Icon_Pack, sizeof Icon_Pack, 26.f, &cfg, ranges); // Icones para as tabs
@@ -254,14 +254,8 @@ namespace Menu
 		// Desenha contorno roxo
 		draw->AddCircle(pos, radius, colBorder, 32, border);
 
-
-
-
-
-
-
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, ImColor(10, 10, 10, 255).Value);
-		ImGui::SetNextWindowSize(ImVec2(1055, 450)); // Largura/Altura da janela do menu 
+		ImGui::SetNextWindowSize(ImVec2(1055, 450)); // Largura/Altura da janela do MENU PRINCIPAL !!!
 		ImGui::Begin("General", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoBringToFrontOnFocus);
 		{
 			auto draw = ImGui::GetWindowDrawList();
@@ -274,7 +268,7 @@ namespace Menu
 
 			// Desenha o retângulo arredondado atrás da log
 			ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(p.x, p.y), ImVec2(p.x + 250, p.y + region.y), ImGui::GetColorU32(c::child_rect), 12.f, ImDrawFlags_RoundCornersLeft); // 
-			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 10, p.y + 32), ImGui::GetColorU32(c::main_color), "    Nerostav"); // 27 32
+			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 10, p.y + 32), ImGui::GetColorU32(c::main_color), "    NFSHPR"); // 27 32
 			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 115, p.y + 32), ImGui::GetColorU32(c::text_active), ""); // 125 32
 
 			ImGuiStyle* style = &ImGui::GetStyle();
@@ -291,13 +285,13 @@ namespace Menu
 
 				if (ImGui::Tab("Gameplay", "A",           0 == pending_page, ImVec2(234, 50))) pending_page = 0;
 
-				if (ImGui::Tab("Weathers", "L",           1 == pending_page, ImVec2(234, 50))) pending_page = 1;
+				if (ImGui::Tab("Weathers", "V",           1 == pending_page, ImVec2(234, 50))) pending_page = 1;
 
-				if (ImGui::Tab("Vehicle Options", "V",    2 == pending_page, ImVec2(234, 50))) pending_page = 2;
+				if (ImGui::Tab("Extra Options", "V",      2 == pending_page, ImVec2(234, 50))) pending_page = 2;
 
-				if (ImGui::Tab("Testando", "S",           3 == pending_page, ImVec2(234, 50))) pending_page = 3;
+				if (ImGui::Tab("Testando", "V",           3 == pending_page, ImVec2(234, 50))) pending_page = 3;
 
-				if (ImGui::Tab("Testando", "C",           4 == pending_page, ImVec2(234, 50))) pending_page = 4;
+				if (ImGui::Tab("Testando", "V",           4 == pending_page, ImVec2(234, 50))) pending_page = 4;
 
 				ImGui::PopStyleVar();
 			}

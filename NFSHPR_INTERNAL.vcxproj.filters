@@ -90,6 +90,9 @@
     <ClCompile Include="Source\Cheat\Features\Vegetation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Cheat\Features\CloudAcceleration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="External\ImGui\custom_colors.h">
@@ -188,6 +191,9 @@
     <ClInclude Include="Source\Cheat\Features\Vegetation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Cheat\Features\CloudAcceleration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="External\kiero\minhook\dll_resources\MinHook.def">
@@ -205,5 +211,6 @@
   <ItemGroup>
     <Text Include="LICENSE.txt" />
     <Text Include="Source\Cheat\Rascunho.txt" />
+    <Text Include="Rascue.txt" />
   </ItemGroup>
 </Project>

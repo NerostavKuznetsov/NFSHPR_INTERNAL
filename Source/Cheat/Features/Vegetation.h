@@ -1,3 +1,3 @@
 #pragma once
 
-void szVegetations();
+void SizeOfVegetations();

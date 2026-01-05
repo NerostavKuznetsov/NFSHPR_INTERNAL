@@ -5,6 +5,7 @@
 #include "../Features/Weathers.h"	
 #include "../Features/GodMode.h"
 #include "../Features/Vegetation.h"
+#include "../Features/CloudAcceleration.h"
 
 namespace Controller
 {
@@ -22,13 +23,20 @@ namespace Controller
 		Time();
 		SliderTime();
 		MainWeatherID();
-
-		Time();
-		SliderTime();
-		MainWeatherID();
 		AlternativeWeatherID();
-		szVegetations();
-		GodMode();
 
+
+
+		SizeOfVegetations();
+		CloudAcceleration();
+
+
+
+
+
+
+
+
+		GodMode(); // ajustar por último
 	}
 }

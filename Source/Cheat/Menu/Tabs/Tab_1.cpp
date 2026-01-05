@@ -5,16 +5,15 @@
 
 void Tabs::Weathers()
 {
-
 	// ----------------------------------------------------------------------------------
-	// Note Text / (valores maiores descem, valores maiores vao para direita)
+	// Note Text 
 	// ----------------------------------------------------------------------------------
-	ImVec2 childStart = ImGui::GetCursorPos(); // salva posição normal onde o child deveria começar
+	ImVec2 childStart = ImGui::GetCursorPos(); // Salva posição normal onde o child deveria começar
 	ImGui::SetCursorPos(ImVec2(520, 20));
 	ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(180, 180, 255, 255));
 	ImGui::TextWrapped("Note: Weather effects may vary depending on time of day and location.");
 	ImGui::PopStyleColor();
-	ImGui::SetCursorPos(childStart); // volta o cursor para a posição original para iniciar os childs alinhados
+	ImGui::SetCursorPos(childStart); // Volta o cursor para a posição original para iniciar os childs alinhados
 
 	// ----------------------------------------------------------------------------------
 	// Child-0-0 Left Side
@@ -85,7 +84,6 @@ void Tabs::Weathers()
 	}
 	ImGui::EndChild();
 
-
 	// ----------------------------------------------------------------------------------
     // Child-0-3 Right Side 
     // ----------------------------------------------------------------------------------
@@ -94,7 +92,7 @@ void Tabs::Weathers()
 	{
 		const char* AlternativeWeathersID[] =
 		{
-			"Fog Weather (Cloudy Weather is recommended)",
+			"Fog 0 (Cloudy Weather is recommended)",
 			"Fog 1 (Cloudy Weather is recommended)",
 			"Fog 2 (Cloudy Weather is recommended)",
 			"Fog 3 (Cloudy Weather is recommended)",
@@ -102,21 +100,22 @@ void Tabs::Weathers()
 			"Fog 5 (Cloudy Weather is recommended)",
 			"Fog 6 (Cloudy Weather is recommended)",
 
-			"Autumn",
-			"Sunny 1",
-			"Sunny 2",
-			"Desert",
+			"Autumn (Sunny Weather is recommended)",
+			"Sunny 1 (Sunny Weather is recommended)",
+			"Sunny 2 (Sunny Weather is recommended)",
 
+			"Desert",
 			"Heatwave 1",
 			"Heatwave 2",
 			"Heatwave 3",
 			"Heatwave 4",
 			"Heatwave 5",
-			"Foggy/Clear 1",
-			"Foggy/Clear 2",
-			"Foggy/Clear 3",
-			"Polar Night 1",
-			"Polar Night 2"
+
+			"Foggy/Clear 1 (Fog can be used)",
+			"Foggy/Clear 2 (Fog can be used)",
+			"Foggy/Clear 3 (Fog can be used)",
+			"Polar Night 1 (Fog can be used)",
+			"Polar Night 2 (Fog can be used)"
 		};
 
 		ImGui::Checkbox("Enable Alternative Weather", &Config::AlternativeWeatherID);

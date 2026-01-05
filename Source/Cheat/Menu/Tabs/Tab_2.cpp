@@ -12,16 +12,15 @@ void Tabs::VehicleOptions()
 	ImGui::SetCursorPos(ImVec2(266, 76));
 	ImGui::BeginChild("Child-0-0", ImVec2(376, 166), false);
 	{
-		const char* ColorTypes[] =
 		{
-			"Black", "Blue", "Yellow", "Green", "Purple", "Cyan", "DodgerBlue", "Chocolate", "Orchid", "SlateBlue", "SeaGreen"
-		};
+			ImGui::Checkbox("Enable Size of Vegetations", &Config::szVegetationsCheckBox);
 
-		static bool Testando = false;
-		ImGui::Checkbox("Enable Drift Smoke", &Testando);
-		ImGui::Combo("Smoke Colors", &Config::testandoCor, ColorTypes, IM_ARRAYSIZE(ColorTypes));
+			ImGui::BeginDisabled(!Config::szVegetationsCheckBox);
+			ImGui::SliderFloat("Size of Vegetations", &Config::szVegetations, 0.0f, 0.08f, "%.12f");
+			ImGui::EndDisabled();
+		}
+		ImGui::EndChild();
 	}
-	ImGui::EndChild();
 
 	// ----------------------------------------------------------------------------------
 	// Child-0-1 Right Side
@@ -29,8 +28,11 @@ void Tabs::VehicleOptions()
 	ImGui::SetCursorPos(ImVec2(658, 76));
 	ImGui::BeginChild("Child-0-1", ImVec2(376, 166), false);
 	{
-		ImGui::Checkbox("Enable Size of Vegetations", &Config::szVegetationsEnabled);
-		ImGui::SliderFloat("Size of Vegetations", &Config::szVegetations, 0.0f, 0.07f, "%.12f SZ");
+		ImGui::Checkbox("Enable Cloud Acceleration", &Config::CloudAccelerationCheckBox);
+
+		ImGui::BeginDisabled(!Config::CloudAccelerationCheckBox);
+		ImGui::SliderFloat("Cloud Acceleration", &Config::CloudAcceleration, 0.200000003f, 999.0f, "%.9f");
+		ImGui::EndDisabled();
 	}
 	ImGui::EndChild();
 }
