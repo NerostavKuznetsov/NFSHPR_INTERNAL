@@ -205,6 +205,5 @@
   <ItemGroup>
     <Text Include="LICENSE.txt" />
     <Text Include="Source\Cheat\Rascunho.txt" />
-    <Text Include="S.txt" />
   </ItemGroup>
 </Project>
