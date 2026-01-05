@@ -94,17 +94,19 @@ void Tabs::Weathers()
 	{
 		const char* AlternativeWeathersID[] =
 		{
-			"Fog Weather",
-			"Fog 1",
-			"Fog 2",
-			"Fog 3",
-			"Fog 4",
-			"Fog 5",
-			"Fog 6",
+			"Fog Weather (Cloudy Weather is recommended)",
+			"Fog 1 (Cloudy Weather is recommended)",
+			"Fog 2 (Cloudy Weather is recommended)",
+			"Fog 3 (Cloudy Weather is recommended)",
+			"Fog 4 (Cloudy Weather is recommended)",
+			"Fog 5 (Cloudy Weather is recommended)",
+			"Fog 6 (Cloudy Weather is recommended)",
+
 			"Autumn",
 			"Sunny 1",
 			"Sunny 2",
 			"Desert",
+
 			"Heatwave 1",
 			"Heatwave 2",
 			"Heatwave 3",

@@ -72,9 +72,6 @@
     <ClCompile Include="Source\Cheat\Features\Weathers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Cheat\Config\Config.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Cheat\Controller\Controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

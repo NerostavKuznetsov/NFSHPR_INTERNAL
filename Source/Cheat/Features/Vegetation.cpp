@@ -4,9 +4,9 @@
 
 void szVegetations()
 {
-	float* newVegetations = (float*)0x140F2B9B0;
+	float* SizeVegetations = (float*)0x140F2B9B0;
 	DWORD oldProtect;
-	VirtualProtect(newVegetations, sizeof(float), PAGE_EXECUTE_READWRITE, &oldProtect);
-	*newVegetations = Config::szVegetations;
-	VirtualProtect(newVegetations, sizeof(float), oldProtect, &oldProtect);
+	VirtualProtect(SizeVegetations, sizeof(float), PAGE_EXECUTE_READWRITE, &oldProtect);
+	*SizeVegetations = Config::szVegetations;
+	VirtualProtect(SizeVegetations, sizeof(float), oldProtect, &oldProtect);
 }
