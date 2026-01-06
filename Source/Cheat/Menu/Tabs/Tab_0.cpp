@@ -4,7 +4,7 @@
 #include <thread>
 
 
-void Tabs::Gameplay()
+void Tabs::Tab_0()
 {
 	// ----------------------------------------------------------------------------------
 	// Child-0-0 / (266, 76) = Posição do child / (376, 166) = Lagura & Altura do child

@@ -3,7 +3,7 @@
 #include "../Tabs/Tab_Config.h"
 #include "../Menu.h"
 
-void Tabs::Weathers()
+void Tabs::Tab_1()
 {
 	// ----------------------------------------------------------------------------------
 	// Note Text 

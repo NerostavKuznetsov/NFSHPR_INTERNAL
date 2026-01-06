@@ -111,9 +111,9 @@ void RenderTabs()
 
 	switch (active_tab)
 	{
-	case 0: Tabs::Gameplay(); break;
-	case 1: Tabs::Weathers(); break;	
-	case 2: Tabs::VehicleOptions(); break;
+	case 0: Tabs::Tab_0(); break;
+	case 1: Tabs::Tab_1(); break;	
+	case 2: Tabs::Tab_2(); break;
 	}
 }
 
@@ -283,15 +283,9 @@ namespace Menu
 			{
 				ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 8));
 
-				if (ImGui::Tab("Gameplay", "A",          0 == pending_page, ImVec2(234, 50))) pending_page = 0;
-
-				if (ImGui::Tab("Weathers", "V",           1 == pending_page, ImVec2(234, 50))) pending_page = 1;
-
-				if (ImGui::Tab("Extra Options", "V",      2 == pending_page, ImVec2(234, 50))) pending_page = 2;
-
-				if (ImGui::Tab("Testando", "V",           3 == pending_page, ImVec2(234, 50))) pending_page = 3;
-
-				if (ImGui::Tab("Testando", "V",           4 == pending_page, ImVec2(234, 50))) pending_page = 4;
+				if (ImGui::Tab("Gameplay", "A",        0 == pending_page, ImVec2(234, 50))) pending_page = 0;
+				if (ImGui::Tab("Weathers", "V",        1 == pending_page, ImVec2(234, 50))) pending_page = 1;
+				if (ImGui::Tab("Extra Options", "V",   2 == pending_page, ImVec2(234, 50))) pending_page = 2;
 
 				ImGui::PopStyleVar();
 			}

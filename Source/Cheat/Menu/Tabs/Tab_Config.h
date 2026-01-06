@@ -3,7 +3,7 @@
 
 namespace Tabs
 {
-    void Gameplay();
-	void Weathers();
-	void VehicleOptions();
+    void Tab_0();
+	void Tab_1();
+	void Tab_2();
 }

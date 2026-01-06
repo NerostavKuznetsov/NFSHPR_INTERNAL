@@ -164,7 +164,6 @@
     <ClCompile Include="External\kiero\minhook\src\hde\hde64.c" />
     <ClCompile Include="External\kiero\minhook\src\hook.c" />
     <ClCompile Include="External\kiero\minhook\src\trampoline.c" />
-    <ClCompile Include="Source\Cheat\Controller\Controller.cpp" />
     <ClCompile Include="Source\Cheat\Features\CloudAcceleration.cpp" />
     <ClCompile Include="Source\Cheat\Features\GodMode.cpp" />
     <ClCompile Include="Source\Cheat\Features\NoCooldownWeapons.cpp" />

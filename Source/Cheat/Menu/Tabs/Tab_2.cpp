@@ -3,7 +3,7 @@
 #include "../Tabs/Tab_Config.h"
 #include "../Menu.h"
 
-void Tabs::VehicleOptions()
+void Tabs::Tab_2()
 {
 
 	// ----------------------------------------------------------------------------------
