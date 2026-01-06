@@ -12,6 +12,10 @@ namespace Config
 	// --------------------------------------------------------
 	inline bool UnlimitedNitrous = false;
 
+
+
+
+
 	inline bool NitrousUserEditing = false;
 	inline float NitrousEditTimer = 0.0f;
 	inline bool NitrousSlider = true;
@@ -53,4 +57,26 @@ namespace Config
 	// --------------------------------------------------------
 	inline bool CloudAccelerationCheckBox = false;
 	inline float CloudAcceleration = 0.200000003f;
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// --------------------------------------------------------
+	// Reset Timer Configurations
+	// --------------------------------------------------------
+
+	inline bool ResetTimerOnce = false;     // reseta uma vez
+	inline bool FreezeTimer = false;        // congela em 0
+
+
+
 }

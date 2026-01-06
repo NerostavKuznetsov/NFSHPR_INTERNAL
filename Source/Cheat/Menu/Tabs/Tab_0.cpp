@@ -3,6 +3,7 @@
 #include "../Menu.h"
 #include <thread>
 
+
 void Tabs::Gameplay()
 {
 	// ----------------------------------------------------------------------------------
@@ -28,9 +29,6 @@ void Tabs::Gameplay()
 					}).detach();
 			}
 		}
-
-		static float color1[4] = { 255.f / 255.f, 0.f / 255.f, 0.f / 255.f };
-		ImGui::ColorEdit4("Nitrous Fire Color", color1, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
 
 		if (ImGui::Checkbox("Enable Nitrous Slider", &Config::NitrousSlider))
 		{
@@ -59,6 +57,12 @@ void Tabs::Gameplay()
 			}
 		}
 		ImGui::EndDisabled();
+
+		ImGui::Checkbox("Reset Timer (once)", &Config::ResetTimerOnce);
+		ImGui::Checkbox("Freeze Timer (0.00.00)", &Config::FreezeTimer);
+
+
+
 	}
 	ImGui::EndChild();
 

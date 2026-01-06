@@ -6,7 +6,7 @@ void Time()
 {
 	if (!Config::Time) return;
 
-	uintptr_t Address = *(uintptr_t*)(Client + 0x1298C10);
+	uintptr_t Address = *(uintptr_t*)(Client + 0x1298C10); 
 	if (!Address) return;
 
 	float* Current_Time = (float*)(Address + 0x129A80);

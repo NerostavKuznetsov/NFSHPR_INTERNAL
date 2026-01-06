@@ -6,12 +6,15 @@
 #include "../Features/GodMode.h"
 #include "../Features/Vegetation.h"
 #include "../Features/CloudAcceleration.h"
+#include "../Features/ResetTimer.h"
 
 namespace Controller
 {
 	void Execute()   // Ajustar bagunça
 	{
 		UnlimitedNitrous();
+
+
 		NitrousSlider();
 
 		UnlimitedRacersWeapons();
@@ -31,7 +34,7 @@ namespace Controller
 		CloudAcceleration();
 
 
-
+		ResetTimer();
 
 
 

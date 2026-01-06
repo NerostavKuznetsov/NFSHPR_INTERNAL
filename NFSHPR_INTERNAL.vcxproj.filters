@@ -93,6 +93,9 @@
     <ClCompile Include="Source\Cheat\Features\CloudAcceleration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Cheat\Features\ResetTimer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="External\ImGui\custom_colors.h">
@@ -192,6 +195,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Cheat\Features\CloudAcceleration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Cheat\Features\ResetTimer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Cheat\Features\Global.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
