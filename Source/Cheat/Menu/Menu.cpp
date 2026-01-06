@@ -283,7 +283,7 @@ namespace Menu
 			{
 				ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 8));
 
-				if (ImGui::Tab("Gameplay", "A",           0 == pending_page, ImVec2(234, 50))) pending_page = 0;
+				if (ImGui::Tab("Gameplay", "A",          0 == pending_page, ImVec2(234, 50))) pending_page = 0;
 
 				if (ImGui::Tab("Weathers", "V",           1 == pending_page, ImVec2(234, 50))) pending_page = 1;
 

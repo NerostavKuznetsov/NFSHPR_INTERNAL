@@ -53,7 +53,6 @@ void Tabs::Gameplay()
 			if (ImGui::SliderFloat("Nitrous Slider", &Config::NitrousSliderValue, 0.0f, 100.0f,  "%.1f"))
 			{
 				Config::NitrousUserEditing = true;
-				Config::NitrousEditTimer = 0.25f;
 			}
 		}
 		ImGui::EndDisabled();

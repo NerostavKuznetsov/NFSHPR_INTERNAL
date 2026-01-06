@@ -164,25 +164,10 @@
     <ClInclude Include="Source\Cheat\Menu\Menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Cheat\Features\Nitrous.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Cheat\Features\GodMode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Cheat\Features\NoCooldownWeapons.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Cheat\Features\Weathers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Cheat\Config\Config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Cheat\Controller\Controller.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Cheat\Features\Weapons.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Cheat\Menu\Font.h">
@@ -191,16 +176,7 @@
     <ClInclude Include="Source\Cheat\Menu\Tabs\Tab_Config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Cheat\Features\Vegetation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Cheat\Features\CloudAcceleration.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Cheat\Features\ResetTimer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Cheat\Features\Global.h">
+    <ClInclude Include="Source\Cheat\Features\Features.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

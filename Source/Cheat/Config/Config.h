@@ -11,15 +11,10 @@ namespace Config
 	// Gameplay Configurations 
 	// --------------------------------------------------------
 	inline bool UnlimitedNitrous = false;
-
-
-
-
-
 	inline bool NitrousUserEditing = false;
-	inline float NitrousEditTimer = 0.0f;
-	inline bool NitrousSlider = true;
+	inline float NitrousEditTimer = 0.25f;
 	inline float NitrousSliderValue = 0.0f;
+	inline bool NitrousSlider = true;
 
 	inline bool GodMode = false;
 
@@ -57,18 +52,6 @@ namespace Config
 	// --------------------------------------------------------
 	inline bool CloudAccelerationCheckBox = false;
 	inline float CloudAcceleration = 0.200000003f;
-
-
-
-
-
-
-
-
-
-
-
-
 
 	// --------------------------------------------------------
 	// Reset Timer Configurations
