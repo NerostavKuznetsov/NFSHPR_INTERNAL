@@ -1,6 +1,6 @@
 ﻿#include "../../Config/Config.h"
 #include "../Tabs/Tab_Config.h"
-//#include "../Menu.h"
+#include "../Menu.h"
 #include <thread>
 
 
@@ -16,10 +16,7 @@ void Tabs::Tab_0()
 		{
 			if (Config::UnlimitedNitrous)
 			{
-				std::thread([]()
-					{
-						Beep(1300, 60); // LIGAR → agudo, curto
-					}).detach();
+				std::thread([](){Beep(1300, 60);}).detach();
 			}
 			else
 			{
