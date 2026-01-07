@@ -61,6 +61,8 @@ namespace Config
 	// ========================================================
 	// TIMER
 	// ========================================================
+
+	// --- Timer ---
 	inline bool ResetTimerOnce; // reseta uma vez
 	inline bool FreezeTimer;    // congela em 0
 }
