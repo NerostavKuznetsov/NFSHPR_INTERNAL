@@ -42,9 +42,9 @@ int togle = 0;
 
 static HWND                        window = nullptr;
 static WNDPROC                     oWndProc = nullptr;
-static ID3D11Device*               pDevice = nullptr;
-static ID3D11DeviceContext*        pContext = nullptr;
-static ID3D11RenderTargetView*     mainRenderTargetView = nullptr;
+static ID3D11Device* pDevice = nullptr;
+static ID3D11DeviceContext* pContext = nullptr;
+static ID3D11RenderTargetView* mainRenderTargetView = nullptr;
 
 static void CreateRenderTarget(IDXGISwapChain* pSwapChain)
 {
@@ -65,7 +65,7 @@ static void CleanupRenderTarget()
 	}
 }
 
-LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)	
+LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	if (ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam))
 		return TRUE; // LRESULT ok
@@ -73,7 +73,7 @@ LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 	return CallWindowProc(oWndProc, hWnd, uMsg, wParam, lParam);
 }
 
-void CustomStyleColor()
+static void CustomStyleColor()
 {
 	ImGuiStyle& s = ImGui::GetStyle();
 	ImGuiContext& g = *GImGui;
@@ -92,7 +92,7 @@ void CustomStyleColor()
 // ------------------------------------------------------------------
 // Função auxiliar para renderizar as tabs	
 // ------------------------------------------------------------------																
-void RenderTabs()  
+static void RenderTabs()
 {
 	anim_text = ImLerp(anim_text, pending_page == active_tab ? 20.f : 0.f, 14.f * ImGui::GetIO().DeltaTime);
 
@@ -102,17 +102,17 @@ void RenderTabs()
 		"[Gameplay]",
 		"[Weathers]",
 		"[Extra Options]",
-		"[Not implemented yet]",
-		"[Not implemented yet]"
+		"[?]",
+		"[?]"
 	};
 
 	ImGui::GetWindowDrawList()->AddText(Inter_S_2, 23.f, ImVec2(p.x + 246 + anim_text, p.y + 18),
-	ImGui::GetColorU32(c::text_active), TabNames[active_tab]);
+		ImGui::GetColorU32(c::text_active), TabNames[active_tab]);
 
 	switch (active_tab)
 	{
 	case 0: Tabs::Tab_0(); break;
-	case 1: Tabs::Tab_1(); break;	
+	case 1: Tabs::Tab_1(); break;
 	case 2: Tabs::Tab_2(); break;
 	}
 }
@@ -171,11 +171,10 @@ namespace Menu
 		return false;
 	}
 
-	// Chame isto quando houver ResizeBuffers no seu hook
-	void OnResize(IDXGISwapChain* pSwapChain)
+	static void OnResize(IDXGISwapChain* pSwapChain)
 	{
 		if (!pSwapChain) return;
-		ImGui_ImplDX11_InvalidateDeviceObjects(); // garante reconstrução se necessário
+		ImGui_ImplDX11_InvalidateDeviceObjects();
 		CleanupRenderTarget();
 		CreateRenderTarget(pSwapChain);
 		ImGui_ImplDX11_CreateDeviceObjects();
@@ -266,7 +265,6 @@ namespace Menu
 			if (tab_alpha < 0.01f)
 				active_tab = pending_page;
 
-			// Desenha o retângulo arredondado atrás da log
 			ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(p.x, p.y), ImVec2(p.x + 250, p.y + region.y), ImGui::GetColorU32(c::child_rect), 12.f, ImDrawFlags_RoundCornersLeft); // 
 			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 10, p.y + 32), ImGui::GetColorU32(c::main_color), "    NFSHPR"); // 27 32
 			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 115, p.y + 32), ImGui::GetColorU32(c::text_active), ""); // 125 32
@@ -278,14 +276,14 @@ namespace Menu
 			}
 			ImGui::PopStyleVar();
 
-			ImGui::SetCursorPos(ImVec2(8, 110)); // estava 112
+			ImGui::SetCursorPos(ImVec2(8, 110));
 			ImGui::BeginGroup();
 			{
 				ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 8));
 
-				if (ImGui::Tab("Gameplay", "A",        0 == pending_page, ImVec2(234, 50))) pending_page = 0;
-				if (ImGui::Tab("Weathers", "V",        1 == pending_page, ImVec2(234, 50))) pending_page = 1;
-				if (ImGui::Tab("Extra Options", "V",   2 == pending_page, ImVec2(234, 50))) pending_page = 2;
+				if (ImGui::Tab("Gameplay", "V", 0 == pending_page, ImVec2(234, 50))) pending_page = 0;
+				if (ImGui::Tab("Weathers", "V", 1 == pending_page, ImVec2(234, 50))) pending_page = 1;
+				if (ImGui::Tab("Extra Options", "V", 2 == pending_page, ImVec2(234, 50))) pending_page = 2;
 
 				ImGui::PopStyleVar();
 			}

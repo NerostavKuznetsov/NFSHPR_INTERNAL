@@ -50,7 +50,7 @@ void Tabs::Tab_1()
 			if (ImGui::SliderFloat("Time Slider", &Config::TimeSliderValue, 0.0f, 86400.0f, "%.0f"))
 			{
 				Config::TimeUserEditing = true;
-				Config::TimeEditTimer = 0.25f;
+				Config::TimeEditTimer = 0.50f;
 			}
 		}
 		ImGui::EndDisabled();

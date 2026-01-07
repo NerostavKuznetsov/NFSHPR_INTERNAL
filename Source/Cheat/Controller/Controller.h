@@ -3,7 +3,7 @@
 
 namespace Controller
 {
-    inline void Execute() // inline para evitar múltiplas definições em vários .cp
+    inline void Execute() // Inline para evitar múltiplas definições em vários .cpp's
     {
         UnlimitedNitrous();
         NitrousSlider();
