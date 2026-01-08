@@ -20,9 +20,9 @@ void NitrousSlider()
     {
         uintptr_t Ptr1 = *(uintptr_t*)(Client + 0x1276650);
         if (!Ptr1) return;
-        uintptr_t Addr = Ptr1 + 0x5031C;
+        uintptr_t Nitrous_Value = Ptr1 + 0x5031C;
 
-        float CurrentValueInGame = *(float*)Addr;
+        float CurrentValueInGame = *(float*)Nitrous_Value;
 
         if (!Config::NitrousUserEditing)
         {
@@ -30,7 +30,7 @@ void NitrousSlider()
         }
         else
         {
-            *(float*)Addr = Config::NitrousSliderValue;
+            *(float*)Nitrous_Value = Config::NitrousSliderValue;
 
             Config::NitrousEditTimer -= ImGui::GetIO().DeltaTime;
             if (Config::NitrousEditTimer <= 0.0f)
