@@ -107,13 +107,25 @@ static void RenderTabs()
 	};
 
 	ImGui::GetWindowDrawList()->AddText(Inter_S_2, 23.f, ImVec2(p.x + 246 + anim_text, p.y + 18),
-		ImGui::GetColorU32(c::text_active), TabNames[active_tab]);
+	ImGui::GetColorU32(c::text_active), TabNames[active_tab]);
 
 	switch (active_tab)
 	{
 	case 0: Tabs::Tab_0(); break;
 	case 1: Tabs::Tab_1(); break;
 	case 2: Tabs::Tab_2(); break;
+	}
+}
+
+void Menu::PlayToggleBeep(bool enabled)
+{
+	if (enabled)
+	{
+		std::thread([]() { Beep(1300, 60); }).detach();
+	}
+	else
+	{
+		std::thread([]() { Beep(700, 90); }).detach();
 	}
 }
 
@@ -266,8 +278,8 @@ namespace Menu
 				active_tab = pending_page;
 
 			ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(p.x, p.y), ImVec2(p.x + 250, p.y + region.y), ImGui::GetColorU32(c::child_rect), 12.f, ImDrawFlags_RoundCornersLeft); // 
-			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 10, p.y + 32), ImGui::GetColorU32(c::main_color), "    NFSHPR"); // 27 32
-			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 115, p.y + 32), ImGui::GetColorU32(c::text_active), ""); // 125 32
+			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 10, p.y + 32), ImGui::GetColorU32(c::main_color), "   NFSHPR"); 
+			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 115, p.y + 32), ImGui::GetColorU32(c::text_active), ""); 
 
 			ImGuiStyle* style = &ImGui::GetStyle();
 			ImGui::PushStyleVar(ImGuiStyleVar_Alpha, tab_alpha * style->Alpha);
@@ -281,9 +293,9 @@ namespace Menu
 			{
 				ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 8));
 
-				if (ImGui::Tab("Gameplay", "V", 0 == pending_page, ImVec2(234, 50))) pending_page = 0;
-				if (ImGui::Tab("Weathers", "V", 1 == pending_page, ImVec2(234, 50))) pending_page = 1;
-				if (ImGui::Tab("Extra Options", "V", 2 == pending_page, ImVec2(234, 50))) pending_page = 2;
+				if (ImGui::Tab("Gameplay",        "V", 0 == pending_page, ImVec2(234, 50))) pending_page = 0;
+				if (ImGui::Tab("Weathers",        "V", 1 == pending_page, ImVec2(234, 50))) pending_page = 1;
+				if (ImGui::Tab("Extra Options",   "V", 2 == pending_page, ImVec2(234, 50))) pending_page = 2;
 
 				ImGui::PopStyleVar();
 			}

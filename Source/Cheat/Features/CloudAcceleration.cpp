@@ -7,12 +7,10 @@ constexpr float defaultCloudAcceleration = 0.200000003f;
 void CloudAcceleration()
 {
 	float* CloudAccel = (float*)0x1411C4FA8;
-	if (!CloudAccel) return;
+	float valueToWrite;
 
 	static bool lastEnabled = false;
 	static float lastValue = -1.0f;
-
-	float valueToWrite;
 
 	if (lastEnabled && !Config::CloudAccelerationCheckBox)
 	{

@@ -1,5 +1,6 @@
 #pragma once
 #include <dxgi.h>
+#include <thread>
 
 struct ImFont;
 extern ImFont* Inter_S;
@@ -20,5 +21,6 @@ namespace Menu
 	void Render();
 	void EndRender();
 	void Unload();
+	void PlayToggleBeep(bool enabled);
 }
 

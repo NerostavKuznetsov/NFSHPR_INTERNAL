@@ -19,7 +19,7 @@ namespace Config
 	inline float NitrousSliderValue;
 
 	// --- Player ---
-	inline bool GodMode;
+	inline bool GodMode; 
 
 	// --- Weapons ---
 	inline bool UnlimitedRacersWeapons;
@@ -32,10 +32,10 @@ namespace Config
 	// ========================================================
 
 	// --- Time ---
-	inline bool  Time;
-	inline bool  TimeSlider = true;
-	inline bool  TimeUserEditing;
-	inline int   TimeValue;
+	inline bool Time;
+	inline bool TimeSlider = true;
+	inline bool TimeUserEditing;
+	inline int TimeValue;
 	inline float TimeEditTimer;
 	inline float TimeSliderValue;
 
@@ -52,11 +52,11 @@ namespace Config
 
 	// --- Vegetations ---
 	inline bool  szVegetationsCheckBox;
-	inline float szVegetations = 0.007874015719f;
+	inline float szVegetations = 0.007874015719f; // Default value
 
 	// --- Cloud Acceleration ---
 	inline bool  CloudAccelerationCheckBox;
-	inline float CloudAcceleration = 0.200000003f;
+	inline float CloudAcceleration = 0.200000003f; // Default value
 
 	// ========================================================
 	// TIMER

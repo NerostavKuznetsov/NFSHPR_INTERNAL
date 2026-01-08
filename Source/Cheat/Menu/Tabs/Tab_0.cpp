@@ -1,7 +1,6 @@
 ﻿#include "../../Config/Config.h"
 #include "../Tabs/Tab_Config.h"
 #include "../Menu.h"
-#include <thread>
 
 void Tabs::Tab_0()
 {
