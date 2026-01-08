@@ -1,4 +1,3 @@
-//#include "../../../External/ImGui/imgui.h"
 #include "../Config/Config.h"
 #include "../Menu/Menu.h"
 
@@ -16,10 +15,10 @@ void ResetTimer()
     uintptr_t Ptr3 = *(uintptr_t*)(Ptr2 + 0x40);
     if (!Ptr3) return;
 
-    float* ResetTimerValue = (float*)(Ptr3 + 0x0);
-    if (!ResetTimerValue) return;
+    float* ResetTimer_Value = (float*)(Ptr3 + 0x0);
 
 
+    
 
 
 
@@ -29,7 +28,7 @@ void ResetTimer()
     // --------------------------------------------------
     if (Config::ResetTimerOnce && !resetExecuted)
     {
-        *ResetTimerValue = 0.0f;
+        *ResetTimer_Value = 0.0f;
         resetExecuted = true;
     }
 
@@ -43,6 +42,6 @@ void ResetTimer()
     // --------------------------------------------------
     if (Config::FreezeTimer)
     {
-        *ResetTimerValue = 0.0f;
+        *ResetTimer_Value = 0.0f;
     }
 }

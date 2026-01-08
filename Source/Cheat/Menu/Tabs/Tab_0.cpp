@@ -7,7 +7,7 @@
 void Tabs::Tab_0()
 {
 	// ----------------------------------------------------------------------------------
-	// Child-0-0 / (266, 76) = Posição do child / (376, 166) = Lagura & Altura do child
+	// Child-0-0 / (266, 76) = Posição do child / (376, 320) = Lagura & Altura do child
 	// ----------------------------------------------------------------------------------
 	ImGui::SetCursorPos(ImVec2(266, 76));
 	ImGui::BeginChild("Child-0-0", ImVec2(376, 320), false);
@@ -20,10 +20,7 @@ void Tabs::Tab_0()
 			}
 			else
 			{
-				std::thread([]()
-					{
-						Beep(700, 90); // DESLIGAR → grave, mais longo
-					}).detach();
+				std::thread([](){Beep(700, 90);}).detach();
 			}
 		}
 
@@ -31,17 +28,11 @@ void Tabs::Tab_0()
 		{
 			if (Config::NitrousSlider)
 			{
-				std::thread([]()
-					{
-						Beep(1300, 60); // LIGOU slider → beep curto/agudo
-					}).detach();
+				std::thread([](){Beep(1300, 60);}).detach();
 			}
 			else
 			{
-				std::thread([]()
-					{
-						Beep(700, 90); // DESLIGOU slider → beep mais grave
-					}).detach();
+				std::thread([](){Beep(700, 90);}).detach();
 			}
 		}
 
@@ -57,6 +48,7 @@ void Tabs::Tab_0()
 
 		ImGui::Checkbox("Reset Timer (once)", &Config::ResetTimerOnce);
 		ImGui::Checkbox("Freeze Timer (0.00.00)", &Config::FreezeTimer);
+		ImGui::Button(" ");
 
 
 
