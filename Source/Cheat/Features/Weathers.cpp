@@ -4,55 +4,112 @@
 
 void Time()
 {
-	if (!Config::Time) return;
-
-	uintptr_t Address = *(uintptr_t*)(Client + 0x1298C10); 
-	if (!Address) return;
-
-	float* Current_Time = (float*)(Address + 0x129A80);
-
-	switch (Config::TimeValue)
+	if (Config::TimeCheckBox)
 	{
-	case 0: *Current_Time = 17000.0f; break;
-	case 1: *Current_Time = 20000.0f; break;
-	case 2: *Current_Time = 50000.0f; break;
-	case 3: *Current_Time = 65000.0f; break;
-	case 4: *Current_Time = 73000.0f; break;
-	case 5: *Current_Time = 80000.0f; break;
-	case 6: *Current_Time = 0.0f; break;
-	default: return;
+		uintptr_t Ptr1 = *(uintptr_t*)(Client + 0x1298C10);
+		if (!Ptr1) return;
+
+		float* CurrentTimeAddress = (float*)(Ptr1 + 0x129A80);
+
+		switch (Config::TimeValue)
+		{
+		case 0: *CurrentTimeAddress = 17000.0f; break;
+		case 1: *CurrentTimeAddress = 20000.0f; break;
+		case 2: *CurrentTimeAddress = 50000.0f; break;
+		case 3: *CurrentTimeAddress = 65000.0f; break;
+		case 4: *CurrentTimeAddress = 73000.0f; break;
+		case 5: *CurrentTimeAddress = 80000.0f; break;
+		case 6: *CurrentTimeAddress = 0.00000f; break;
+		default: return;
+		}
 	}
 }
 
 void SliderTime()
 {
-	if (!Config::TimeSlider)
+	uintptr_t Ptr1 = *(uintptr_t*)(Client + 0x1298C10);
+	if (!Ptr1) return;
+
+	float* CurrentTimeSliderAddress = (float*)(Ptr1 + 0x129A80);
+
+	if (!Config::TimeSliderCheckBox)
+	{
+		Config::TimeSliderValue = *CurrentTimeSliderAddress;
+		Config::TimeInitialized = false;
 		return;
-
-	uintptr_t Address = *(uintptr_t*)(Client + 0x1298C10);
-	if (!Address) return;
-
-	float* addr = (float*)(Address + 0x129A80);
-
-	float gameValue = *addr;
-
-	// 🔄 se NÃO estiver mexendo → slider segue o jogo
-	if (!Config::TimeUserEditing)
-	{
-		Config::TimeSliderValue = gameValue;
 	}
-	else
-	{
-		// ✋ usuário mexendo → escreve no jogo
-		*addr = Config::TimeSliderValue;
 
-		Config::TimeEditTimer -= ImGui::GetIO().DeltaTime;
-		if (Config::TimeEditTimer <= 0.0f)
-		{
-			Config::TimeUserEditing = false;
-		}
+	if (!Config::TimeInitialized)
+	{
+		Config::TimeSliderValue = *CurrentTimeSliderAddress;
+		Config::TimeInitialized = true;
 	}
+
+	*CurrentTimeSliderAddress = Config::TimeSliderValue;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+//void SliderTime()
+//{
+//	if (!Config::TimeSliderCheckBox)
+//	{
+//		Config::TimeInitialized = false;
+//		return;
+//	}
+//
+//	uintptr_t Ptr1 = *(uintptr_t*)(Client + 0x1298C10);
+//	if (!Ptr1) return;
+//
+//	float* CurrentTimeSliderAddress = (float*)(Ptr1 + 0x129A80);
+//
+//	if (!Config::TimeInitialized)
+//	{
+//		Config::TimeSliderValue = *CurrentTimeSliderAddress;
+//		Config::TimeInitialized = true;
+//	}
+//
+//	*CurrentTimeSliderAddress = Config::TimeSliderValue;
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void MainWeatherID()
 {

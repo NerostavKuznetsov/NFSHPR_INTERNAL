@@ -32,12 +32,12 @@ namespace Config
 	// ========================================================
 
 	// --- Time ---
-	inline bool Time;
-	inline bool TimeSlider = true;
-	inline bool TimeUserEditing;
+	inline bool TimeCheckBox;
 	inline int TimeValue;
-	inline float TimeEditTimer;
+
+	inline bool TimeSliderCheckBox;
 	inline float TimeSliderValue;
+	inline bool TimeInitialized;
 
 	// --- Weather IDs ---
 	inline bool MainWeatherID;

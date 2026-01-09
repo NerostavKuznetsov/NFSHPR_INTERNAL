@@ -1,4 +1,3 @@
-// Features.h
 #pragma once
 
 void UnlimitedNitrous();

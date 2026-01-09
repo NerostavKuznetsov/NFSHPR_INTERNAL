@@ -121,11 +121,11 @@ void Menu::PlayToggleBeep(bool enabled)
 {
 	if (enabled)
 	{
-		std::thread([]() { Beep(1300, 60); }).detach();
+		std::thread([]() { Beep(666, 100); }).detach(); // Som ligado
 	}
 	else
 	{
-		std::thread([]() { Beep(700, 90); }).detach();
+		std::thread([]() { Beep(333, 100); }).detach(); // Som desligado
 	}
 }
 

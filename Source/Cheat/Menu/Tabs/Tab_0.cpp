@@ -12,27 +12,20 @@ void Tabs::Tab_0()
 	{
 		if (ImGui::Checkbox("Unlimited Nitrous", &Config::UnlimitedNitrous))
 		{
-			if (Config::UnlimitedNitrous)
-			{
-				std::thread([](){Beep(1300, 60);}).detach();
-			}
-			else
-			{
-				std::thread([](){Beep(700, 90);}).detach();
-			}
+			Menu::PlayToggleBeep(Config::UnlimitedNitrous);
 		}
 
 		if (ImGui::Checkbox("Enable Nitrous Slider", &Config::NitrousSlider))
 		{
-			if (Config::NitrousSlider)
-			{
-				std::thread([](){Beep(1300, 60);}).detach();
-			}
-			else
-			{
-				std::thread([](){Beep(700, 90);}).detach();
-			}
+			Menu::PlayToggleBeep(Config::NitrousSlider);
 		}
+
+
+
+
+
+
+
 
 		ImGui::BeginDisabled(!Config::NitrousSlider);
 		{
