@@ -24,14 +24,23 @@ void Tabs::Tab_1()
 		{
 			Menu::PlayToggleBeep(Config::TimeCheckBox);
 		}
-		const char* TimesOfDay[] = { "Early Morning", "Morning", "Noon", "Afternoon", "Evening", "Night", "Midnight" };
+		const char* TimesOfDay[] = 
+		{
+			"Early Morning",
+			"Morning",
+			"Noon",
+			"Afternoon",
+			"Evening",
+			"Night",
+			"Midnight"
+		};
 		ImGui::Combo("Time of day", &Config::TimeValue, TimesOfDay, IM_ARRAYSIZE(TimesOfDay));
 	}
 	ImGui::EndChild();
 
-	// ----------------------------------------------------------------------------------
-	// Child-0-1 Left Side
-	// ----------------------------------------------------------------------------------
+	//==================================================================================
+	//= Child-0-1 Left Side ============================================================
+	//==================================================================================
 	ImGui::SetCursorPos(ImVec2(266, 255));
 	ImGui::BeginChild("Child-0-1", ImVec2(376, 166), false);
 	{
@@ -48,39 +57,16 @@ void Tabs::Tab_1()
 	}
 	ImGui::EndChild();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// ----------------------------------------------------------------------------------
-	// Child-0-2 Right Side  
-	// ----------------------------------------------------------------------------------
+	//==================================================================================
+	//= Child-0-2 Left Side ============================================================
+	//==================================================================================
 	ImGui::SetCursorPos(ImVec2(658, 255));
 	ImGui::BeginChild("Child-0-2", ImVec2(376, 166), false);
 	{
+		if (ImGui::Checkbox("Enable Weather Phenomena", &Config::MainWeatherID))
+		{
+			Menu::PlayToggleBeep(Config::MainWeatherID);
+		}
 		const char* MainWeathersID[] =
 		{
 			"Sunny",
@@ -96,18 +82,20 @@ void Tabs::Tab_1()
 			"Thunderstorm + Rain [Non-Wet Roads]",
 			"Thunderstorm + Rain [Wet Roads]"
 		};
-
-		ImGui::Checkbox("Enable Weather Phenomena", &Config::MainWeatherID);
 		ImGui::Combo("Weather Phenomena", &Config::MainWeatherIDValue, MainWeathersID, IM_ARRAYSIZE(MainWeathersID));
 	}
 	ImGui::EndChild();
 
-	// ----------------------------------------------------------------------------------
-	// Child-0-3 Right Side 
-	// ----------------------------------------------------------------------------------
+	//==================================================================================
+	//= Child-0-3 Left Side ============================================================
+	//==================================================================================
 	ImGui::SetCursorPos(ImVec2(658, 76));
 	ImGui::BeginChild("Child-0-3", ImVec2(376, 166), false);
 	{
+		if (ImGui::Checkbox("Enable Alternative Weather", &Config::AlternativeWeatherID))
+		{
+			Menu::PlayToggleBeep(Config::AlternativeWeatherID);
+		}
 		const char* AlternativeWeathersID[] =
 		{
 			"Fog 0 (Cloudy Weather is recommended)",
@@ -135,8 +123,6 @@ void Tabs::Tab_1()
 			"Polar Night 1 (Fog can be used)",
 			"Polar Night 2 (Fog can be used)"
 		};
-
-		ImGui::Checkbox("Enable Alternative Weather", &Config::AlternativeWeatherID);
 		ImGui::Combo("Alternative Weather", &Config::AlternativeWeatherIDValue, AlternativeWeathersID, IM_ARRAYSIZE(AlternativeWeathersID));
 	}
 	ImGui::EndChild();
