@@ -1,4 +1,4 @@
-	#pragma once
+﻿	#pragma once
 	// ----------------------------------------------------------------------------------
 	// Child-0-0 Left Side
 	// ----------------------------------------------------------------------------------
@@ -22,3 +22,110 @@
 		ImGui::ColorEdit4("Nitrous Fire Color", color1, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
 
 		EM ANDAMENTO A PROCURA DOA TEXTURADO NITRO PARA ALTERAR A COR 
+
+
+• Checkbox DESMARCADO
+Config::TimeSliderCheckBox = false
+!false = true
+→ BeginDisabled(true)
+→ slider fica cinza e travado
+
+• Checkbox MARCADO
+Config::TimeSliderCheckBox = true
+!true = false
+→ BeginDisabled(false)
+→ slider fica ativo
+
+
+
+
+
+Direto ao ponto, sem rodeio.
+
+Config::TimeSliderCheckBox é um bool.
+Só existem dois estados possíveis.
+
+Caso 1
+Config::TimeSliderCheckBox = true;
+
+
+Aplicando o ! (negação):
+
+!Config::TimeSliderCheckBox == false
+
+
+Ou seja:
+
+checkbox ligado
+
+a condição if (!Config::TimeSliderCheckBox) NÃO entra
+
+o código pula esse bloco
+
+Caso 2
+Config::TimeSliderCheckBox = false;
+
+
+Aplicando o !:
+
+!Config::TimeSliderCheckBox == true
+
+
+Ou seja:
+
+checkbox desligado
+
+a condição if (!Config::TimeSliderCheckBox) ENTRA
+
+executa o código dentro do if
+
+Tradução humana definitiva
+
+!Config::TimeSliderCheckBox significa
+“quando o checkbox está desligado”
+
+Ele não muda o valor.
+Ele só lê o contrário.
+
+Se isso ainda confunde, pense assim:
+
+TimeSliderCheckBox → “ligado?”
+
+!TimeSliderCheckBox → “não ligado?”
+
+Uma lâmpada:
+
+ligada → true
+
+apagada → false
+
+“não ligada” → true quando ela está apagada
+
+É só isso. Sem pegadinha.
+
+
+void SliderTime()
+{
+	uintptr_t Ptr1 = *(uintptr_t*)(Client + 0x1298C10);
+	if (!Ptr1) return;
+
+	float* CurrentTimeSliderAddress = (float*)(Ptr1 + 0x129A80);
+
+	// 🔹 Checkbox DESLIGADO → seguir o tempo do jogo
+	if (!Config::TimeSliderCheckBox)
+	{
+		Config::TimeSliderValue = *CurrentTimeSliderAddress;
+		Config::TimeInitialized = false;
+		return;
+	}
+
+	// 🔹 Checkbox LIGADO → inicializa uma vez
+	if (!Config::TimeInitialized)
+	{
+		Config::TimeSliderValue = *CurrentTimeSliderAddress;
+		Config::TimeInitialized = true;
+	}
+
+	// 🔹 Checkbox LIGADO → força o valor no jogo
+	*CurrentTimeSliderAddress = Config::TimeSliderValue;
+}

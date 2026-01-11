@@ -4,9 +4,9 @@
 
 void Tabs::Tab_1()
 {
-	// ----------------------------------------------------------------------------------
-	// Note Text 
-	// ----------------------------------------------------------------------------------
+	//==================================================================================
+	//= Note Text ======================================================================
+	//==================================================================================
 	ImVec2 childStart = ImGui::GetCursorPos(); // Salva posição normal onde o child deveria começar
 	ImGui::SetCursorPos(ImVec2(520, 20));
 	ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(180, 180, 255, 255));
@@ -14,13 +14,17 @@ void Tabs::Tab_1()
 	ImGui::PopStyleColor();
 	ImGui::SetCursorPos(childStart); // Volta o cursor para a posição original para iniciar os childs alinhados
 
-	// ----------------------------------------------------------------------------------
-	// Child-0-0 Left Side
-	// ----------------------------------------------------------------------------------
-	ImGui::SetCursorPos(ImVec2(266, 76)); // Posição do primeiro child x,y
-	ImGui::BeginChild("Child-0-0", ImVec2(376, 166), false); //  Lagura & Altura do child h,l
+	//==================================================================================
+	//= Child-0-0 Left Side ============================================================
+	//==================================================================================
+	ImGui::SetCursorPos(ImVec2(266, 76));
+	ImGui::BeginChild("Child-0-0", ImVec2(376, 166), false);
 	{
-		const char* TimesOfDay[] =
+		if (ImGui::Checkbox("Enable Time of day", &Config::TimeCheckBox))
+		{
+			Menu::PlayToggleBeep(Config::TimeCheckBox);
+		}
+		const char* TimesOfDay[] = 
 		{
 			"Early Morning",
 			"Morning",
@@ -30,38 +34,39 @@ void Tabs::Tab_1()
 			"Night",
 			"Midnight"
 		};
-
-		ImGui::Checkbox("Enable Time of day", &Config::Time);
 		ImGui::Combo("Time of day", &Config::TimeValue, TimesOfDay, IM_ARRAYSIZE(TimesOfDay));
 	}
 	ImGui::EndChild();
 
-	// ----------------------------------------------------------------------------------
-	// Child-0-1 Left Side
-	// ----------------------------------------------------------------------------------
+	//==================================================================================
+	//= Child-0-1 Left Side ============================================================
+	//==================================================================================
 	ImGui::SetCursorPos(ImVec2(266, 255));
 	ImGui::BeginChild("Child-0-1", ImVec2(376, 166), false);
 	{
-		ImGui::Checkbox("Enable Time Slider", &Config::TimeSlider);
-
-		ImGui::BeginDisabled(!Config::TimeSlider);
+		if (ImGui::Checkbox("Enable Time Slider", &Config::TimeSliderCheckBox))
 		{
-			if (ImGui::SliderFloat("Time Slider", &Config::TimeSliderValue, 0.0f, 86400.0f, "%.0f"))
-			{
-				Config::TimeUserEditing = true;
-				Config::TimeEditTimer = 0.50f;
-			}
+			Menu::PlayToggleBeep(Config::TimeSliderCheckBox);
+		}
+
+		ImGui::BeginDisabled(!Config::TimeSliderCheckBox);
+		{
+			ImGui::SliderFloat("Time Slider", &Config::TimeSliderValue, 0.0f, 86400.0f, "%.0f");
 		}
 		ImGui::EndDisabled();
 	}
 	ImGui::EndChild();
 
-	// ----------------------------------------------------------------------------------
-	// Child-0-2 Right Side  
-	// ----------------------------------------------------------------------------------
+	//==================================================================================
+	//= Child-0-2 Left Side ============================================================
+	//==================================================================================
 	ImGui::SetCursorPos(ImVec2(658, 255));
 	ImGui::BeginChild("Child-0-2", ImVec2(376, 166), false);
 	{
+		if (ImGui::Checkbox("Enable Weather Phenomena", &Config::MainWeatherID))
+		{
+			Menu::PlayToggleBeep(Config::MainWeatherID);
+		}
 		const char* MainWeathersID[] =
 		{
 			"Sunny",
@@ -77,18 +82,20 @@ void Tabs::Tab_1()
 			"Thunderstorm + Rain [Non-Wet Roads]",
 			"Thunderstorm + Rain [Wet Roads]"
 		};
-
-		ImGui::Checkbox("Enable Weather Phenomena", &Config::MainWeatherID);
 		ImGui::Combo("Weather Phenomena", &Config::MainWeatherIDValue, MainWeathersID, IM_ARRAYSIZE(MainWeathersID));
 	}
 	ImGui::EndChild();
 
-	// ----------------------------------------------------------------------------------
-    // Child-0-3 Right Side 
-    // ----------------------------------------------------------------------------------
+	//==================================================================================
+	//= Child-0-3 Left Side ============================================================
+	//==================================================================================
 	ImGui::SetCursorPos(ImVec2(658, 76));
 	ImGui::BeginChild("Child-0-3", ImVec2(376, 166), false);
 	{
+		if (ImGui::Checkbox("Enable Alternative Weather", &Config::AlternativeWeatherID))
+		{
+			Menu::PlayToggleBeep(Config::AlternativeWeatherID);
+		}
 		const char* AlternativeWeathersID[] =
 		{
 			"Fog 0 (Cloudy Weather is recommended)",
@@ -116,8 +123,6 @@ void Tabs::Tab_1()
 			"Polar Night 1 (Fog can be used)",
 			"Polar Night 2 (Fog can be used)"
 		};
-
-		ImGui::Checkbox("Enable Alternative Weather", &Config::AlternativeWeatherID);
 		ImGui::Combo("Alternative Weather", &Config::AlternativeWeatherIDValue, AlternativeWeathersID, IM_ARRAYSIZE(AlternativeWeathersID));
 	}
 	ImGui::EndChild();
