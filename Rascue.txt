@@ -129,3 +129,8 @@ void SliderTime()
 	// 🔹 Checkbox LIGADO → força o valor no jogo
 	*CurrentTimeSliderAddress = Config::TimeSliderValue;
 }
+
+
+	ImGui::SetCursorPos(ImVec2(266, 76)); // Posição do child 
+	
+	/ (376, 320) = Lagura & Altura do child

@@ -13,13 +13,13 @@ void ResetTimer()
     double* ResetTimer_Value = (double*)(Ptr3 + 0x0);
 
     static bool resetExecuted = false;
-    if (Config::ResetTimerOnce && !resetExecuted)
+    if (Config::ResetTimer && !resetExecuted)
     {
         *ResetTimer_Value = 0.0;
         resetExecuted = true;
     }
 
-    if (!Config::ResetTimerOnce)
+    if (!Config::ResetTimer)
     {
         resetExecuted = false;
     }
