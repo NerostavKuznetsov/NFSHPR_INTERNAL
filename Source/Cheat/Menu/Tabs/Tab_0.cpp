@@ -33,30 +33,20 @@ void Tabs::Tab_0()
 	ImGui::SetCursorPos(ImVec2(266, 255));
 	ImGui::BeginChild("Child-0-1", ImVec2(376, 166), false);
 	{
-		if (ImGui::Checkbox("Enable Nitrous Slider", &Config::NitrousSlider))
-		{
-			Menu::PlayToggleBeep(Config::NitrousSlider);
-		}
 
-		ImGui::BeginDisabled(!Config::NitrousSlider);
-		{
-			if (ImGui::SliderFloat("Nitrous Slider", &Config::NitrousSliderValue, 0.0f, 100.0f, "%.1f"))
-			{
-				Config::NitrousUserEditing = true;
-				Config::NitrousEditTimer = 0.50f;
-			}
-		}
-		ImGui::EndDisabled();
 	}
 	ImGui::EndChild();
 
 	//==================================================================================
-	//= Child-0-2 Right Side ===========================================================
+	//= Child-0-2 Right Side =============================d==============================
 	//==================================================================================
 	ImGui::SetCursorPos(ImVec2(658, 76));
 	ImGui::BeginChild("Child-0-2", ImVec2(376, 166), false);
 	{
-		
+		ImGui::Checkbox("Unlimited Racers Weapons", &Config::UnlimitedRacersWeapons);
+		ImGui::Checkbox("No Cooldown Racer Weapons", &Config::NoCooldownRacersWeapons);
+		bool AutoJammer = false;	
+		ImGui::Checkbox("Auto JAMMER", &AutoJammer);
 	}
 	ImGui::EndChild();
 
@@ -66,18 +56,10 @@ void Tabs::Tab_0()
 	ImGui::SetCursorPos(ImVec2(658, 255));
 	ImGui::BeginChild("Child-0-3", ImVec2(376, 166), false);
 	{
-		
+		ImGui::Checkbox("Unlimited Police Weapons", &Config::UnlimitedPoliceWeapons);
+		ImGui::Checkbox("No Cooldown Police Weapons", &Config::NoCooldownPoliceWeapons);
+		bool AutoEMP = false;
+		ImGui::Checkbox("Auto SPIKES", &AutoEMP);
 	}
 	ImGui::EndChild();
-
-
-
-
-
-	//	ImGui::Checkbox("Unlimited Racers Weapons", &Config::UnlimitedRacersWeapons);
-	//	ImGui::Checkbox("No Cooldown Racer Weapons", &Config::NoCooldownRacersWeapons);
-
-	//	ImGui::Checkbox("Unlimited Police Weapons", &Config::UnlimitedPoliceWeapons);
-	//	ImGui::Checkbox("No Cooldown Police Weapons", &Config::NoCooldownPoliceWeapons);
-	
 }

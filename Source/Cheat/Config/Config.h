@@ -13,10 +13,6 @@ namespace Config
 
 	// --- Nitrous ---
 	inline bool  UnlimitedNitrous;
-	inline bool  NitrousSlider = true;
-	inline bool  NitrousUserEditing;
-	inline float NitrousEditTimer;
-	inline float NitrousSliderValue;
 
 	// --- Player ---
 	inline bool GodMode; 
