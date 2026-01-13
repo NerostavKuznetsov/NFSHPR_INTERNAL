@@ -65,10 +65,10 @@ static void CleanupRenderTarget()
 	}
 }
 
-LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT static __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	if (ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam))
-		return TRUE; // LRESULT ok
+		return TRUE; 
 
 	return CallWindowProc(oWndProc, hWnd, uMsg, wParam, lParam);
 }

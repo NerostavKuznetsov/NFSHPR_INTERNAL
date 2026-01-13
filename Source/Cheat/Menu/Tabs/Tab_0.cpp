@@ -4,61 +4,62 @@
 
 void Tabs::Tab_0()
 {
-	// ----------------------------------------------------------------------------------
-	// Child-0-0 / (266, 76) = Posição do child / (376, 320) = Lagura & Altura do child
-	// ----------------------------------------------------------------------------------
+	//==================================================================================
+	//= Child-0-0 Left Side ============================================================
+	//==================================================================================
 	ImGui::SetCursorPos(ImVec2(266, 76));
-	ImGui::BeginChild("Child-0-0", ImVec2(376, 320), false);
+	ImGui::BeginChild("Child-0-0", ImVec2(376, 166), false);
 	{
 		if (ImGui::Checkbox("Unlimited Nitrous", &Config::UnlimitedNitrous))
 		{
 			Menu::PlayToggleBeep(Config::UnlimitedNitrous);
 		}
 
-		if (ImGui::Checkbox("Enable Nitrous Slider", &Config::NitrousSlider))
+		if (ImGui::Checkbox("Reset Timer", &Config::ResetTimer))
 		{
-			Menu::PlayToggleBeep(Config::NitrousSlider);
+			Menu::PlayToggleBeep(Config::ResetTimer);
 		}
 
-
-
-
-
-
-
-
-		ImGui::BeginDisabled(!Config::NitrousSlider);
+		if (ImGui::Checkbox("God Mode", &Config::GodMode))
 		{
-			if (ImGui::SliderFloat("Nitrous Slider", &Config::NitrousSliderValue, 0.0f, 100.0f,  "%.1f"))
-			{
-				Config::NitrousUserEditing = true;
-				Config::NitrousEditTimer = 0.50f; 
-			}
+			Menu::PlayToggleBeep(Config::GodMode);
 		}
-		ImGui::EndDisabled();
+	}
+	ImGui::EndChild();
 
-		ImGui::Checkbox("Reset Timer (once)", &Config::ResetTimerOnce);
-		ImGui::Checkbox("Freeze Timer (0.00.00)", &Config::FreezeTimer);
-		ImGui::Button(" ");
-
-
+	//==================================================================================
+	//= Child-0-1 Left Side ============================================================
+	//==================================================================================
+	ImGui::SetCursorPos(ImVec2(266, 255));
+	ImGui::BeginChild("Child-0-1", ImVec2(376, 166), false);
+	{
 
 	}
 	ImGui::EndChild();
 
-	// ------------------------------------------------------------------
-	// Child-0-1 
-	// ------------------------------------------------------------------
+	//==================================================================================
+	//= Child-0-2 Right Side =============================d==============================
+	//==================================================================================
 	ImGui::SetCursorPos(ImVec2(658, 76));
-	ImGui::BeginChild("Child-0-1", ImVec2(376, 299), false);
+	ImGui::BeginChild("Child-0-2", ImVec2(376, 166), false);
 	{
 		ImGui::Checkbox("Unlimited Racers Weapons", &Config::UnlimitedRacersWeapons);
 		ImGui::Checkbox("No Cooldown Racer Weapons", &Config::NoCooldownRacersWeapons);
+		bool AutoJammer = false;	
+		ImGui::Checkbox("Auto JAMMER", &AutoJammer);
+	}
+	ImGui::EndChild();
 
+	//==================================================================================
+	//= Child-0-3 Right Side ===========================================================
+	//==================================================================================
+	ImGui::SetCursorPos(ImVec2(658, 255));
+	ImGui::BeginChild("Child-0-3", ImVec2(376, 166), false);
+	{
 		ImGui::Checkbox("Unlimited Police Weapons", &Config::UnlimitedPoliceWeapons);
 		ImGui::Checkbox("No Cooldown Police Weapons", &Config::NoCooldownPoliceWeapons);
-
-		ImGui::Checkbox("God Mode", &Config::GodMode);
+		bool AutoEMP = false;
+		ImGui::Checkbox("Auto SPIKES", &AutoEMP);
 	}
 	ImGui::EndChild();
 }
