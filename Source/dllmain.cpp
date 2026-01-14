@@ -23,7 +23,7 @@ bool unloading = false;
 
 uintptr_t Client = (uintptr_t)GetModuleHandle(L"NFS11Remastered.exe");
 
-HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags)
+HRESULT static __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags)
 {
     if (unloading)
         return oPresent(pSwapChain, SyncInterval, Flags);
@@ -42,12 +42,12 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
     return oPresent(pSwapChain, SyncInterval, Flags);
 }
 
-void Init()
+void static Init()
 {
 
 }
 
-void Unload(HMODULE hModule)
+void static Unload(HMODULE hModule)
 {
     unloading = true;
 
@@ -55,7 +55,7 @@ void Unload(HMODULE hModule)
     kiero::unbind(8);
 }
 
-DWORD WINAPI HackThread(HMODULE hModule)
+DWORD static WINAPI HackThread(HMODULE hModule)
 {
     AllocConsole();
     FILE* f;
@@ -67,8 +67,13 @@ DWORD WINAPI HackThread(HMODULE hModule)
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 
-
     std::wcout << R"(
+                _____   _______________________  _________________ 
+                ___  | / /__  ____/_  ___/__  / / /__  __ \__  __ \
+                __   |/ /__  /_   _____ \__  /_/ /__  /_/ /_  /_/ /
+                _  /|  / _  __/   ____/ /_  __  / _  ____/_  _, _/ 
+                /_/ |_/  /_/      /____/ /_/ /_/  /_/     /_/ |_| 
+
  +--------------------------------------------------------------------------------+
  |             Need For Speed Hot Pursuit Remastered - Cheat Internal             |
  +--------------------------------------------------------------------------------+
@@ -76,9 +81,7 @@ DWORD WINAPI HackThread(HMODULE hModule)
  |  [+] Made with <3 by Nerostav Kuznetsov                                        |
  +--------------------------------------------------------------------------------+
  |  [!] This program is free software you can redistribute or modify it!          |
- +--------------------------------------------------------------------------------+  
-
- )";
+ +--------------------------------------------------------------------------------+   )";
 
     while (!init_hook)
     {
@@ -102,7 +105,7 @@ DWORD WINAPI HackThread(HMODULE hModule)
     return 0;
 }
 
-BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
+BOOL static APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
 
     switch (ul_reason_for_call)

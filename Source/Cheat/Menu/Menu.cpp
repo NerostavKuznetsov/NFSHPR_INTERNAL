@@ -89,9 +89,9 @@ static void CustomStyleColor()
 	s.Colors[ImGuiCol_WindowBg] = ImColor(10, 10, 10, 255); // Fundo do menu quase preto CINZA Q EU SEMPRE  cinza escuro
 }
 
-// ------------------------------------------------------------------
-// Função auxiliar para renderizar as tabs	
-// ------------------------------------------------------------------																
+//==================================================================================
+//= Função para renderizar as Tabs =================================================
+//==================================================================================																
 static void RenderTabs()
 {
 	anim_text = ImLerp(anim_text, pending_page == active_tab ? 20.f : 0.f, 14.f * ImGui::GetIO().DeltaTime);
@@ -108,7 +108,6 @@ static void RenderTabs()
 
 	ImGui::GetWindowDrawList()->AddText(Inter_S_2, 23.f, ImVec2(p.x + 246 + anim_text, p.y + 18),
 	ImGui::GetColorU32(c::text_active), TabNames[active_tab]);
-
 	switch (active_tab)
 	{
 	case 0: Tabs::Tab_0(); break;
@@ -129,9 +128,9 @@ void Menu::PlayToggleBeep(bool enabled)
 	}
 }
 
-// ------------------------------------------------------------------
-// Menu Namespace	
-// ------------------------------------------------------------------
+//==================================================================================
+//= Menu ===========================================================================
+//==================================================================================
 namespace Menu
 {
 	bool Init(IDXGISwapChain* pSwapChain)
@@ -206,9 +205,9 @@ namespace Menu
 			Config::MenuImGui = !Config::MenuImGui;
 		}
 
-		// -----------------------------------------------------
-		// Janela do Watermark 
-		// -----------------------------------------------------
+		//==================================================================================
+		//= Watermark ======================================================================
+		//==================================================================================
 		ImGui::SetNextWindowSize(ImVec2(180, 50)); // Largura/Altura da janela do wartermark
 		ImGui::SetNextWindowPos({ 10, 10 }); // Posição do watermark na tela
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor(0, 0, 0, 255)); // Cor do fundo da janela do watermark
@@ -236,34 +235,27 @@ namespace Menu
 		ImGui::End();
 		ImGui::PopStyleVar();
 
-		// -----------------------------------------------------
-		// Corpo do Menu
-		// -----------------------------------------------------
-		if (!Config::MenuImGui)
-			return;
+		//==================================================================================
+		//= Corpo do Menu ==================================================================
+		//==================================================================================
+		if (!Config::MenuImGui) return;
 
-		// -----------------------------------------------------
-		// Cursor Customizado
-		// -----------------------------------------------------
+		//==================================================================================
+		//= Cursor Customizado =============================================================
+		//==================================================================================
 		ImGuiIO& io = ImGui::GetIO();
-		io.MouseDrawCursor = false; // esconde o cursor do sistema
+		io.MouseDrawCursor = false;
 		ImDrawList* draw = ImGui::GetForegroundDrawList();
 		ImVec2 pos = io.MousePos;
 
-		// Configurações da bolinha
-		float radius = 6.f;           // tamanho reduzido da bolinha
-		float border = 2.0f;          // espessura do contorno roxo
+		float radius = 6.f; // tamanho reduzido da bolinha
+		float border = 2.0f; // espessura do contorno roxo
 
-		// Cor interna preta
-		ImU32 colInner = IM_COL32(0, 0, 0, 255);
-		// Cor do contorno roxo
-		ImU32 colBorder = IM_COL32(170, 34, 255, 255);
+		ImU32 colInner = IM_COL32(0, 0, 0, 255); // Cor interna preta
+		ImU32 colBorder = IM_COL32(170, 34, 255, 255); // Cor do contorno roxo
 
-		// Desenha bolinha interna
-		draw->AddCircleFilled(pos, radius, colInner, 32);
-
-		// Desenha contorno roxo
-		draw->AddCircle(pos, radius, colBorder, 32, border);
+		draw->AddCircleFilled(pos, radius, colInner, 32); // Desenha bolinha interna preta
+		draw->AddCircle(pos, radius, colBorder, 32, border); // Desenha contorno roxo
 
 		ImGui::PushStyleColor(ImGuiCol_WindowBg, ImColor(10, 10, 10, 255).Value);
 		ImGui::SetNextWindowSize(ImVec2(1055, 450)); // Largura/Altura da janela do MENU PRINCIPAL !!!
@@ -274,11 +266,11 @@ namespace Menu
 			const ImVec2& region = ImGui::GetContentRegionMax();
 
 			tab_alpha = ImLerp(tab_alpha, (pending_page == active_tab) ? 1.f : 0.f, 18.f * ImGui::GetIO().DeltaTime);
-			if (tab_alpha < 0.01f)
-				active_tab = pending_page;
+			if (tab_alpha < 0.01f) 
+			active_tab = pending_page;
 
 			ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(p.x, p.y), ImVec2(p.x + 250, p.y + region.y), ImGui::GetColorU32(c::child_rect), 12.f, ImDrawFlags_RoundCornersLeft); // 
-			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 10, p.y + 32), ImGui::GetColorU32(c::main_color), "   NFSHPR");
+			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 10, p.y + 32), ImGui::GetColorU32(c::main_color), "NFS Hot Pursuit Remastered");
 			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 115, p.y + 32), ImGui::GetColorU32(c::text_active), "");
 
 			ImGuiStyle* style = &ImGui::GetStyle();
@@ -292,11 +284,10 @@ namespace Menu
 			ImGui::BeginGroup();
 			{
 				ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 8));
-
-				if (ImGui::Tab("Gameplay", "V", 0 == pending_page, ImVec2(234, 50))) pending_page = 0;
-				if (ImGui::Tab("Weathers", "V", 1 == pending_page, ImVec2(234, 50))) pending_page = 1;
-				if (ImGui::Tab("Extra Options", "V", 2 == pending_page, ImVec2(234, 50))) pending_page = 2;
-
+				if (ImGui::Tab("Gameplay",       "V", 0 == pending_page, ImVec2(234, 50))) pending_page = 0;
+				if (ImGui::Tab("Weathers",       "V", 1 == pending_page, ImVec2(234, 50))) pending_page = 1;
+				if (ImGui::Tab("Extra Options",  "V", 2 == pending_page, ImVec2(234, 50))) pending_page = 2;
+				if (ImGui::Tab("Extra Weathers", "V", 3 == pending_page, ImVec2(234, 50))) pending_page = 3;
 				ImGui::PopStyleVar();
 			}
 			ImGui::EndGroup();
