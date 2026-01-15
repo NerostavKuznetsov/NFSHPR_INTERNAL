@@ -1,9 +1,9 @@
 ﻿// ➡️ ImGui
-#include "../../../External/ImGui/imgui.h"
 #include "../../../External/ImGui/imgui_impl_dx11.h"
 #include "../../../External/ImGui/imgui_impl_win32.h"
 #include "../../../External/ImGui/imgui_internal.h"
 #include "../../../External/ImGui/imgui_settings.h"
+#include "../../../External/ImGui/imgui.h"
 
 // ➡️ Kiero Hook
 #include "../../../External/kiero/kiero.h"
@@ -120,11 +120,11 @@ void Menu::PlayToggleBeep(bool enabled)
 {
 	if (enabled)
 	{
-		std::thread([]() { Beep(666, 100); }).detach(); // Som ligado
+		std::thread([]() { Beep(666, 100); }).detach(); 
 	}
 	else
 	{
-		std::thread([]() { Beep(333, 100); }).detach(); // Som desligado
+		std::thread([]() { Beep(333, 100); }).detach(); 
 	}
 }
 
@@ -149,9 +149,7 @@ namespace Menu
 			CreateRenderTarget(pSwapChain);
 
 			oWndProc = (WNDPROC)SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)WndProc);
-
-			// MINHA ImGui COMEÇA AQUI ->>>>>>>>
-			IMGUI_CHECKVERSION();
+			IMGUI_CHECKVERSION(); // MINHA ImGui COMEÇA AQUI ->>>>>>>> ABAIXO
 			ImGui::CreateContext();
 
 			CustomStyleColor();
@@ -162,21 +160,17 @@ namespace Menu
 			ImGui_ImplWin32_Init(window);
 			ImGui_ImplDX11_Init(pDevice, pContext);
 
-			// Config para NÃO deixar o ImGui free-ar seus buffers embutidos
-			ImFontConfig cfg;
+			ImFontConfig cfg; // Config para NÃO deixar o ImGui free-ar seus buffers embutidos
 			cfg.FontDataOwnedByAtlas = false; // Essencial p/ AddFontFromMemoryTTF com dados estáticos
-
-			// Se quiser ranges específicos, mantenha abaixo, senão pode usar nullptr..
+			const ImWchar* ranges = nullptr; // Se quiser ranges específicos, mantenha abaixo, senão pode usar nullptr..
 			//const ImWchar* ranges = io.Fonts->GetGlyphRangesCyrillic();
-			const ImWchar* ranges = nullptr;
-
-			Inter_S = io.Fonts->AddFontFromMemoryTTF((void*)Inter_SemmiBold, sizeof Inter_SemmiBold, 17.f, &cfg, ranges); // Fonte dos textos normais
+			Inter_S = io.Fonts->AddFontFromMemoryTTF((void*)Inter_SemmiBold, sizeof Inter_SemmiBold, 17.f, &cfg, ranges);   // Fonte dos textos normais
 			Inter_S_1 = io.Fonts->AddFontFromMemoryTTF((void*)Inter_SemmiBold, sizeof Inter_SemmiBold, 18.f, &cfg, ranges); // Fonte dos títulos das tabs
-			Inter_S_2 = io.Fonts->AddFontFromMemoryTTF((void*)Inter_SemmiBold, sizeof Inter_SemmiBold, 23.f, &cfg, ranges); // Fonte dos botões .???????????
+			Inter_S_2 = io.Fonts->AddFontFromMemoryTTF((void*)Inter_SemmiBold, sizeof Inter_SemmiBold, 23.f, &cfg, ranges); // Fonte dos botões
 			Inter_S_3 = io.Fonts->AddFontFromMemoryTTF((void*)Inter_SemmiBold, sizeof Inter_SemmiBold, 15.f, &cfg, ranges); // Fonte do watermark
-			Inter_B = io.Fonts->AddFontFromMemoryTTF((void*)Inter_Bold, sizeof Inter_Bold, 34.f, &cfg, ranges); // Fonte da logo do cheat
-			Icon = io.Fonts->AddFontFromMemoryTTF((void*)Icon_Pack, sizeof Icon_Pack, 26.f, &cfg, ranges); // Icones para as tabs
-			Icon_Arrow = io.Fonts->AddFontFromMemoryTTF((void*)Arrow, sizeof Arrow, 7.f, &cfg, ranges);
+			Inter_B = io.Fonts->AddFontFromMemoryTTF((void*)Inter_Bold, sizeof Inter_Bold, 34.f, &cfg, ranges);             // Fonte da logo do cheat
+			Icon = io.Fonts->AddFontFromMemoryTTF((void*)Icon_Pack, sizeof Icon_Pack, 26.f, &cfg, ranges);                  // Icones para as tabs
+			Icon_Arrow = io.Fonts->AddFontFromMemoryTTF((void*)Arrow, sizeof Arrow, 7.f, &cfg, ranges);                     // Icone de seta pequena
 			return true;
 		}
 		return false;
@@ -235,9 +229,6 @@ namespace Menu
 		ImGui::End();
 		ImGui::PopStyleVar();
 
-		//==================================================================================
-		//= Corpo do Menu ==================================================================
-		//==================================================================================
 		if (!Config::MenuImGui) return;
 
 		//==================================================================================
