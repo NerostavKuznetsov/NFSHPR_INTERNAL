@@ -1,11 +1,10 @@
 ﻿//===========================================================================================================================//
-// ➡️ Cheat created by https://github.com/NerostavKuznetsov/NFSHPR_INTERNAL                                                  //  
-// ➡️ DirectX 11 Hook (kiero). Better version: https://github.com/rdbo/ImGui-DirectX-11-Kiero-Hook                           //
-// ➡️ Dear ImGui: Bloat-free Graphical User interface for C++ with minimal dependencies: https://github.com/ocornut/imgui    //
-// ➡️ Author ImGui: Ostin. Modified by Nerostav Kuznetsov!                                                                   //
-// ➡️ DLL entry point                                                                                                        //
+// ➡️ Cheat created by https://github.com/NerostavKuznetsov/NFSHPR_INTERNAL                                                    
+// ➡️ DirectX 11 Hook (kiero). Better version: https://github.com/rdbo/ImGui-DirectX-11-Kiero-Hook                           
+// ➡️ Dear ImGui: Bloat-free Graphical User interface for C++ with minimal dependencies: https://github.com/ocornut/imgui    
+// ➡️ Author ImGui: Ostin. Modified by Nerostav Kuznetsov!                                                                   
+// ➡️ DLL entry point                                                                                                        
 //===========================================================================================================================//
-
 #include <Windows.h>
 #include <iostream>
 #include "Cheat/Controller/Controller.h"

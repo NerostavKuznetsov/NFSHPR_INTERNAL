@@ -34,36 +34,11 @@ ImFont* Inter_B = nullptr;
 ImFont* Icon = nullptr;
 ImFont* Icon_Arrow = nullptr;
 
-static int active_tab = 0;
-float tab_alpha = 0.f;
-float anim_text = 0.f;
-int pending_page = 0;
-int togle = 0;
-
-static HWND                        window = nullptr;
-static WNDPROC                     oWndProc = nullptr;
+static HWND window = nullptr;
+static WNDPROC oWndProc = nullptr;
 static ID3D11Device* pDevice = nullptr;
 static ID3D11DeviceContext* pContext = nullptr;
 static ID3D11RenderTargetView* mainRenderTargetView = nullptr;
-
-static void CreateRenderTarget(IDXGISwapChain* pSwapChain)
-{
-	ID3D11Texture2D* pBackBuffer = nullptr;
-	if (SUCCEEDED(pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&pBackBuffer)))
-	{
-		HRESULT hr = pDevice->CreateRenderTargetView(pBackBuffer, nullptr, &mainRenderTargetView);
-		pBackBuffer->Release();
-	}
-}
-
-static void CleanupRenderTarget()
-{
-	if (mainRenderTargetView)
-	{
-		mainRenderTargetView->Release();
-		mainRenderTargetView = nullptr;
-	}
-}
 
 LRESULT static __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
@@ -88,6 +63,31 @@ static void CustomStyleColor()
 	s.Colors[ImGuiCol_ChildBg] = ImColor(0, 0, 0, 255);
 	s.Colors[ImGuiCol_WindowBg] = ImColor(10, 10, 10, 255); // Fundo do menu quase preto CINZA Q EU SEMPRE  cinza escuro
 }
+
+static void CreateRenderTarget(IDXGISwapChain* pSwapChain)
+{
+	ID3D11Texture2D* pBackBuffer = nullptr;
+	if (SUCCEEDED(pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&pBackBuffer)))
+	{
+		HRESULT hr = pDevice->CreateRenderTargetView(pBackBuffer, nullptr, &mainRenderTargetView);
+		pBackBuffer->Release();
+	}
+}
+
+static void CleanupRenderTarget()
+{
+	if (mainRenderTargetView)
+	{
+		mainRenderTargetView->Release();
+		mainRenderTargetView = nullptr;
+	}
+}
+
+static int active_tab = 0;
+float tab_alpha = 0.f;
+float anim_text = 0.f;
+int pending_page = 0;
+int togle = 0;
 
 //==================================================================================
 //= Função para renderizar as Tabs =================================================
@@ -229,7 +229,7 @@ namespace Menu
 		ImGui::End();
 		ImGui::PopStyleVar();
 
-		if (!Config::MenuImGui) return;
+		if (!Config::MenuImGui) return; // Watermark fica sempre aparecendo, menu só quando apertar TAB !!! 
 
 		//==================================================================================
 		//= Cursor Customizado =============================================================
@@ -260,9 +260,31 @@ namespace Menu
 			if (tab_alpha < 0.01f) 
 			active_tab = pending_page;
 
-			ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(p.x, p.y), ImVec2(p.x + 250, p.y + region.y), ImGui::GetColorU32(c::child_rect), 12.f, ImDrawFlags_RoundCornersLeft); // 
-			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 10, p.y + 32), ImGui::GetColorU32(c::main_color), "NFS Hot Pursuit Remastered");
-			ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 115, p.y + 32), ImGui::GetColorU32(c::text_active), "");
+			ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(p.x, p.y), ImVec2(p.x + 250, p.y + region.y), ImGui::GetColorU32(c::child_rect), 12.f, ImDrawFlags_RoundCornersLeft); 
+
+
+
+
+			//ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 10, p.y + 32), ImGui::GetColorU32(c::main_color), "NFS Hot Pursuit Remastered");
+			//ImGui::GetWindowDrawList()->AddText(Inter_B, 34.f, ImVec2(p.x + 115, p.y + 32), ImGui::GetColorU32(c::text_active), "");
+
+			ImGui::GetWindowDrawList()->AddText(
+				Inter_B,
+				28.f,
+				ImVec2(p.x + 14, p.y + 26),
+				ImGui::GetColorU32(c::main_color),
+				"NFS Hot Pursuit"
+			);
+
+			ImGui::GetWindowDrawList()->AddText(
+				Inter_S,
+				18.f,
+				ImVec2(p.x + 16, p.y + 58),
+				ImGui::GetColorU32(c::text_in_active),
+				"Remastered"
+			);
+
+
 
 			ImGuiStyle* style = &ImGui::GetStyle();
 			ImGui::PushStyleVar(ImGuiStyleVar_Alpha, tab_alpha * style->Alpha);
