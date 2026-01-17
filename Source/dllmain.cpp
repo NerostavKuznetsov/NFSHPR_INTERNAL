@@ -11,6 +11,8 @@
 #include "../External/kiero/kiero.h"
 #include "Cheat/Menu/Menu.h"
 
+// teste
+
 bool init;
 bool init_hook = false;
 bool unloading = false;
