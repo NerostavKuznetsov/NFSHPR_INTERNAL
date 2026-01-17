@@ -11,8 +11,6 @@
 #include "../External/kiero/kiero.h"
 #include "Cheat/Menu/Menu.h"
 
-// teste
-
 bool init;
 bool init_hook = false;
 bool unloading = false;
@@ -20,7 +18,7 @@ bool unloading = false;
 typedef HRESULT(__stdcall* Present) (IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags);
 Present oPresent;
 
-uintptr_t Client = (uintptr_t)GetModuleHandle("NFS11Remastered.exe");
+uintptr_t Client = (uintptr_t)GetModuleHandle(L"NFS11Remastered.exe");
 
 HRESULT static __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags)
 {
